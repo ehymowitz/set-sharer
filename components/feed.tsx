@@ -4,8 +4,6 @@ import { useFeed } from './util/hooks'
 const Feed = () => {
   const { feed } = useFeed()
 
-  console.log(feed)
-
   return feed ? (
     <>
       <ul>
