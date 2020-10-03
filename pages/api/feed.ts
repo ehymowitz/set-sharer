@@ -1,6 +1,5 @@
 export default (req, res) => {
-  return (
-    res.json({ feed: [
+    const feed = [
       {
         text:
           "Wow not having to configure and transpile typescript is one of the best parts of next.js",
@@ -11,6 +10,6 @@ export default (req, res) => {
           "I'm a firm believer that dark mode should be a universal default on the web",
         author: { username: "jill" },
       },
-    ] })
-  )
+    ]
+    res.json(feed)
 }
