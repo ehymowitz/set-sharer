@@ -1,12 +1,12 @@
 import React from 'react'
-import Feed from '../components/feed'
+import Songs from '../components/songs'
 import CreateItem from '../components/createItem'
 
 export default () => {
   return (
     <div>
-      hello, world!
-      <Feed/>
+      Set Sharer
+      <Songs/>
       <CreateItem/>
     </div>
   )

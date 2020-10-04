@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
-import { useFeed } from './util/hooks'
+import { useSongs } from './util/hooks'
 import { mutate } from 'swr'
 
 const CreateItem = () => {
-  const [input, setInput] = useState("")
-  const { feed } = useFeed()
+  const [name, setName] = useState("")
+  const [madeBy, setMadeBy] = useState("")
+  const { songs } = useSongs()
 
   return (
     <form
       onSubmit = {async e => {
           e.preventDefault()
 
-          mutate("/api/feed", [{text: input, author: me}, ...feed], false)
-          setInput("")
+          mutate("/api/songs", [{name: name, madeBy: madeBy}, ...songs], false)
+          setName("")
+          setMadeBy("")
       }}
     >
-      <input value = {input} onChange = { e => setInput(e.target.value)} />
+      <input value = {name} onChange = { e => setName(e.target.value)} />
+      <input value = {madeBy} onChange = { e => setMadeBy(e.target.value)} />
       <input type="submit" value="add"/>
     </form>
   )
