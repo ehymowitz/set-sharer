@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { fetcher } from './util/fetcher'
 import { useSongs } from './util/hooks'
 import { mutate } from 'swr'
 
@@ -13,6 +14,9 @@ const CreateItem = () => {
           e.preventDefault()
 
           mutate("/api/songs", [{name: name, madeBy: madeBy}, ...songs], false)
+          fetcher("/api/song/create", {
+            name: name,
+          })
           setName("")
           setMadeBy("")
       }}
