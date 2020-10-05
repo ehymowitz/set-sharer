@@ -10,9 +10,14 @@ const Songs = () => {
         {songs.map((item, i) => (
           <li key={i}>
             <p>
+<<<<<<< HEAD
               {item.name}
               {item.artist}
               {item.madeBy}
+=======
+              {item.title}
+              {item.artist}
+>>>>>>> fixDB
             </p>
           </li>
         ))}
