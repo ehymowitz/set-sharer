@@ -8,16 +8,6 @@ datasource sqlite {
 
 generator client {
   provider = "prisma-client-js"
-<<<<<<< HEAD
-  binaryTargets = ["native"]
-}
-
-model Song {
-  id          Int         @id @default(autoincrement())
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @default(now())
-  name        String
-=======
 }
 
 model Song {
@@ -26,5 +16,4 @@ model Song {
   updatedAt DateTime @default(now())
   title     String
   artist    String
->>>>>>> fixDB
 }
