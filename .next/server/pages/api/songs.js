@@ -88,20 +88,20 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./pages/api/feed.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./pages/api/songs.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/api/feed.ts":
-/*!***************************!*\
-  !*** ./pages/api/feed.ts ***!
-  \***************************/
+/***/ "./pages/api/songs.ts":
+/*!****************************!*\
+  !*** ./pages/api/songs.ts ***!
+  \****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ((req, res) => {\n  const feed = [{\n    text: \"Wow not having to configure and transpile typescript is one of the best parts of next.js\",\n    author: {\n      username: \"john\"\n    }\n  }, {\n    text: \"I'm a firm believer that dark mode should be a universal default on the web\",\n    author: {\n      username: \"jill\"\n    }\n  }];\n  res.json(feed);\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wYWdlcy9hcGkvZmVlZC50cz8xMDMyIl0sIm5hbWVzIjpbInJlcSIsInJlcyIsImZlZWQiLCJ0ZXh0IiwiYXV0aG9yIiwidXNlcm5hbWUiLCJqc29uIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFlLGdFQUFDQSxHQUFELEVBQU1DLEdBQU4sS0FBYztBQUN6QixRQUFNQyxJQUFJLEdBQUcsQ0FDWDtBQUNFQyxRQUFJLEVBQ0YsMEZBRko7QUFHRUMsVUFBTSxFQUFFO0FBQUVDLGNBQVEsRUFBRTtBQUFaO0FBSFYsR0FEVyxFQU1YO0FBQ0VGLFFBQUksRUFDRiw2RUFGSjtBQUdFQyxVQUFNLEVBQUU7QUFBRUMsY0FBUSxFQUFFO0FBQVo7QUFIVixHQU5XLENBQWI7QUFZQUosS0FBRyxDQUFDSyxJQUFKLENBQVNKLElBQVQ7QUFDSCxDQWREIiwiZmlsZSI6Ii4vcGFnZXMvYXBpL2ZlZWQudHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCAocmVxLCByZXMpID0+IHtcbiAgICBjb25zdCBmZWVkID0gW1xuICAgICAge1xuICAgICAgICB0ZXh0OlxuICAgICAgICAgIFwiV293IG5vdCBoYXZpbmcgdG8gY29uZmlndXJlIGFuZCB0cmFuc3BpbGUgdHlwZXNjcmlwdCBpcyBvbmUgb2YgdGhlIGJlc3QgcGFydHMgb2YgbmV4dC5qc1wiLFxuICAgICAgICBhdXRob3I6IHsgdXNlcm5hbWU6IFwiam9oblwiIH0sXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICB0ZXh0OlxuICAgICAgICAgIFwiSSdtIGEgZmlybSBiZWxpZXZlciB0aGF0IGRhcmsgbW9kZSBzaG91bGQgYmUgYSB1bml2ZXJzYWwgZGVmYXVsdCBvbiB0aGUgd2ViXCIsXG4gICAgICAgIGF1dGhvcjogeyB1c2VybmFtZTogXCJqaWxsXCIgfSxcbiAgICAgIH0sXG4gICAgXVxuICAgIHJlcy5qc29uKGZlZWQpXG59XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./pages/api/feed.ts\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ((req, res) => {\n  const songs = [{\n    title: 'Soul to Squeeze',\n    artist: 'RHCP'\n  }];\n  res.json(songs);\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wYWdlcy9hcGkvc29uZ3MudHM/ZTg3NyJdLCJuYW1lcyI6WyJyZXEiLCJyZXMiLCJzb25ncyIsInRpdGxlIiwiYXJ0aXN0IiwianNvbiJdLCJtYXBwaW5ncyI6IkFBQUE7QUFBZSxnRUFBQ0EsR0FBRCxFQUFNQyxHQUFOLEtBQWM7QUFDekIsUUFBTUMsS0FBSyxHQUFHLENBQ1o7QUFDRUMsU0FBSyxFQUFFLGlCQURUO0FBRUVDLFVBQU0sRUFBRTtBQUZWLEdBRFksQ0FBZDtBQU1BSCxLQUFHLENBQUNJLElBQUosQ0FBU0gsS0FBVDtBQUNILENBUkQiLCJmaWxlIjoiLi9wYWdlcy9hcGkvc29uZ3MudHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCAocmVxLCByZXMpID0+IHtcbiAgICBjb25zdCBzb25ncyA9IFtcbiAgICAgIHtcbiAgICAgICAgdGl0bGU6ICdTb3VsIHRvIFNxdWVlemUnLFxuICAgICAgICBhcnRpc3Q6ICdSSENQJyxcbiAgICAgIH0sXG4gICAgXVxuICAgIHJlcy5qc29uKHNvbmdzKVxufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./pages/api/songs.ts\n");
 
 /***/ })
 

@@ -1,13 +1,13 @@
 import React from 'react'
-import Feed from '../components/feed'
-import CreateItem from '../components/createItem'
+import Songs from '../components/songs'
+import CreateSong from '../components/createSong'
 
 export default () => {
   return (
     <div>
       hello, world!
-      <Feed/>
-      <CreateItem/>
+      <Songs/>
+      <CreateSong/>
     </div>
   )
 }
