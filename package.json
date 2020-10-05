@@ -3,11 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "migrate:save": "prisma migrate save --experimental",
+    "migrate:up": "prisma migrate up --experimental",
+    "postinstall": "prisma generate",
+    "generate": "prisma generate",
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^2.8.0",
     "next": "^9.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
