@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 export default async (req, res) => {
-  const { title } = req.body
-  const song = await prisma.tweet.create({ data: { title } })
+  const { title, artist } = req.body
+  const song = await prisma.song.create({ data: { title, artist } })
   res.json(song)
 }

@@ -1,7 +1,3 @@
 # Prisma Migrate lockfile v1
 
-<<<<<<< HEAD
-20201004184758-create-song-model
-=======
-20201005144640-song-model
->>>>>>> fixDB
+20201005183705-song-model

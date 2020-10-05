@@ -1,9 +1,9 @@
-export default (req, res) => {
-    const songs = [
-      {
-        title: 'Soul to Squeeze',
-        artist: 'RHCP',
-      },
-    ]
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
+
+export default async (req, res) => {
+    const songs = await prisma.song.findMany({
+      orderBy: {createdAt: "desc" },
+    })
     res.json(songs)
 }

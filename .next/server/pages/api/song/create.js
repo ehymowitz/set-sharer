@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = require('../../ssr-module-cache.js');
+/******/ 	var installedModules = require('../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,20 +88,20 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./pages/api/songs.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./pages/api/song/create.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/api/songs.ts":
-/*!****************************!*\
-  !*** ./pages/api/songs.ts ***!
-  \****************************/
+/***/ "./pages/api/song/create.ts":
+/*!**********************************!*\
+  !*** ./pages/api/song/create.ts ***!
+  \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n\nconst prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__[\"PrismaClient\"]();\n/* harmony default export */ __webpack_exports__[\"default\"] = (async (req, res) => {\n  const songs = await prisma.song.findMany({\n    orderBy: {\n      createdAt: \"desc\"\n    }\n  });\n  res.json(songs);\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wYWdlcy9hcGkvc29uZ3MudHM/ZTg3NyJdLCJuYW1lcyI6WyJwcmlzbWEiLCJQcmlzbWFDbGllbnQiLCJyZXEiLCJyZXMiLCJzb25ncyIsInNvbmciLCJmaW5kTWFueSIsIm9yZGVyQnkiLCJjcmVhdGVkQXQiLCJqc29uIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBLE1BQU1BLE1BQU0sR0FBRyxJQUFJQywyREFBSixFQUFmO0FBRWUsc0VBQU9DLEdBQVAsRUFBWUMsR0FBWixLQUFvQjtBQUMvQixRQUFNQyxLQUFLLEdBQUcsTUFBTUosTUFBTSxDQUFDSyxJQUFQLENBQVlDLFFBQVosQ0FBcUI7QUFBRUMsV0FBTyxFQUFFO0FBQUNDLGVBQVMsRUFBRTtBQUFaO0FBQVgsR0FBckIsQ0FBcEI7QUFDQUwsS0FBRyxDQUFDTSxJQUFKLENBQVNMLEtBQVQ7QUFDSCxDQUhEIiwiZmlsZSI6Ii4vcGFnZXMvYXBpL3NvbmdzLnRzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUHJpc21hQ2xpZW50IH0gZnJvbSBcIkBwcmlzbWEvY2xpZW50XCJcbmNvbnN0IHByaXNtYSA9IG5ldyBQcmlzbWFDbGllbnQoKVxuXG5leHBvcnQgZGVmYXVsdCBhc3luYyAocmVxLCByZXMpID0+IHtcbiAgICBjb25zdCBzb25ncyA9IGF3YWl0IHByaXNtYS5zb25nLmZpbmRNYW55KHsgb3JkZXJCeToge2NyZWF0ZWRBdDogXCJkZXNjXCJ9fSlcbiAgICByZXMuanNvbihzb25ncylcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./pages/api/songs.ts\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n\nconst prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__[\"PrismaClient\"]();\n/* harmony default export */ __webpack_exports__[\"default\"] = (async (req, res) => {\n  const {\n    title,\n    artist\n  } = req.body;\n  const song = await prisma.song.create({\n    data: {\n      title,\n      artist\n    }\n  });\n  res.json(song);\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wYWdlcy9hcGkvc29uZy9jcmVhdGUudHM/NjdjMSJdLCJuYW1lcyI6WyJwcmlzbWEiLCJQcmlzbWFDbGllbnQiLCJyZXEiLCJyZXMiLCJ0aXRsZSIsImFydGlzdCIsImJvZHkiLCJzb25nIiwiY3JlYXRlIiwiZGF0YSIsImpzb24iXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0EsTUFBTUEsTUFBTSxHQUFHLElBQUlDLDJEQUFKLEVBQWY7QUFFZSxzRUFBT0MsR0FBUCxFQUFZQyxHQUFaLEtBQW9CO0FBQ2pDLFFBQU07QUFBRUMsU0FBRjtBQUFTQztBQUFULE1BQW9CSCxHQUFHLENBQUNJLElBQTlCO0FBQ0EsUUFBTUMsSUFBSSxHQUFHLE1BQU1QLE1BQU0sQ0FBQ08sSUFBUCxDQUFZQyxNQUFaLENBQW1CO0FBQUVDLFFBQUksRUFBRTtBQUFFTCxXQUFGO0FBQVNDO0FBQVQ7QUFBUixHQUFuQixDQUFuQjtBQUNBRixLQUFHLENBQUNPLElBQUosQ0FBU0gsSUFBVDtBQUNELENBSkQiLCJmaWxlIjoiLi9wYWdlcy9hcGkvc29uZy9jcmVhdGUudHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBQcmlzbWFDbGllbnQgfSBmcm9tIFwiQHByaXNtYS9jbGllbnRcIlxuY29uc3QgcHJpc21hID0gbmV3IFByaXNtYUNsaWVudCgpXG5cbmV4cG9ydCBkZWZhdWx0IGFzeW5jIChyZXEsIHJlcykgPT4ge1xuICBjb25zdCB7IHRpdGxlLCBhcnRpc3QgfSA9IHJlcS5ib2R5XG4gIGNvbnN0IHNvbmcgPSBhd2FpdCBwcmlzbWEuc29uZy5jcmVhdGUoeyBkYXRhOiB7IHRpdGxlLCBhcnRpc3QgfSB9KVxuICByZXMuanNvbihzb25nKVxufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./pages/api/song/create.ts\n");
 
 /***/ }),
 

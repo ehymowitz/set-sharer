@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSongs } from './util/hooks'
 import { mutate } from 'swr'
+import { fetcher } from './util/fetcher'
 
 const CreateSong = () => {
   const [title, setTitle] = useState("")
@@ -13,6 +14,10 @@ const CreateSong = () => {
           e.preventDefault()
 
           mutate("/api/songs", [{title: title, artist: artist}, ...songs], false)
+          fetcher("/api/song/create", {
+            title: title,
+            artist: artist
+          })
           setTitle("")
           setArtist("")
       }}
