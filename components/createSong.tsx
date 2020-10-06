@@ -13,7 +13,7 @@ const CreateSong = () => {
       onSubmit = {async e => {
           e.preventDefault()
 
-          mutate("/api/songs", [{title: title, artist: artist}, ...songs], false)
+          mutate("/api/songs", [{title: title, artist: artist}, ...songs], true)
           fetcher("/api/song/create", {
             title: title,
             artist: artist
@@ -22,8 +22,8 @@ const CreateSong = () => {
           setArtist("")
       }}
     >
-      <input value = {title} onChange = { e => setTitle(e.target.value)} />
-      <input value = {artist} onChange = { e => setArtist(e.target.value)} />
+      <input value = {title} onChange = { e => setTitle(e.target.value)} placeholder = "Song Name"/>
+      <input value = {artist} onChange = { e => setArtist(e.target.value)} placeholder = "Song Artist"/>
       <input type="submit" value="add"/>
     </form>
   )

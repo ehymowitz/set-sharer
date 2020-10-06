@@ -1,3 +1,7 @@
 # Prisma Migrate lockfile v1
 
 20201005183705-song-model
+20201006141738-set-model
+20201006142051-password-mandatory
+20201006145450-removed-set-date
+20201006155934-changed-set-uniquness

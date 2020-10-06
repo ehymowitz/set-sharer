@@ -17,3 +17,11 @@ model Song {
   title     String
   artist    String
 }
+
+model Set {
+  id        Int     @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  setName   String    @unique
+  password  String
+  songs     Song[]
+}

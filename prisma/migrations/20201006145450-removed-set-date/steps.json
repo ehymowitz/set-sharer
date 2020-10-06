@@ -1,0 +1,42 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteField",
+      "model": "Set",
+      "field": "setDate"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Set",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[setName]"
+            }
+          ]
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Set",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[setName, setDate]"
+            }
+          ]
+        },
+        "directive": "unique"
+      }
+    }
+  ]
+}
