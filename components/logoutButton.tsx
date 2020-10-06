@@ -9,7 +9,7 @@ const LogoutButton = () => {
       onClick = { async () => {
         const { data, error } = await fetcher("/api/logout")
         if (error) {
-          console.log(error)
+          alert(error)
           return
         }
         await mutate("/api/set")
