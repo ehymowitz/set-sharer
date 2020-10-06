@@ -3,9 +3,11 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/songs": "pages/api/songs.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/api/set": "pages/api/set.js",
+  "/api/song/create": "pages/api/song/create.js",
+  "/api/songs": "pages/api/songs.js",
+  "/api/song/delete": "pages/api/song/delete.js",
+  "/api/create": "pages/api/create.js",
   "/api/logout": "pages/api/logout.js",
-  "/api/song/delete": "pages/api/song/delete.js"
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }
