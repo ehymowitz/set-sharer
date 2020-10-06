@@ -6,12 +6,12 @@ const prisma = new PrismaClient()
 
 export default async (req, res) => {
   const salt = bcrypt.genSaltSync()
-  const { setName, password } = req.body
+  const { gigName, password } = req.body
   let set
   try {
     set = await prisma.set.create({
       data: {
-        setName,
+        setName: gigName,
         password: bcrypt.hashSync(password, salt),
       },
     })
@@ -29,7 +29,7 @@ export default async (req, res) => {
 
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize("token, token", {
+    cookie.serialize("token", token, {
       httpOnly: true,
       maxAge: 6 * 60 * 60,
       path: "/",

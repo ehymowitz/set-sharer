@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSongs } from './util/hooks'
+import { useSongs, useGigInfo } from './util/hooks'
 import { mutate } from 'swr'
 import { fetcher } from './util/fetcher'
 
@@ -13,10 +13,10 @@ const CreateSong = () => {
       onSubmit = {async e => {
           e.preventDefault()
 
-          mutate("/api/songs", [{title: title, artist: artist}, ...songs], true)
+          mutate("/api/songs", [{title: title, artist: artist, Set: useGigInfo}, ...songs], false)
           fetcher("/api/song/create", {
             title: title,
-            artist: artist
+            artist: artist,
           })
           setTitle("")
           setArtist("")

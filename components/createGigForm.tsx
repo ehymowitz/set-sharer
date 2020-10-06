@@ -44,17 +44,7 @@ const CreateGigForm = () => {
           onChange= {e =>setPassword(e.target.value)}
           placeholder = "Password"
         />
-        <input type="submit" value="Go"/>
-        <div>
-          <p>
-            {login ? "Login" : "Create"}
-          </p>
-        </div>
-        <div>
-        <a onClick={() => {setLogin(!login)}}>
-          {login ? "Create a set" : "View a set"}
-        </a>
-        </div>
+        <input type="submit" value={login ? "View a gig" : "Create a gig"}/>
       </form>
     </div>
   )

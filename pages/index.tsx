@@ -3,7 +3,7 @@ import Songs from '../components/songs'
 import CreateSong from '../components/createSong'
 import Gig from '../components/gig'
 
-export default () => {
+const Home = () => {
   return (
     <div>
       Set Sharer
@@ -13,3 +13,5 @@ export default () => {
     </div>
   )
 }
+
+export default Home
