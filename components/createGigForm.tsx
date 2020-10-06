@@ -5,22 +5,20 @@ import { fetcher } from './util/fetcher'
 const CreateGigForm = () => {
   const [gigName, setGigName] = useState("")
   const [password, setPassword] = useState("")
-  const [login, setLogin] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [choice, setChoice] = useState(false)
 
   return (
     <div>
       <form
-        onSubmit={async e => {
+        onSubmit={async (e) => {
           e.preventDefault()
           if (gigName.length === 0 || password.length === 0) {
             alert(
               "You can't have a blank Gig Name or Password"
             )
           }
-          setLoading(true)
           const { data, error } = await fetcher(
-            `/api/${login ? "login" : "create" }`,
+            `/api/${choice ? "login" : "create" }`,
             {
               gigName,
               password
@@ -28,7 +26,6 @@ const CreateGigForm = () => {
           )
           if (error) {
             console.log(error)
-            setLoading(false)
             return
           }
           await mutate("api/set")
@@ -44,8 +41,11 @@ const CreateGigForm = () => {
           onChange= {e =>setPassword(e.target.value)}
           placeholder = "Password"
         />
-        <input type="submit" value={login ? "View a gig" : "Create a gig"}/>
+        <input type="submit" value = {choice ? "View a gig" : "Create a gig"}/>
       </form>
+      <button onClick= { () => setChoice(!choice)}>
+        change
+      </button>
     </div>
   )
 }

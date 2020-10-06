@@ -5,15 +5,15 @@ import jwt from 'jsonwebtoken'
 import cookie from 'cookie'
 
 export default async (req, res) => {
-  const { setName, password } = req.body
+  const { gigName, password } = req.body
 
   const set = await prisma.set.findOne({
-    where: { setName },
+    where: { setName: gigName },
   })
 
   if (set && bcrypt.compareSync(password, set.password)) {
     const token = jwt.sign(
-      { setName: set.setName, id: setName.id, time: new Date() },
+      { setName: set.setName, id: set.id, time: new Date() },
       process.env.JWT_SECRET,
       {
         expiresIn: "6h",
