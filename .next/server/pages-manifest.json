@@ -2,5 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js"
+  "/api/songs": "pages/api/songs.js",
+  "/api/set": "pages/api/set.js",
+  "/": "pages/index.js",
+  "/api/song/create": "pages/api/song/create.js",
+  "/api/song/delete": "pages/api/song/delete.js"
 }

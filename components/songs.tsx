@@ -1,4 +1,5 @@
 import React from 'react'
+import DeleteSongButton from './deleteSongButton'
 import { useSongs } from './util/hooks'
 
 const Songs = () => {
@@ -13,6 +14,7 @@ const Songs = () => {
               {item.title}
               {item.artist}
             </p>
+            <DeleteSongButton song = {item} songs = {songs}/>
           </li>
         ))}
       </ul>
