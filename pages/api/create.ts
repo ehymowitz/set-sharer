@@ -16,7 +16,7 @@ export default async (req, res) => {
       },
     })
   } catch (error) {
-    res.json({ error: "set name already exists"})
+    res.json({ error: "Set name already exists"})
     return
   }
   const token = jwt.sign(

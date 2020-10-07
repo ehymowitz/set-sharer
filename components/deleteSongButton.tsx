@@ -10,7 +10,7 @@ const DeleteSongButton = ({ song, songs}) => {
         await mutate("/api/songs", songs.filter( s => s.id !== song.id ))
       }}
     >
-
+      X
     </div>
   )
 }

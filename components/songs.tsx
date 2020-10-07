@@ -6,20 +6,23 @@ const Songs = () => {
   const { songs } = useSongs()
 
   return songs ? (
-    <>
+    <div>
       <ul>
-        {songs.map((item, i) => (
-          <li key={i}>
-            <p>
-              {item.title}
-              {item.artist}
-            </p>
-            <DeleteSongButton song = {item} songs = {songs}/>
-          </li>
-        ))}
+        {songs.map((song, index) => {
+          return (
+            <li key = {index}>
+              <p>{song.title}</p>
+              <DeleteSongButton song={song} songs={songs}/>
+            </li>
+          )
+        })}
       </ul>
-    </>
-  ) : null
+    </div>
+  ) : (
+    <div>
+      <p>test</p>
+    </div>
+  )
 }
 
 export default Songs

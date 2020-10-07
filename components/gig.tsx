@@ -4,7 +4,7 @@ import CreateGigForm from './createGigForm'
 import LogoutButton from './logoutButton'
 
 const Gig = () => {
-  
+
   const { gigInfo } = useGigInfo()
   if (!gigInfo) return null
 
