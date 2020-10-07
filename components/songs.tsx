@@ -6,13 +6,18 @@ const Songs = () => {
   const { songs } = useSongs()
 
   return songs ? (
-    <div>
+    <div className = "songs">
       <ul>
         {songs.map((song, index) => {
           return (
-            <li key = {index}>
-              <p>{song.title}</p>
-              <p>{song.artist}</p>
+            <li className = "song-card" key = {index}>
+              <div className="song-img">
+                <img src="https://picsum.photos/id/1082/100" alt="filler"/>
+              </div>
+              <div className="song-text">
+                <h2>{song.title}</h2>
+                <h3>{song.artist}</h3>
+              </div>
               <DeleteSongButton song={song} songs={songs}/>
             </li>
           )
@@ -21,7 +26,7 @@ const Songs = () => {
     </div>
   ) : (
     <div>
-      <p>test</p>
+      <p>Add some songs</p>
     </div>
   )
 }

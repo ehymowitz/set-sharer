@@ -8,7 +8,7 @@ const CreateGigForm = ({}) => {
   const [choice, setChoice] = useState(true)
 
   return (
-    <div>
+    <div className="gig-form">
       <form
         onSubmit={async (e) => {
           e.preventDefault()
@@ -31,21 +31,23 @@ const CreateGigForm = ({}) => {
           await mutate("api/set")
         }}
       >
-        <input
+        <div className="inputs">
+          <input
           value = {gigName}
           onChange= {e =>setGigName(e.target.value)}
           placeholder = "Gig Name"
-        />
-        <input
+          />
+          <input
           value = {password}
           onChange= {e =>setPassword(e.target.value)}
           placeholder = "Password"
-        />
-        <input type="submit" value = {choice ? "View a gig" : "Create a gig"}/>
+          />
+          <input type="submit" value = {choice ? "View a gig" : "Create a gig"}/>
+        </div>
       </form>
-      <button onClick= { () => setChoice(!choice)}>
-        change
-      </button>
+      <a onClick= { () => setChoice(!choice)}>
+        Want to create a gig? Click here
+      </a>
     </div>
   )
 }

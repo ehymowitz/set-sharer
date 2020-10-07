@@ -1,0 +1,27 @@
+.gig {
+  .gig-show {
+    display: flex;
+    justify-content: center;
+
+    .log-button {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .gig-form {
+    text-align: right;
+    .inputs {
+      display: grid;
+      input {
+        text-align: center;
+        height: 30px;
+        border: none;
+      }
+    }
+    a {
+      cursor: pointer;
+      font-size: 12px;
+    }
+  }
+}

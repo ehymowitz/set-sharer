@@ -5,7 +5,7 @@ import { fetcher } from './util/fetcher'
 const LogoutButton = () => {
 
   return (
-    <button
+    <div className="log-button"
       onClick = { async () => {
         const { data, error } = await fetcher("/api/logout")
         if (error) {
@@ -14,8 +14,10 @@ const LogoutButton = () => {
         }
         await mutate("/api/set")
       }}>
-      Leave Set
-    </button>
+      <h2>
+        ➡️
+      </h2>
+    </div>
   )
 }
 

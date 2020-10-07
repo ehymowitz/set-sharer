@@ -9,14 +9,15 @@ const Gig = () => {
   if (!gigInfo) return null
 
   return (
-    <div>
+    <div className = "gig">
       {!gigInfo.setName ? (
         <CreateGigForm />
-      ) : (
-        <p>
-          Viewing set: <strong>{gigInfo.setName}</strong>
+      ) :
+      (
+        <div className = "gig-show">
+          <h2>Setlist: <strong>{gigInfo.setName}</strong></h2>
           <LogoutButton />
-        </p>
+        </div>
       )}
     </div>
   )

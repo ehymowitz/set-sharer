@@ -15,7 +15,8 @@ const CreateSongForm = () => {
   }
 
   return (
-    <form
+    <div className="song-form">
+      <form
       onSubmit = {async e => {
         e.preventDefault()
 
@@ -38,11 +39,14 @@ const CreateSongForm = () => {
         })
         resetForm()
       }}
-    >
-      <input value = {title} onChange = { e => setTitle(e.target.value)} placeholder = "Song Name"/>
-      <input value = {artist} onChange = { e => setArtist(e.target.value)} placeholder = "Song Artist"/>
-      <input type="submit" value="add"/>
-    </form>
+      >
+        <div className="inputs">
+          <input value = {title} onChange = { e => setTitle(e.target.value)} placeholder = "Song Name"/>
+          <input value = {artist} onChange = { e => setArtist(e.target.value)} placeholder = "Song Artist"/>
+        </div>
+        <input className = "submit" type="submit" value="Add"/>
+      </form>
+    </div>
   )
 }
 
