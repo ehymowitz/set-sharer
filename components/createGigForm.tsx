@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { mutate } from 'swr'
 import { fetcher } from './util/fetcher'
 
-const CreateGigForm = ({}) => {
+const CreateGigForm = () => {
   const [gigName, setGigName] = useState("")
   const [password, setPassword] = useState("")
   const [choice, setChoice] = useState(true)

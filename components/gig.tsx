@@ -6,9 +6,8 @@ import LogoutButton from './logoutButton'
 const Gig = () => {
 
   const { gigInfo } = useGigInfo()
-  if (!gigInfo) return null
 
-  return (
+  return gigInfo ? (
     <div className = "gig">
       {!gigInfo.setName ? (
         <CreateGigForm />
@@ -20,7 +19,8 @@ const Gig = () => {
         </div>
       )}
     </div>
-  )
+  ) :
+  null
 }
 
 export default Gig

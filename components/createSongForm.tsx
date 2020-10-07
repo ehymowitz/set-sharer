@@ -32,11 +32,11 @@ const CreateSongForm = () => {
           return
         }
 
-        mutate("/api/songs", [{title: title, artist: artist, Set: useGigInfo}, ...songs])
-        fetcher("/api/song/create", {
+        await fetcher("/api/song/create", {
           title: title,
           artist: artist,
         })
+        await mutate("/api/songs", [{title: title, artist: artist, Set: useGigInfo}, ...songs])
         resetForm()
       }}
       >
