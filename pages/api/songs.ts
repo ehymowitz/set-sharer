@@ -8,7 +8,7 @@ export default async (req, res) => {
   if (token) {
     const { id, setName } = jwt.verify(token, process.env.JWT_SECRET)
     const songs = await prisma.song.findMany({
-      where: { setId: id }
+      where: { setId: id },
     })
     res.json(songs)
   } else {

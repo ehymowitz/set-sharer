@@ -12,6 +12,7 @@ const Songs = () => {
           return (
             <li key = {index}>
               <p>{song.title}</p>
+              <p>{song.artist}</p>
               <DeleteSongButton song={song} songs={songs}/>
             </li>
           )

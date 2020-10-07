@@ -1,6 +1,6 @@
 import React from 'react'
 import Songs from '../components/songs'
-import CreateSong from '../components/createSong'
+import CreateSongForm from '../components/createSongForm'
 import Gig from '../components/gig'
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
     <div>
       Set Sharer
       <Songs/>
-      <CreateSong/>
+      <CreateSongForm/>
       <Gig/>
     </div>
   )

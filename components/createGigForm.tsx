@@ -5,7 +5,7 @@ import { fetcher } from './util/fetcher'
 const CreateGigForm = ({}) => {
   const [gigName, setGigName] = useState("")
   const [password, setPassword] = useState("")
-  const [choice, setChoice] = useState(false)
+  const [choice, setChoice] = useState(true)
 
   return (
     <div>
