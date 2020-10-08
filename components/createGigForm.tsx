@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { mutate } from 'swr'
 import { fetcher } from './util/fetcher'
-import { LoggedIn } from '../pages/index'
+import { LoggedIn } from '../pages/_app'
 
 const CreateGigForm = () => {
   const [gigName, setGigName] = useState("")
   const [password, setPassword] = useState("")
   const [choice, setChoice] = useState(true)
-  const { loggedIn, setLoggedIn } = useContext(LoggedIn)
+  const { setLoggedIn } = useContext(LoggedIn)
 
   const logIn = () => {
     setLoggedIn(true)
@@ -34,7 +34,7 @@ const CreateGigForm = () => {
             alert(error)
             return
           }
-          await mutate("api/set")
+          await mutate("/api/set")
           logIn()
         }}
       >

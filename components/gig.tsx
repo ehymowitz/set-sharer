@@ -9,7 +9,7 @@ const Gig = () => {
 
   return gigInfo ? (
     <div className = "gig">
-      {!gigInfo.setName ? (
+      {(!gigInfo.setName) ? (
         <CreateGigForm />
       ) :
       (

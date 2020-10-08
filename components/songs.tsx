@@ -5,7 +5,7 @@ import { useSongs } from './util/hooks'
 const Songs = () => {
   const { songs } = useSongs()
 
-  return songs ? ( // Try using (songs.length) instead?
+  return (songs?.length > 0) ? (
     <div className = "songs">
       <ul>
         {songs.map((song, index) => {

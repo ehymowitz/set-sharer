@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { mutate } from 'swr'
 import { fetcher } from './util/fetcher'
-import { LoggedIn } from '../pages/index'
+import { LoggedIn } from '../pages/_app'
 
 const LogoutButton = () => {
-  const { loggedIn, setLoggedIn } = useContext(LoggedIn)
+  const { setLoggedIn } = useContext(LoggedIn)
 
   const logOut = () => {
     setLoggedIn(false)
