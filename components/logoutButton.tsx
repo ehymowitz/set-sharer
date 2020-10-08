@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { mutate } from 'swr'
 import { fetcher } from './util/fetcher'
+import { LoggedIn } from '../pages/index'
 
 const LogoutButton = () => {
+  const { loggedIn, setLoggedIn } = useContext(LoggedIn)
+
+  const logOut = () => {
+    setLoggedIn(false)
+  }
 
   return (
     <div className="log-button"
@@ -13,6 +19,7 @@ const LogoutButton = () => {
           return
         }
         await mutate("/api/set")
+        logOut()
       }}>
       <h2>
         ➡️

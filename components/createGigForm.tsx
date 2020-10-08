@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { mutate } from 'swr'
 import { fetcher } from './util/fetcher'
+import { LoggedIn } from '../pages/index'
 
 const CreateGigForm = () => {
   const [gigName, setGigName] = useState("")
   const [password, setPassword] = useState("")
   const [choice, setChoice] = useState(true)
+  const { loggedIn, setLoggedIn } = useContext(LoggedIn)
+
+  const logIn = () => {
+    setLoggedIn(true)
+  }
 
   return (
     <div className="gig-form">
       <form
-        onSubmit={async (e) => {
+        onSubmit={ async (e) => {
           e.preventDefault()
           if (gigName.length === 0 || password.length === 0) {
             alert(
@@ -29,6 +35,7 @@ const CreateGigForm = () => {
             return
           }
           await mutate("api/set")
+          logIn()
         }}
       >
         <div className="inputs">
