@@ -1,12 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import Gig from '../components/gig'
 import Songs from '../components/songs'
 import CreateSongForm from '../components/createSongForm'
-import Gig from '../components/gig'
-import { Context, LoggedIn } from '../pages/_app'
 
 const SetViewer = () => {
-  const { loggedIn } = useContext<Context>(LoggedIn)
-
   return (
     <div className = "set-viewer">
       <div className = "song-info">

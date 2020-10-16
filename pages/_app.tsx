@@ -8,7 +8,7 @@ export interface Context {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-import type { AppProps /*, AppContext */ } from 'next/app'
+import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loggedIn, setLoggedIn] = useState<boolean>(false)

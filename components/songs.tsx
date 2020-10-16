@@ -1,11 +1,13 @@
 import React from 'react'
 import DeleteSongButton from './deleteSongButton'
-import { useSongs } from './util/hooks'
 
 const Songs = () => {
-  const { songs } = useSongs()
 
-  return (songs?.length > 0) ? (
+  const songs = [
+    {title: "title1", artist: "artist1"}
+  ]
+
+  return (
     <div className = "songs">
       <ul>
         {songs.map((song, index) => {
@@ -18,15 +20,11 @@ const Songs = () => {
                 <h2>{song.title}</h2>
                 <h3>{song.artist}</h3>
               </div>
-              <DeleteSongButton song={song} songs={songs}/>
+              <DeleteSongButton/>
             </li>
           )
         })}
       </ul>
-    </div>
-  ) : (
-    <div>
-      <p>Add some songs</p>
     </div>
   )
 }
