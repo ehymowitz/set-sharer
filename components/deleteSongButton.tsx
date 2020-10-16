@@ -2,9 +2,7 @@ import React from 'react'
 
 const DeleteSongButton = () => {
   return (
-    <div className = "delete-song-button" >
-      X
-    </div>
+    <div className = "delete-song-button" />
   )
 }
 

@@ -7,7 +7,7 @@ const CreateSongForm = () => {
       <form>
         <input placeholder = "Song Name"/>
         <input placeholder = "Song Artist"/>
-        <input type="submit" value="Add"/>
+        <input className="submit" type="submit" value="Add"/>
       </form>
     </div>
   )
