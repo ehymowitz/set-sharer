@@ -1,26 +1,9 @@
-import React, { useContext } from 'react'
-import { mutate } from 'swr'
-import { fetcher } from './util/fetcher'
-import { LoggedIn } from '../pages/_app'
+import React from 'react'
 
 const LogoutButton = () => {
-  const { setLoggedIn } = useContext(LoggedIn)
-
-  const logOut = () => {
-    setLoggedIn(false)
-  }
 
   return (
-    <div className="log-button"
-      onClick = { async () => {
-        const { data, error } = await fetcher("/api/logout")
-        if (error) {
-          alert(error)
-          return
-        }
-        await mutate("/api/set")
-        logOut()
-      }}>
+    <div className="log-button">
       <h2>
         ➡️
       </h2>

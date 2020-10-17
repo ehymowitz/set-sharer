@@ -1,17 +1,12 @@
 .song-form {
   text-align: center;
-  .inputs {
-    input {
-      text-align: center;
-      height: 30px;
-      border: none;
-    }
+  input {
+    text-align: center;
+    height: 30px;
+    border: none;
+    padding: 0px;
   }
   .submit {
-    width: 30%;
-  }
-  a {
-    cursor: pointer;
-    font-size: 12px;
+    width: 50px;
   }
 }
