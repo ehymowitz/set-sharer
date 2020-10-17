@@ -4,18 +4,17 @@ import { connect } from "../../../utils/database"
 export default async function (req: NextApiRequest, res: NextApiResponse ) {
   try {
     const {db} = await connect();
-    const { artist: artist , title: title, set: set } = req.body
+    const { title: title, notes: notes, set: set } = req.body
 
-    await db.collection(set).insertOne({
-      title: title,
-      artist: artist
-    })
+    await db.collection(set).updateOne(
+      {title: title},
+      {$set: {notes: notes}}
+    )
 
-    res.status(201)
-    res.json({title: title, artist: artist});
+    res.json({title: title});
 
   } catch(e) {
     res.status(500)
-    res.json({error: "Couldn't Create"})
+    res.json({error: "Couldn't Update"})
   }
 }

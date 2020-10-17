@@ -4,7 +4,10 @@ import { connect } from "../../../utils/database"
 export default async function (req: NextApiRequest, res: NextApiResponse ){
   try {
     const {db} = await connect();
-    const songs = await db.collection("songs").find().toArray();
+    const { set: set } = req.headers
+    console.log(set)
+
+    const songs = await db.collection(set).find().toArray();
 
     res.json({songs})
   } catch(e) {
