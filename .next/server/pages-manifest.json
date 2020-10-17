@@ -2,11 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/songs/update-artist": "pages/api/songs/update-artist.js",
-  "/": "pages/index.js",
-  "/api/songs/create": "pages/api/songs/create.js",
-  "/api/songs/update-notes": "pages/api/songs/update-notes.js",
-  "/api/songs/read": "pages/api/songs/read.js",
-  "/api/songs/update-title": "pages/api/songs/update-title.js",
-  "/api/songs/delete": "pages/api/songs/delete.js"
+  "/": "pages/index.js"
 }
