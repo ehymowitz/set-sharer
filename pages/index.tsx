@@ -3,8 +3,28 @@ import Gig from '../components/gig'
 import Songs from '../components/songs'
 import CreateSongForm from '../components/createSongForm'
 
-// POST
-async function createSong(songData) {
+// SETS
+
+// CREATE Collection
+async function createSet(setData) {
+  const response = await fetch("/api/sets/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(setData),
+  });
+  const data = await response.json()
+  return data
+}
+
+// createSet({name: 'test'})
+
+
+// SONGS (NEED TO PASS SET DATA WHEN READY)
+
+// CREATE
+async function createSongs(songData) {
   await fetch("/api/songs/create", {
     method: "POST",
     headers: {
@@ -14,10 +34,10 @@ async function createSong(songData) {
   });
 }
 
-createSong({artist: "test", title: "test2"})
+// createSong({artist: "test", title: "test2"})
 
-// GET
-async function getSongs() {
+// READ
+async function readSongs() {
   const response = await fetch("api/songs/read")
   const {songs} = await response.json()
 
@@ -28,7 +48,11 @@ async function getSongs() {
   }))
 }
 
-getSongs();
+// readSongs();
+
+// UPDATE
+
+// DELETE
 
 const SetViewer = () => {
   return (

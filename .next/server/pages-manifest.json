@@ -2,7 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/api/songs/create": "pages/api/songs/create.js",
-  "/api/songs/read": "pages/api/songs/read.js"
+  "/": "pages/index.js"
 }
