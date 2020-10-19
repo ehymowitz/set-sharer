@@ -1,5 +1,4 @@
 import React from 'react'
-import DeleteSongButton from './deleteSongButton'
 
 const Songs = () => {
 
@@ -20,7 +19,6 @@ const Songs = () => {
                 <h2>{song.title}</h2>
                 <h3>{song.artist}</h3>
               </div>
-              <DeleteSongButton/>
             </li>
           )
         })}

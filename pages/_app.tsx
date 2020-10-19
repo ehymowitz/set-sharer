@@ -1,7 +1,7 @@
 import '../styles/index.scss'
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 
-export const LoggedIn = React.createContext<Context | undefined>(undefined);
+export const LoggedIn = createContext<Context | undefined>(undefined);
 
 export interface Context {
   loggedIn: boolean;

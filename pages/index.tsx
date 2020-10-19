@@ -1,7 +1,5 @@
 import React from 'react'
-import Gig from '../components/gig'
-import Songs from '../components/songs'
-import CreateSongForm from '../components/createSongForm'
+import Set from '../components/set'
 
 const SetViewer = () => {
   return (
@@ -11,9 +9,7 @@ const SetViewer = () => {
         <p>TODO: Song Details</p>
       </div>
       <div className = "setlist">
-        <Gig />
-        <Songs />
-        <CreateSongForm/>
+        <Set />
       </div>
     </div>
   )

@@ -1,16 +1,14 @@
 import React from 'react'
 
-const CreateGigForm = () => {
+const SetLoginForm = () => {
 
   return (
-    <div className="gig-form">
+    <div className="set-login-form">
+      <h1>Login to see a Set</h1>
       <form>
         <div className="inputs">
           <input
-            placeholder = "Gig Name"
-          />
-          <input
-            placeholder = "Password"
+            placeholder = "Set Name"
           />
           <input type="submit"/>
         </div>
@@ -19,4 +17,4 @@ const CreateGigForm = () => {
   )
 }
 
-export default CreateGigForm
+export default SetLoginForm
