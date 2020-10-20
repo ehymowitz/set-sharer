@@ -4,12 +4,19 @@ import { readSets } from '../utils/crud'
 
 const LoginForm = () => {
   const [setName, changeSetName] = useState("")
-  const { setLoggedIn, loggedIn } = useContext(LoggedIn)
+  const { setLoggedIn } = useContext(LoggedIn)
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    readSets().then((data) => {
+      if (data.includes(setName)) {
+        setLoggedIn(setName)
+      } else {
+        alert("Invalid Login")
+      }
+    })
+    changeSetName("")
   }
-  // handle the async response from readSets here - compare to input on form
 
   const handleChange = (e) => {
     changeSetName(e.target.value)
@@ -18,7 +25,8 @@ const LoginForm = () => {
   return (
     <div className="set-login-form">
       <h1>Log in to see a Set</h1>
-      <form>
+      <form
+        onSubmit = { (e) => handleSubmit(e) }>
         <div className="inputs">
           <input
             placeholder = "Set Name"
