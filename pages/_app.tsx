@@ -4,14 +4,14 @@ import React, { useState, createContext } from 'react'
 export const LoggedIn = createContext<Context | undefined>(undefined);
 
 export interface Context {
-  loggedIn: boolean;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  loggedIn: string;
+  setLoggedIn: React.Dispatch<React.SetStateAction<string>>;
 }
 
 import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  const [loggedIn, setLoggedIn] = useState<string>("")
 
   return (
     <LoggedIn.Provider value = {{ loggedIn, setLoggedIn }}>

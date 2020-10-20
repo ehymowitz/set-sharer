@@ -15,6 +15,26 @@ export async function createSet(setData) {
 
 // createSet({name: 'test'})
 
+// READ
+export async function readSets() {
+  const response = await fetch("/api/sets/read", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+  const data = await response.json()
+
+  const names = data.map(data => {
+    return data.name
+  })
+  
+  return names
+}
+
+// readSets();
+
 
 // SONGS
 

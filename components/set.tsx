@@ -1,18 +1,17 @@
 import React, { useContext } from 'react'
 import CreateSetForm from './createSetForm'
-import SetLoginForm from './setLoginForm'
+import LoginForm from './LoginForm'
 import { LoggedIn } from '../pages/_app'
 
 const Set = () => {
 
   const { loggedIn } = useContext(LoggedIn)
 
-  if (!loggedIn) {
+  if (loggedIn == "") {
     return (
       <div>
-        <p>todo: create gig and login forms</p>
         <CreateSetForm />
-        <SetLoginForm />
+        <LoginForm />
       </div>
     )
   } else {
