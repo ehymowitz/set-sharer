@@ -3,5 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/sets/read": "pages/api/sets/read.js"
+  "/api/sets/read": "pages/api/sets/read.js",
+  "/api/songs/read": "pages/api/songs/read.js"
 }
