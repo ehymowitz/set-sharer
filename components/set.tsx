@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import CreateSetForm from './createSetForm'
 import LoginForm from './LoginForm'
 import Songs from './songs'
+import LogoutButton from './logoutButton'
 import { LoggedIn } from '../pages/_app'
 
 const Set = () => {
@@ -19,9 +20,7 @@ const Set = () => {
     return (
       <div>
         <Songs />
-        {
-          // Logout button
-        }
+        <LogoutButton />
       </div>
     )
   }
