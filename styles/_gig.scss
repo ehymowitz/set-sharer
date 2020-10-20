@@ -1,0 +1,13 @@
+.gig {
+  .gig-form {
+    text-align: right;
+    .inputs {
+      display: grid;
+      input {
+        text-align: center;
+        height: 30px;
+        border: none;
+      }
+    }
+  }
+}
