@@ -6,7 +6,7 @@ const logoutButton = () => {
 
   const handleClick = () => {
     setLoggedIn("")
-    // remove local storage token here
+    sessionStorage.removeItem('setSharerSet')
   }
 
   return (

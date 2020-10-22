@@ -1,5 +1,5 @@
 import '../styles/index.scss'
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useEffect } from 'react'
 
 export const LoggedIn = createContext<Context | undefined>(undefined);
 
@@ -11,9 +11,14 @@ export interface Context {
 import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // look for local storage string here, add as value to loggedIn if it exists
-  // otherwise pass empty string
+
   const [loggedIn, setLoggedIn] = useState<string>("")
+
+  useEffect(() => {
+    if (sessionStorage.getItem('setSharerSet')) {
+      setLoggedIn(sessionStorage.getItem('setSharerSet'))
+    }
+  })
 
   return (
     <LoggedIn.Provider value = {{ loggedIn, setLoggedIn }}>

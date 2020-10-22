@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { LoggedIn } from '../pages/_app'
 import { readSongs } from '../utils/crud'
 
+// Add custom interface for song
+
 const Songs = () => {
   const [songList, changeSongList] = useState([])
   const { loggedIn } = useContext(LoggedIn)

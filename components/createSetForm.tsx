@@ -1,20 +1,20 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, SyntheticEvent, ChangeEvent } from 'react'
 import { createSet } from '../utils/crud'
 import { LoggedIn } from '../pages/_app'
 
 const CreateSetForm = () => {
-  const [setName, changeSetName] = useState("")
+  const [setName, changeSetName] = useState<string>("")
   const { setLoggedIn } = useContext(LoggedIn)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     createSet({name: setName})
-    // add local storage token here
+    sessionStorage.setItem('setSharerSet', setName)
     setLoggedIn(setName)
     changeSetName("")
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     changeSetName(e.target.value)
   }
 

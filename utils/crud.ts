@@ -1,5 +1,8 @@
 // SETS
 
+// Need custom interfaces for typing
+// http://choly.ca/post/typescript-json/
+
 // CREATE Collection
 export async function createSet(setData) {
   const response = await fetch("/api/sets/create", {
@@ -29,7 +32,7 @@ export async function readSets() {
   const names = data.map(data => {
     return data.name
   })
-  
+
   return names
 }
 
