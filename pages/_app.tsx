@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (sessionStorage.getItem('setSharerSet')) {
       setLoggedIn(sessionStorage.getItem('setSharerSet'))
     }
-  })
+  }, [])
 
   return (
     <LoggedIn.Provider value = {{ loggedIn, setLoggedIn }}>
