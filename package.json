@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/mongodb": "^3.5.31",
     "mongodb": "^3.6.2",
     "next": "^9.5.3",
     "react": "^16.13.1",

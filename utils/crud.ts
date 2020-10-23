@@ -1,10 +1,18 @@
 // SETS
 
-// Need custom interfaces for typing
-// http://choly.ca/post/typescript-json/
+interface setData {
+  name: string
+}
+
+interface songData {
+  title: string,
+  artist?: string,
+  notes?: string,
+  set?: string
+}
 
 // CREATE Collection
-export async function createSet(setData) {
+export async function createSet(setData: setData) {
   const response = await fetch("/api/sets/create", {
     method: "POST",
     headers: {
@@ -42,7 +50,7 @@ export async function readSets() {
 // SONGS
 
 // CREATE
-export async function createSong(songData) {
+export async function createSong(songData: songData) {
   await fetch("/api/songs/create", {
     method: "POST",
     headers: {
@@ -56,7 +64,7 @@ export async function createSong(songData) {
 
 
 // READ
-export async function readSongs(songsData) {
+export async function readSongs(songsData: string) {
   const response = await fetch("api/songs/read", {
     method: "GET",
     headers: {
@@ -77,7 +85,7 @@ export async function readSongs(songsData) {
 
 
 // UPDATE NOTES
-export async function updateSongNotes(songNoteData) {
+export async function updateSongNotes(songNoteData: songData) {
   await fetch("api/songs/update-notes", {
     method: "PATCH",
     headers: {
@@ -90,7 +98,7 @@ export async function updateSongNotes(songNoteData) {
 // updateSongNotes({title: "test2", notes: {note1: "note2"}, set: "songs"})
 
 // UPDATE Title
-export async function updateSongTitle(songTitleData) {
+export async function updateSongTitle(songTitleData: songData) {
   await fetch("api/songs/update-title", {
     method: "PATCH",
     headers: {
@@ -103,7 +111,7 @@ export async function updateSongTitle(songTitleData) {
 // updateSongTitle({title: "test4", newTitle: "test5", set: "songs"})
 
 // UPDATE Artist
-async function updateSongArtist(songArtistData) {
+async function updateSongArtist(songArtistData: songData) {
   await fetch("api/songs/update-artist", {
     method: "PATCH",
     headers: {
@@ -117,7 +125,7 @@ async function updateSongArtist(songArtistData) {
 
 
 // DELETE
-export async function deleteSong(songData) {
+export async function deleteSong(songData: songData) {
   await fetch("api/songs/delete", {
     method: "DELETE",
     headers: {

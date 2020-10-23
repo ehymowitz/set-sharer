@@ -3,7 +3,7 @@ import { createSet } from '../utils/crud'
 import { LoggedIn } from '../pages/_app'
 
 const CreateSetForm = () => {
-  const [setName, changeSetName] = useState<string>("")
+  const [setName, changeSetName] = useState("")
   const { setLoggedIn } = useContext(LoggedIn)
 
   const handleSubmit = (e: SyntheticEvent) => {

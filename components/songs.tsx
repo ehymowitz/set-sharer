@@ -3,8 +3,6 @@ import RemoveSongButton from './removeSongButton'
 import { LoggedIn } from '../pages/_app'
 import { readSongs } from '../utils/crud'
 
-// Add custom interface for song
-
 const Songs = ({changed, setChanged}) => {
   const [songList, changeSongList] = useState([])
   const { loggedIn } = useContext(LoggedIn)
