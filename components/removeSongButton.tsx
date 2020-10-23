@@ -3,11 +3,11 @@ import { LoggedIn } from '../pages/_app'
 import { deleteSong } from '../utils/crud'
 
 
-const RemoveSongButton = ({title, setChanged}) => {
+const RemoveSongButton = ({title, artist, setChanged}) => {
   const { loggedIn } = useContext(LoggedIn)
 
   const handleClick = () => {
-    deleteSong({title: title, set: loggedIn})
+    deleteSong({title: title, artist: artist, set: loggedIn})
     setChanged(true)
   }
 

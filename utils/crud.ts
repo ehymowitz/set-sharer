@@ -4,11 +4,24 @@ interface setData {
   name: string
 }
 
-interface songData {
+interface songDataGet {
   title: string,
-  artist?: string,
+  artist: string,
+  notes?: string
+}
+
+interface songDataPost {
+  title: string,
+  artist: string,
+  set: string,
   notes?: string,
-  set?: string
+  newTitle?: string
+}
+
+interface songDataDelete {
+  title: string,
+  artist: string,
+  set: string
 }
 
 // CREATE Collection
@@ -37,7 +50,7 @@ export async function readSets() {
 
   const data = await response.json()
 
-  const names = data.map(data => {
+  const names = data.map((data: setData) => {
     return data.name
   })
 
@@ -50,7 +63,7 @@ export async function readSets() {
 // SONGS
 
 // CREATE
-export async function createSong(songData: songData) {
+export async function createSong(songData: songDataPost) {
   await fetch("/api/songs/create", {
     method: "POST",
     headers: {
@@ -74,8 +87,7 @@ export async function readSongs(songsData: string) {
   })
   const {songs} = await response.json()
 
-  return songs.map(song => ({
-    id: song._id,
+  return songs.map((song: songDataGet) => ({
     artist: song.artist,
     title: song.title,
   }))
@@ -85,7 +97,7 @@ export async function readSongs(songsData: string) {
 
 
 // UPDATE NOTES
-export async function updateSongNotes(songNoteData: songData) {
+export async function updateSongNotes(songNoteData: songDataPost) {
   await fetch("api/songs/update-notes", {
     method: "PATCH",
     headers: {
@@ -95,10 +107,10 @@ export async function updateSongNotes(songNoteData: songData) {
   })
 }
 
-// updateSongNotes({title: "test2", notes: {note1: "note2"}, set: "songs"})
+// updateSongNotes({title: "test2", artist: "test", notes: {note1: "note2"}, set: "songs"})
 
 // UPDATE Title
-export async function updateSongTitle(songTitleData: songData) {
+export async function updateSongTitle(songTitleData: songDataPost) {
   await fetch("api/songs/update-title", {
     method: "PATCH",
     headers: {
@@ -108,10 +120,10 @@ export async function updateSongTitle(songTitleData: songData) {
   })
 }
 
-// updateSongTitle({title: "test4", newTitle: "test5", set: "songs"})
+// updateSongTitle({title: "test4", artist: "test", newTitle: "test5", set: "songs"})
 
 // UPDATE Artist
-async function updateSongArtist(songArtistData: songData) {
+async function updateSongArtist(songArtistData: songDataPost) {
   await fetch("api/songs/update-artist", {
     method: "PATCH",
     headers: {
@@ -125,7 +137,7 @@ async function updateSongArtist(songArtistData: songData) {
 
 
 // DELETE
-export async function deleteSong(songData: songData) {
+export async function deleteSong(songData: songDataDelete) {
   await fetch("api/songs/delete", {
     method: "DELETE",
     headers: {
@@ -135,4 +147,4 @@ export async function deleteSong(songData: songData) {
   })
 }
 
-// deleteSong({title: "test5", set: "songs"})
+// deleteSong({title: "test5", artist: "test", set: "songs"})

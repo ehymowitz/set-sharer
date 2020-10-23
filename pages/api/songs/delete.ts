@@ -4,10 +4,11 @@ import { connect } from "../../../utils/database"
 export default async function (req: NextApiRequest, res: NextApiResponse ) {
   try {
     const {db} = await connect();
-    const { title: title, set: set } = req.body
+    const { title: title, artist: artist, set: set } = req.body
 
     await db.collection(set).deleteOne({
-      title: title
+      title: title,
+      artist: artist
     })
 
     res.json({title: title});

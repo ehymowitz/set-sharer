@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import RemoveSongButton from './removeSongButton'
 import { LoggedIn } from '../pages/_app'
 import { readSongs } from '../utils/crud'
+import { DisplayedSong } from '../pages/index'
 
 const Songs = ({changed, setChanged}) => {
   const [songList, changeSongList] = useState([])
@@ -11,6 +12,8 @@ const Songs = ({changed, setChanged}) => {
     readSongs(loggedIn)
     .then(changeSongList)
     .then(setChanged(false))
+
+
   }, [changed])
 
   return (
@@ -20,7 +23,7 @@ const Songs = ({changed, setChanged}) => {
         { songList.map((song, index) => {
           return (
             <li className = "song-card" key = {index}>
-              <RemoveSongButton title = {song.title} setChanged = {setChanged}/>
+              <RemoveSongButton title = {song.title} artist = {song.artist} setChanged = {setChanged}/>
               <div className="song-img">
                 <img src="https://picsum.photos/id/1082/100" alt="filler"/>
               </div>

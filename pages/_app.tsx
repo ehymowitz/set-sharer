@@ -3,7 +3,7 @@ import React, { useState, createContext, useEffect } from 'react'
 
 export const LoggedIn = createContext<Context | undefined>(undefined);
 
-export interface Context {
+interface Context {
   loggedIn: string;
   setLoggedIn: React.Dispatch<React.SetStateAction<string>>;
 }
