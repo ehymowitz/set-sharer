@@ -2,18 +2,25 @@ import React, { createContext, useState } from 'react'
 import Set from '../components/set'
 import SongDisplay from '../components/songDisplay'
 
-export const DisplayedSong = createContext<string | undefined>(undefined);
+export const DisplayedSong = createContext<Context | undefined>(undefined);
 
 interface Context {
-  song: string;
-  setLoggedIn: React.Dispatch<React.SetStateAction<string>>;
+  displayedSong: Song | undefined;
+  setDisplayedSong: React.Dispatch<React.SetStateAction<Song>>;
 }
 
+export interface Song {
+  artist: string,
+  title: string,
+  notes?: string
+}
+
+
 const SetViewer = () => {
-  const [displayedSong, setDisplayedSong] = useState("")
+  const [displayedSong, setDisplayedSong] = useState(undefined)
 
   return (
-    <DisplayedSong.Provider value = "test" >
+    <DisplayedSong.Provider value = {{ displayedSong, setDisplayedSong }} >
       <div className = "set-viewer">
         <div className = "song-info">
           <h1>Set Sharer</h1>
