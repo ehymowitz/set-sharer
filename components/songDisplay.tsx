@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import { DisplayedSong } from '../pages/index'
 import { callSpotify } from '../utils/apiCalls'
 
+// PUT API TOKENS INTO ENV
+
 const SongDisplay = () => {
   const { displayedSong } = useContext(DisplayedSong)
   const [spotify, changeSpotify] = useState("")
@@ -13,7 +15,9 @@ const SongDisplay = () => {
     }
   }, [displayedSong])
 
-  if (displayedSong) {
+  // callGenius({track: "Laputa", artist: "Haitus Kaiyote"}) // Authorization error
+
+  if (spotify) {
     return (
       <div>
         <iframe
