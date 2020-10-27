@@ -1,22 +1,25 @@
 // PUT API TOKENS INTO ENV
-const CLIENT_ID = '10e1f693f2894956b10fec6fd736767d'
-const CLIENT_SECRET = '3d0a7e5cc2c54f3a9d7cdb43aa281e64'
 
-// Spotify
+const SPOTIFY_CLIENT_ID = '10e1f693f2894956b10fec6fd736767d'
+const SPOTIFY_CLIENT_SECRET = '3d0a7e5cc2c54f3a9d7cdb43aa281e64'
+
+const LYRICS_KEY = 'qAsqTiIxT0eq2HJGRPrLb8xDoSqfZxt4SaUfxa5dLd0zIgf1ZE1YhHDVIEWNHAH1'
 
 interface SongData {
     track: string,
     artist: string
 }
 
+// Spotify
+
 // Client Credentials Flow
-export async function authorizeSpotify() {
+async function authorizeSpotify() {
   var urlencoded = new URLSearchParams();
   urlencoded.append("grant_type", "client_credentials");
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: "POST",
     headers: {
-      'Authorization': 'Basic ' + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`),
+      'Authorization': 'Basic ' + btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`),
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: urlencoded
@@ -43,20 +46,15 @@ export async function callSpotify(spotifyData: SongData) {
 
 // callSpotify({track: "Loud Pipes", artist: "Ratatat"})
 
-// Genius
+// APISeeds
 
-export async function callGenius(geniusData: SongData) {
-  const response = await fetch(`https://api.genius.com/search?q=${geniusData.track}%20${geniusData.artist}`, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer CR_gTviPBFUt5suaIUrUFnMDxn-jHJJvQpech55Y33NNH6fVv0BtUeVe7kjdgg1_'
-    }
-  })
+export async function callLyrics(lyricData: SongData) {
+  const response = await fetch(`https://orion.apiseeds.com/api/music/lyric/${lyricData.artist}/${lyricData.track}?apikey=${LYRICS_KEY}`)
 
-  const data = await response.json()
+  const {result: {track: {text}}} = await response.json()
 
-  console.log(data)
+  console.log(text)
+  return text
 }
 
 // callGenius({track: "Laputa", artist: "Haitus Kaiyote"})
