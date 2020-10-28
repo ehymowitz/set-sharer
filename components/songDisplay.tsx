@@ -1,31 +1,41 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { DisplayedSong } from '../pages/index'
-import { callSpotify, callLyrics } from '../utils/apiCalls'
-
-// PUT API TOKENS INTO ENV
+import { callSpotifyID, callSpotifyFeatures, callSpotifyAlbumCover, callLyrics } from '../utils/apiCalls'
 
 const SongDisplay = () => {
   const { displayedSong } = useContext(DisplayedSong)
-  const [spotify, changeSpotify] = useState("")
+  const [spotifyID, changeSpotifyID] = useState("")
+  const [spotifyFeatures, changeSpotifyFeatures] = useState("")
+  const [spotifyAlbum, changeSpotifyAlbum] = useState("")
   const [lyrics, changeLyrics] = useState("")
 
   useEffect(() => {
     if (displayedSong) {
-      callSpotify({track: displayedSong.title, artist: displayedSong.artist})
-      .then(changeSpotify)
+      callSpotifyID({track: displayedSong.title, artist: displayedSong.artist})
+      .then(changeSpotifyID)
 
       callLyrics({track: displayedSong.title, artist: displayedSong.artist})
       .then(changeLyrics)
     }
   }, [displayedSong])
 
+  useEffect(() => {
+    if (spotifyID) {
+      callSpotifyFeatures(spotifyID)
+      .then(changeSpotifyFeatures)
+
+      callSpotifyAlbumCover(spotifyID)
+      .then(changeSpotifyAlbum)
+    }
+  }, [spotifyID])
+
 
   return (
     <div>
-    {spotify &&
+    {spotifyID &&
       <iframe
       className = "spotify embed"
-      src={`https://open.spotify.com/embed/track${spotify}`}
+      src={`https://open.spotify.com/embed/track${spotifyID}`}
       width="300"
       height="380"
       frameBorder="0"

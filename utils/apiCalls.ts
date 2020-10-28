@@ -1,10 +1,3 @@
-// PUT API TOKENS INTO ENV
-
-const SPOTIFY_CLIENT_ID = '10e1f693f2894956b10fec6fd736767d'
-const SPOTIFY_CLIENT_SECRET = '3d0a7e5cc2c54f3a9d7cdb43aa281e64'
-
-const LYRICS_KEY = 'qAsqTiIxT0eq2HJGRPrLb8xDoSqfZxt4SaUfxa5dLd0zIgf1ZE1YhHDVIEWNHAH1'
-
 interface SongData {
     track: string,
     artist: string
@@ -19,7 +12,7 @@ async function authorizeSpotify() {
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: "POST",
     headers: {
-      'Authorization': 'Basic ' + btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`),
+      'Authorization': 'Basic ' + btoa(`${process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID}:${process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET}`),
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: urlencoded
@@ -28,8 +21,8 @@ async function authorizeSpotify() {
   return access_token
 }
 
-// Call API for Search
-export async function callSpotify(spotifyData: SongData) {
+// Call API for Player
+export async function callSpotifyID(spotifyData: SongData) {
   const code = await authorizeSpotify()
   const response = await fetch(`https://api.spotify.com/v1/search?q=track%3A${spotifyData.track}%20artist%3A${spotifyData.artist}&type=track&market=US&limit=1`, {
     headers: {
@@ -44,19 +37,53 @@ export async function callSpotify(spotifyData: SongData) {
   return items[0].external_urls.spotify.split('track')[1]
 }
 
-// callSpotify({track: "Loud Pipes", artist: "Ratatat"})
+// callSpotifyID({track: "Loud Pipes", artist: "Ratatat"})
 
-// APISeeds
+// Call API for song features
+export async function callSpotifyFeatures(songID: string) {
+  const code = await authorizeSpotify()
+  const response = await fetch(`https://api.spotify.com/v1/audio-features${songID}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${code}`
+    }
+  })
+
+  const data = await response.json()
+
+  return data
+}
+
+// callSpotifyFeatures('spotifyID')
+
+// Call API for album cover
+export async function callSpotifyAlbumCover(songID: string) {
+  const code = await authorizeSpotify()
+  const response = await fetch(`https://api.spotify.com/v1/tracks${songID}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${code}`
+    }
+  })
+
+  const data = await response.json()
+
+  return data
+}
+
+// callSpotifyAlbumCover('spotifyID')
+
+
+// Lyrics
 
 export async function callLyrics(lyricData: SongData) {
-  const response = await fetch(`https://orion.apiseeds.com/api/music/lyric/${lyricData.artist}/${lyricData.track}?apikey=${LYRICS_KEY}`)
+  const response = await fetch(`https://orion.apiseeds.com/api/music/lyric/${lyricData.artist}/${lyricData.track}?apikey=${process.env.NEXT_PUBLIC_LYRICS_KEY}`)
 
   const {result: {track: {text}}} = await response.json()
 
-  console.log(text)
   return text
 }
 
-// callGenius({track: "Laputa", artist: "Haitus Kaiyote"})
-
-// GETSONGKEY = 2b741d49de80303c94ef5dcf96c97ccc
+// callLyrics({track: "Laputa", artist: "Haitus Kaiyote"})
