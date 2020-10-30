@@ -40,7 +40,7 @@ export async function callSpotifyID(spotifyData: SongData) {
 // callSpotifyID({track: "Loud Pipes", artist: "Ratatat"})
 
 // Call API for song features
-export async function callSpotifyFeatures(songID: string) {
+export async function callSpotifyKey(songID: string) {
   const code = await authorizeSpotify()
   const response = await fetch(`https://api.spotify.com/v1/audio-features${songID}`, {
     headers: {
@@ -50,12 +50,12 @@ export async function callSpotifyFeatures(songID: string) {
     }
   })
 
-  const data = await response.json()
+  const {key} = await response.json()
 
-  return data
+  return key
 }
 
-// callSpotifyFeatures('spotifyID')
+// callSpotifyKey('spotifyID')
 
 // Call API for album cover
 export async function callSpotifyAlbumCover(songID: string) {
@@ -68,22 +68,28 @@ export async function callSpotifyAlbumCover(songID: string) {
     }
   })
 
-  const data = await response.json()
+  const {album: {images}} = await response.json()
 
-  return data
+  return images[2].url
 }
 
 // callSpotifyAlbumCover('spotifyID')
+
+// YouTube
+
+
 
 
 // Lyrics
 
 export async function callLyrics(lyricData: SongData) {
-  const response = await fetch(`https://orion.apiseeds.com/api/music/lyric/${lyricData.artist}/${lyricData.track}?apikey=${process.env.NEXT_PUBLIC_LYRICS_KEY}`)
-
-  const {result: {track: {text}}} = await response.json()
-
-  return text
+  try {
+    const response = await fetch(`https://orion.apiseeds.com/api/music/lyric/${lyricData.artist}/${lyricData.track}?apikey=${process.env.NEXT_PUBLIC_LYRICS_KEY}`)
+    const {result: {track: {text}}} = await response.json()
+    return text
+  } catch {
+    return "Can't find lyrics for this song! Let me know if this happens, I'll do what I can"
+  }
 }
 
 // callLyrics({track: "Laputa", artist: "Haitus Kaiyote"})

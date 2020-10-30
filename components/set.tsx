@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import CreateSetForm from './createSetForm'
 import LoginForm from './LoginForm'
 import Songs from './songs'
@@ -7,9 +7,7 @@ import LogoutButton from './logoutButton'
 import { LoggedIn } from '../pages/_app'
 
 const Set = () => {
-  
-  const [changed, setChanged] = useState(false)
-  const { loggedIn } = useContext(LoggedIn)
+    const { loggedIn } = useContext(LoggedIn)
 
   if (loggedIn == "") {
     return (
@@ -23,8 +21,8 @@ const Set = () => {
   } else {
     return (
       <div>
-        <Songs changed = {changed} setChanged = {setChanged} />
-        <AddSongForm setChanged = {setChanged} />
+        <Songs/>
+        <AddSongForm/>
         <LogoutButton />
       </div>
     )

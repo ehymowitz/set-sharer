@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import { LoggedIn } from '../pages/_app'
 import { deleteSong } from '../utils/crud'
+import { DisplayedSong } from '../pages/index'
 
-
-const RemoveSongButton = ({title, artist, setChanged}) => {
+const RemoveSongButton = ({title, artist}) => {
+  const { songList, setSongList } = useContext(DisplayedSong)
   const { loggedIn } = useContext(LoggedIn)
 
   const handleClick = () => {
     deleteSong({title: title, artist: artist, set: loggedIn})
-    setChanged(true)
+    setSongList([...songList].filter(song => song.artist != artist && song.title != title))
   }
 
   return (

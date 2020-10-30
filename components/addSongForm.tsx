@@ -1,9 +1,11 @@
 import React, {useState, useContext, ChangeEvent, SyntheticEvent} from 'react'
 import { LoggedIn } from '../pages/_app'
 import { createSong } from '../utils/crud'
+import { DisplayedSong } from '../pages/index'
 
-const AddSongForm = ({setChanged}) => {
+const AddSongForm = () => {
   const { loggedIn } = useContext(LoggedIn)
+  const { songList, setSongList } = useContext(DisplayedSong)
 
   const [formInput, setFormInput] = useState({
     artist: "",
@@ -23,7 +25,7 @@ const AddSongForm = ({setChanged}) => {
     e.preventDefault()
     if (formInput.artist !== "" && formInput.title !== "") {
       createSong(formInput)
-      setChanged(true)
+      setSongList([...songList, {artist: formInput.artist, title: formInput.title}])
     } else {
       alert("Song form was not filled out")
     }

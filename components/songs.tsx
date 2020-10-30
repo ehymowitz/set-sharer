@@ -1,19 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import RemoveSongButton from './removeSongButton'
+import SongCard from './songCard'
 import { LoggedIn } from '../pages/_app'
-import { readSongs } from '../utils/crud'
 import { DisplayedSong, Song } from '../pages/index'
 
-const Songs = ({changed, setChanged}) => {
-  const [songList, changeSongList] = useState([])
+const Songs = () => {
   const { loggedIn } = useContext(LoggedIn)
-  const { setDisplayedSong } = useContext(DisplayedSong)
-
-  useEffect(() => { // readSongs gets called twice, not sure how to fix this but it isn't a huge delay
-    readSongs(loggedIn)
-    .then(changeSongList)
-    .then(setChanged(false))
-  }, [changed])
+  const { songList, setDisplayedSong } = useContext(DisplayedSong)
 
   const handleClick = (song: Song) => {
     setDisplayedSong(song)
@@ -30,14 +23,8 @@ const Songs = ({changed, setChanged}) => {
               key = {index}
               onClick = {() => handleClick(song)}
             >
-              <RemoveSongButton title = {song.title} artist = {song.artist} setChanged = {setChanged}/>
-              <div className="song-img">
-                <img src="https://picsum.photos/id/1082/100" alt="filler"/>
-              </div>
-              <div className="song-text">
-                <h2>{song.title}</h2>
-                <h3>{song.artist}</h3>
-              </div>
+              <SongCard songTitle = {song.title} songArtist = {song.artist}/>
+              <RemoveSongButton title = {song.title} artist = {song.artist}/>
             </li>
           )
         })}

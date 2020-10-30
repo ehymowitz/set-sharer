@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { DisplayedSong } from '../pages/index'
-import { callSpotifyID, callSpotifyFeatures, callSpotifyAlbumCover, callLyrics } from '../utils/apiCalls'
+import { callSpotifyID, callSpotifyKey, callLyrics } from '../utils/apiCalls'
+import KeyMap from '../utils/keyMap'
 
 const SongDisplay = () => {
   const { displayedSong } = useContext(DisplayedSong)
   const [spotifyID, changeSpotifyID] = useState("")
-  const [spotifyFeatures, changeSpotifyFeatures] = useState("")
-  const [spotifyAlbum, changeSpotifyAlbum] = useState("")
+  const [spotifyKey, changeSpotifyKey] = useState("")
   const [lyrics, changeLyrics] = useState("")
 
   useEffect(() => {
@@ -21,11 +21,8 @@ const SongDisplay = () => {
 
   useEffect(() => {
     if (spotifyID) {
-      callSpotifyFeatures(spotifyID)
-      .then(changeSpotifyFeatures)
-
-      callSpotifyAlbumCover(spotifyID)
-      .then(changeSpotifyAlbum)
+      callSpotifyKey(spotifyID)
+      .then(changeSpotifyKey)
     }
   }, [spotifyID])
 
@@ -44,6 +41,9 @@ const SongDisplay = () => {
     }
     {lyrics &&
       <p>{lyrics}</p>
+    }
+    {spotifyKey &&
+      <p>{KeyMap(parseInt(spotifyKey))}</p>
     }
     </div>
   )
