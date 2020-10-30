@@ -77,7 +77,17 @@ export async function callSpotifyAlbumCover(songID: string) {
 
 // YouTube
 
+export async function callYoutubeSearch(video: string) {
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/search?maxResults=1&q=${video}&key=${process.env.NEXT_PUBLIC_YOUTUBE_KEY}`, {
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
 
+  const {items: [item]} = await response.json()
+
+  return item.id.videoId
+}
 
 
 // Lyrics
