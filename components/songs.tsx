@@ -1,11 +1,8 @@
 import React, { useContext } from 'react'
-import RemoveSongButton from './removeSongButton'
-import SongCard from './songCard'
-import { LoggedIn } from '../pages/_app'
+import SongInfo from './songInfo'
 import { DisplayedSong, Song } from '../pages/index'
 
 const Songs = () => {
-  const { loggedIn } = useContext(LoggedIn)
   const { songList, setDisplayedSong } = useContext(DisplayedSong)
 
   const handleClick = (song: Song) => {
@@ -14,7 +11,6 @@ const Songs = () => {
 
   return (
     <div className = "songs">
-      <h1>{loggedIn}</h1>
       <ul>
         { songList.map((song: Song, index) => {
           return (
@@ -23,8 +19,7 @@ const Songs = () => {
               key = {index}
               onClick = {() => handleClick(song)}
             >
-              <SongCard songTitle = {song.title} songArtist = {song.artist}/>
-              <RemoveSongButton title = {song.title} artist = {song.artist}/>
+              <SongInfo songTitle = {song.title} songArtist = {song.artist}/>
             </li>
           )
         })}

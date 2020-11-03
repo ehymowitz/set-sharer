@@ -5,33 +5,37 @@
   ul {
     list-style: none;
   }
+
   .song-card {
     position: relative;
     border-radius: 15px;
     background-color: #887A62;
-    display: flex;
     padding: 15px;
     margin-bottom: 20px;
     max-width: 280px;
-    .song-img img {
-      border-radius: 15px;
-    }
-    .song-text {
-      margin-left: 30px;
-      overflow: auto;
-      h3 {
-        margin: 0px;
+    .song-card-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      .song-img img {
+        max-width: 120px;
+        border-radius: 15px;
       }
-    }
-    .delete-song-button {
-      position: absolute;
-      background-color: #B7AFA0;
-      border-radius: 50%;
-      text-align: center;
-      width: 20px;
-      height: 20px;
-      top: 5px;
-      right: 5px;
+      .song-text {
+        padding: 0 15px;
+        overflow: auto;
+        display: grid;
+        height: 80%;
+      }
+      .remove-song-button {
+        position: absolute;
+        background-color: brown;
+        border-radius: 50%;
+        text-align: center;
+        width: 20px;
+        height: 20px;
+        top: 5px;
+        right: 5px;
+      }
     }
   }
 }

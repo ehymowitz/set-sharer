@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { callSpotifyAlbumCover, callSpotifyID, callSpotifyKey } from '../utils/apiCalls'
 import KeyMap from '../utils/keyMap'
+import RemoveSongButton from './removeSongButton'
 
-const SongCard = ({songTitle, songArtist}) => {
+const SongInfo = ({songTitle, songArtist}) => {
   const [songID, changeSongID] = useState('')
   const [key, changeKey] = useState('')
   const [songCover, changeSongCover] = useState('')
@@ -23,18 +24,19 @@ const SongCard = ({songTitle, songArtist}) => {
   }, [songID])
 
   return (
-    <div>
+    <div className="song-card-container">
       <div className="song-img">
         <img src={songCover} alt="Album Cover"/>
       </div>
       <div className="song-text">
         <h2>{songTitle}</h2>
-        <h2>{KeyMap(parseInt(key))}</h2>
         <h3>{songArtist}</h3>
+        <h4>{KeyMap(parseInt(key))}</h4>
       </div>
+      <RemoveSongButton title = {songTitle} artist = {songArtist}/>
     </div>
   )
 
 }
 
-export default SongCard
+export default SongInfo

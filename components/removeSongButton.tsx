@@ -15,7 +15,6 @@ const RemoveSongButton = ({title, artist}) => {
   return (
     <div
       className="remove-song-button"
-      style={{width: "20px", height: "20px", borderRadius: "50%", backgroundColor: "red" }}
       onClick={() => handleClick()}
      />
   )

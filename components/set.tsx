@@ -21,6 +21,7 @@ const Set = () => {
   } else {
     return (
       <div>
+        <h1>{loggedIn}</h1>
         <Songs/>
         <AddSongForm/>
         <LogoutButton />

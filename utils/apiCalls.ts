@@ -70,7 +70,7 @@ export async function callSpotifyAlbumCover(songID: string) {
 
   const {album: {images}} = await response.json()
 
-  return images[2].url
+  return images[1].url
 }
 
 // callSpotifyAlbumCover('spotifyID')
