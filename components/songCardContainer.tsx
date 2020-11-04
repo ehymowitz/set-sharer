@@ -3,7 +3,7 @@ import { callSpotifyAlbumCover, callSpotifyID, callSpotifyKey } from '../utils/a
 import KeyMap from '../utils/keyMap'
 import RemoveSongButton from './removeSongButton'
 
-const SongInfo = ({songTitle, songArtist}) => {
+const SongCardContainer = ({songTitle, songArtist}) => {
   const [songID, changeSongID] = useState('')
   const [key, changeKey] = useState('')
   const [songCover, changeSongCover] = useState('')
@@ -39,4 +39,4 @@ const SongInfo = ({songTitle, songArtist}) => {
 
 }
 
-export default SongInfo
+export default SongCardContainer

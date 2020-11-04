@@ -31,34 +31,43 @@ const SongDisplay = () => {
     }
   }, [spotifyID])
 
-
   return (
-    <div>
-    {spotifyID &&
-      <iframe
-        className = "spotify embed"
-        src={`https://open.spotify.com/embed/track${spotifyID}`}
-        width="300"
-        height="380"
-        frameBorder="0"
-        allow="encrypted-media">
-      </iframe>
-    }
-    {lyrics &&
-      <p>{lyrics}</p>
-    }
-    {spotifyKey &&
-      <p>{KeyMap(parseInt(spotifyKey))}</p>
-    }
-    {videoId &&
-      <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${videoId}`}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        >
-      </iframe>}
+    <div className="song-display">
+      {displayedSong &&
+        <div className="song-display-heading">
+          <h1>{displayedSong.artist} - {displayedSong.title}</h1>
+          <h3>
+            {spotifyKey &&
+              <p>{KeyMap(parseInt(spotifyKey))}</p>
+            }
+          </h3>
+        </div>
+      }
+      {spotifyID &&
+        <iframe
+          className = "spotify-embed"
+          src={`https://open.spotify.com/embed/track${spotifyID}`}
+          width="100%"
+          height="80"
+          frameBorder="0"
+          allow="encrypted-media"
+        />
+      }
+      <div className="lyrics-and-video">
+        {lyrics &&
+          <p className="lyrics">{lyrics}</p>
+        }
+        {videoId &&
+          <iframe
+          className = "youtube-video"
+          width="100%"
+          height="250"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          />
+        }
+      </div>
     </div>
   )
 }

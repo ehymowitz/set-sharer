@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import SongInfo from './songInfo'
+import SongCardContainer from './songCardContainer'
 import { DisplayedSong, Song } from '../pages/index'
 
 const Songs = () => {
@@ -19,7 +19,7 @@ const Songs = () => {
               key = {index}
               onClick = {() => handleClick(song)}
             >
-              <SongInfo songTitle = {song.title} songArtist = {song.artist}/>
+              <SongCardContainer songTitle = {song.title} songArtist = {song.artist}/>
             </li>
           )
         })}

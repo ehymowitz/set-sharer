@@ -1,0 +1,25 @@
+.song-display {
+  margin-top: 20px;
+  display: grid;
+  max-height: 50vh;
+  .song-display-heading {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 10px;
+      h1 {
+        margin-right: 30px;
+      }
+  }
+  .lyrics-and-video {
+    margin: 10px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    height: 30%;
+    .lyrics {
+      overflow-y: auto;
+      overflow-wrap: break-word;
+      white-space: break-spaces;
+    }
+  }
+}
