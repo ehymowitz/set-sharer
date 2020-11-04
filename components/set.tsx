@@ -11,7 +11,7 @@ const Set = () => {
 
   if (loggedIn == "") {
     return (
-      <div>
+      <div className= "not-logged-in">
         <CreateSetForm />
         <LoginForm />
         <h3>WARNING: This tool is very much in development. When you put information on here it very well could be deleted if I mess somthing up. So back up your data.</h3>
@@ -20,7 +20,7 @@ const Set = () => {
     )
   } else {
     return (
-      <div>
+      <div className= "logged-in">
         <h1>{loggedIn}</h1>
         <Songs/>
         <AddSongForm/>
