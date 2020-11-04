@@ -1,21 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, SyntheticEvent } from 'react'
 import { LoggedIn } from '../pages/_app'
 import { deleteSong } from '../utils/crud'
 import { DisplayedSong } from '../pages/index'
 
 const RemoveSongButton = ({title, artist}) => {
-  const { songList, setSongList } = useContext(DisplayedSong)
+  const { songList, setSongList, setDisplayedSong } = useContext(DisplayedSong)
   const { loggedIn } = useContext(LoggedIn)
 
-  const handleClick = () => {
+  const handleClick = (e: SyntheticEvent) => {
     deleteSong({title: title, artist: artist, set: loggedIn})
     setSongList([...songList].filter(song => song.artist != artist && song.title != title))
+    setDisplayedSong(undefined)
+    e.stopPropagation();
   }
 
   return (
-    <div
+    <button
       className="remove-song-button"
-      onClick={() => handleClick()}
+      onClick={(e) => handleClick(e)}
      />
   )
 }

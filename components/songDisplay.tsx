@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { DisplayedSong } from '../pages/index'
+import { LoggedIn } from '../pages/_app'
 import { callSpotifyID, callSpotifyKey, callLyrics, callYoutubeSearch } from '../utils/apiCalls'
 import KeyMap from '../utils/keyMap'
 
 const SongDisplay = () => {
   const { displayedSong } = useContext(DisplayedSong)
+  const { loggedIn } = useContext(LoggedIn)
   const [spotifyID, changeSpotifyID] = useState("")
   const [spotifyKey, changeSpotifyKey] = useState("")
   const [lyrics, changeLyrics] = useState("")
@@ -33,7 +35,7 @@ const SongDisplay = () => {
 
   return (
     <div className="song-display">
-      {displayedSong &&
+      {(displayedSong && loggedIn) &&
         <div className="song-display-heading">
           <h1>{displayedSong.artist} - {displayedSong.title}</h1>
           <h3>
@@ -43,7 +45,7 @@ const SongDisplay = () => {
           </h3>
         </div>
       }
-      {spotifyID &&
+      {(spotifyID && displayedSong && loggedIn) &&
         <iframe
           className = "spotify-embed"
           src={`https://open.spotify.com/embed/track${spotifyID}`}
@@ -54,10 +56,10 @@ const SongDisplay = () => {
         />
       }
       <div className="lyrics-and-video">
-        {lyrics &&
+        {(lyrics && displayedSong && loggedIn) &&
           <p className="lyrics">{lyrics}</p>
         }
-        {videoId &&
+        {(videoId && displayedSong && loggedIn) &&
           <iframe
           className = "youtube-video"
           width="100%"
