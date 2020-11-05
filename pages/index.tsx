@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { LoggedIn } from './_app'
 import { readSongs } from '../utils/crud'
-import Set from '../components/set'
+import SidePanel from '../components/sidePanel'
 import SongDisplay from '../components/songDisplay'
 
 export const DisplayedSong = createContext<Context | undefined>(undefined);
@@ -33,13 +33,13 @@ const SetViewer = () => {
 
   return (
     <DisplayedSong.Provider value = {{ displayedSong, setDisplayedSong, songList, setSongList }} >
-      <div className = "set-viewer">
+      <div className = "container">
         <div className = "song-info">
           <h1>Set Sharer</h1>
           <SongDisplay />
         </div>
         <div className = "setlist">
-          <Set />
+          <SidePanel />
         </div>
       </div>
     </DisplayedSong.Provider>

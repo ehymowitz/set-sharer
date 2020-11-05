@@ -1,7 +1,7 @@
 import React, { useContext, SyntheticEvent } from 'react'
-import { LoggedIn } from '../pages/_app'
-import { deleteSong } from '../utils/crud'
-import { DisplayedSong } from '../pages/index'
+import { LoggedIn } from '../../pages/_app'
+import { deleteSong } from '../../utils/crud'
+import { DisplayedSong } from '../../pages/index'
 
 const RemoveSongButton = ({title, artist}) => {
   const { songList, setSongList, setDisplayedSong } = useContext(DisplayedSong)

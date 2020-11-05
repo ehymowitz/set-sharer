@@ -1,16 +1,21 @@
 import React, { useState, useContext, SyntheticEvent, ChangeEvent } from 'react'
-import { createSet } from '../utils/crud'
-import { LoggedIn } from '../pages/_app'
+import { LoggedIn } from '../../pages/_app'
+import { readSets } from '../../utils/crud'
 
-const CreateSetForm = () => {
+const LoginForm = () => {
   const [setName, changeSetName] = useState("")
   const { setLoggedIn } = useContext(LoggedIn)
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    createSet({name: setName})
-    sessionStorage.setItem('setSharerSet', setName)
-    setLoggedIn(setName)
+    readSets().then((data) => {
+      if (data.includes(setName)) {
+        setLoggedIn(setName)
+        sessionStorage.setItem('setSharerSet', setName)
+      } else {
+        alert("Invalid Login")
+      }
+    })
     changeSetName("")
   }
 
@@ -19,11 +24,10 @@ const CreateSetForm = () => {
   }
 
   return (
-    <div className="create-set-form">
-      <h1>Create a Set</h1>
+    <div className="set-login-form">
+      <h1>Log in to see a Set</h1>
       <form
-        onSubmit = { (e) => handleSubmit(e) }
-      >
+        onSubmit = { (e) => handleSubmit(e) }>
         <div className="inputs">
           <input
             placeholder = "Set Name"
@@ -37,4 +41,4 @@ const CreateSetForm = () => {
   )
 }
 
-export default CreateSetForm
+export default LoginForm

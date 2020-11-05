@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { callSpotifyAlbumCover, callSpotifyID, callSpotifyKey } from '../utils/apiCalls'
 import KeyMap from '../utils/keyMap'
-import RemoveSongButton from './removeSongButton'
+import RemoveSongButton from './buttons/removeSongButton'
 
-const SongCardContainer = ({songTitle, songArtist}) => {
+const SongListCard = ({songTitle, songArtist}) => {
   const [songID, changeSongID] = useState('')
   const [key, changeKey] = useState('')
   const [songCover, changeSongCover] = useState('')
@@ -39,4 +39,4 @@ const SongCardContainer = ({songTitle, songArtist}) => {
 
 }
 
-export default SongCardContainer
+export default SongListCard

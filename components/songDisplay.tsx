@@ -20,6 +20,7 @@ const SongDisplay = () => {
       callLyrics({track: displayedSong.title, artist: displayedSong.artist})
       .then(changeLyrics)
 
+      // Call Mongo Storage Notes, store youtubeID
       callYoutubeSearch(`${displayedSong.title} by ${displayedSong.artist}`)
       .then(changeVideoId)
     }

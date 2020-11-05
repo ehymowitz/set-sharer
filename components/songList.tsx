@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import SongCardContainer from './songCardContainer'
+import SongListCard from './songListCard'
 import { DisplayedSong, Song } from '../pages/index'
 
-const Songs = () => {
+const SongList = () => {
   const { songList, setDisplayedSong } = useContext(DisplayedSong)
 
   const handleClick = (song: Song) => {
@@ -10,7 +10,7 @@ const Songs = () => {
   }
 
   return (
-    <div className = "songs">
+    <div className = "song-list">
       <ul>
         { songList.map((song: Song, index) => {
           return (
@@ -19,7 +19,7 @@ const Songs = () => {
               key = {index}
               onClick = {() => handleClick(song)}
             >
-              <SongCardContainer songTitle = {song.title} songArtist = {song.artist}/>
+              <SongListCard songTitle = {song.title} songArtist = {song.artist}/>
             </li>
           )
         })}
@@ -28,4 +28,4 @@ const Songs = () => {
   )
 }
 
-export default Songs
+export default SongList

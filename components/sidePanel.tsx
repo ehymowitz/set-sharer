@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import CreateSetForm from './createSetForm'
-import LoginForm from './LoginForm'
-import Songs from './songs'
-import AddSongForm from './addSongForm'
-import LogoutButton from './logoutButton'
+import CreateSetForm from './forms/createSetForm'
+import LoginForm from './forms/LoginForm'
+import SongList from './songList'
+import AddSongForm from './forms/addSongForm'
+import LogoutButton from './buttons/logoutButton'
 import { LoggedIn } from '../pages/_app'
 
-const Set = () => {
+const SidePanel = () => {
     const { loggedIn } = useContext(LoggedIn)
 
   if (loggedIn == "") {
@@ -22,7 +22,7 @@ const Set = () => {
     return (
       <div className= "logged-in">
         <h1>{loggedIn}</h1>
-        <Songs/>
+        <SongList/>
         <AddSongForm/>
         <LogoutButton />
       </div>
@@ -30,4 +30,4 @@ const Set = () => {
   }
 }
 
-export default Set
+export default SidePanel
