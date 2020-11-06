@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { DisplayedSong } from '../pages/index'
 import { LoggedIn } from '../pages/_app'
+import ChangeKeyForm from './forms/changeKeyForm'
 
 const SongDisplay = () => {
   const { displayedSong } = useContext(DisplayedSong)
@@ -12,10 +13,9 @@ const SongDisplay = () => {
         <div className="song-display-heading">
           <h1>{displayedSong.artist} - {displayedSong.title}</h1>
           <h3>
-            {displayedSong.notes.spotifyKey &&
-              <p>{displayedSong.notes.spotifyKey}</p>
-            }
+            <p>{displayedSong.notes.customKey ? displayedSong.notes.customKey: displayedSong.notes.spotifyKey}</p>
           </h3>
+          <ChangeKeyForm song = {displayedSong}/>
         </div>
       }
       {(displayedSong && loggedIn) &&

@@ -23,6 +23,7 @@ interface Notes {
   spotifyID: string;
   spotifyKey: string;
   spotifyAlbumCover: string;
+  customKey: string;
   lyrics: string;
   youtubeID: string;
   userNotes?: any;
