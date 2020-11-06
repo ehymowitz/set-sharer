@@ -4,11 +4,12 @@ import { connect } from "../../../utils/database"
 export default async function (req: NextApiRequest, res: NextApiResponse ) {
   try {
     const {db} = await connect();
-    const { artist: artist , title: title, set: set } = req.body
+    const { artist: artist , title: title, set: set, notes: notes } = req.body
 
     await db.collection(set).insertOne({
       title: title,
-      artist: artist
+      artist: artist,
+      notes: notes
     })
 
     res.status(201)

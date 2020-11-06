@@ -14,12 +14,21 @@ interface Context {
 }
 
 export interface Song {
-  artist: string,
-  title: string,
-  notes?: string
+  artist: string;
+  title: string;
+  notes: Notes;
 }
 
-const SetViewer = () => {
+interface Notes {
+  spotifyID: string;
+  spotifyKey: string;
+  spotifyAlbumCover: string;
+  lyrics: string;
+  youtubeID: string;
+  userNotes?: any;
+}
+
+const Container = () => {
   const [displayedSong, setDisplayedSong] = useState(undefined)
   const [songList, setSongList] = useState([])
   const { loggedIn } = useContext(LoggedIn)
@@ -46,4 +55,4 @@ const SetViewer = () => {
   )
 }
 
-export default SetViewer
+export default Container

@@ -2,16 +2,33 @@ import React, {useState, useContext, ChangeEvent, SyntheticEvent} from 'react'
 import { LoggedIn } from '../../pages/_app'
 import { createSong } from '../../utils/crud'
 import { DisplayedSong } from '../../pages/index'
+import { callSpotifyID, callSpotifyKey, callLyrics, callYoutubeSearch, callSpotifyAlbumCover } from '../../utils/apiCalls'
+import KeyMap from '../../utils/keyMap'
 
 const AddSongForm = () => {
   const { loggedIn } = useContext(LoggedIn)
   const { songList, setSongList, setDisplayedSong } = useContext(DisplayedSong)
-
   const [formInput, setFormInput] = useState({
     artist: "",
     title: "",
     set: loggedIn
   })
+
+  async function callAPIs(artist: string, track: string) {
+    const spotifyID = await callSpotifyID({artist, track})
+    const spotifyKey = await callSpotifyKey(spotifyID)
+    const spotifyAlbumCover = await callSpotifyAlbumCover(spotifyID)
+    const apiLyrics = await callLyrics({artist, track})
+    const youtubeID = await callYoutubeSearch(`${track} by ${artist}`)
+
+    return {
+      spotifyID: spotifyID,
+      spotifyKey: KeyMap(parseInt(spotifyKey)),
+      spotifyAlbumCover: spotifyAlbumCover,
+      lyrics: apiLyrics,
+      youtubeID: youtubeID
+    }
+  }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -24,9 +41,11 @@ const AddSongForm = () => {
   const handeSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     if (formInput.artist !== "" && formInput.title !== "") {
-      createSong(formInput)
-      setSongList([...songList, {artist: formInput.artist, title: formInput.title}])
-      setDisplayedSong({artist: formInput.artist, title: formInput.title})
+      callAPIs(formInput.artist, formInput.title).then(apiData => {
+        createSong(Object.assign(formInput, { notes: apiData }))
+        setSongList([...songList, {artist: formInput.artist, title: formInput.title, notes: apiData}])
+        setDisplayedSong({artist: formInput.artist, title: formInput.title, notes: apiData})
+      })
     } else {
       alert("Song form was not filled out")
     }

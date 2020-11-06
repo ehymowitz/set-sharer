@@ -19,7 +19,7 @@ const SongList = () => {
               key = {index}
               onClick = {() => handleClick(song)}
             >
-              <SongListCard songTitle = {song.title} songArtist = {song.artist}/>
+              <SongListCard song={song}/>
             </li>
           )
         })}

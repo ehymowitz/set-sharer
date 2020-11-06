@@ -1,38 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { DisplayedSong } from '../pages/index'
 import { LoggedIn } from '../pages/_app'
-import { callSpotifyID, callSpotifyKey, callLyrics, callYoutubeSearch } from '../utils/apiCalls'
-import KeyMap from '../utils/keyMap'
 
 const SongDisplay = () => {
   const { displayedSong } = useContext(DisplayedSong)
   const { loggedIn } = useContext(LoggedIn)
-  const [spotifyID, changeSpotifyID] = useState("")
-  const [spotifyKey, changeSpotifyKey] = useState("")
-  const [lyrics, changeLyrics] = useState("")
-  const [videoId, changeVideoId] = useState("")
-
-  useEffect(() => {
-    if (displayedSong) {
-      callSpotifyID({track: displayedSong.title, artist: displayedSong.artist})
-      .then(changeSpotifyID)
-
-      callLyrics({track: displayedSong.title, artist: displayedSong.artist})
-      .then(changeLyrics)
-
-      // Call Mongo Storage Notes, store youtubeID
-      callYoutubeSearch(`${displayedSong.title} by ${displayedSong.artist}`)
-      .then(changeVideoId)
-    }
-
-  }, [displayedSong])
-
-  useEffect(() => {
-    if (spotifyID) {
-      callSpotifyKey(spotifyID)
-      .then(changeSpotifyKey)
-    }
-  }, [spotifyID])
 
   return (
     <div className="song-display">
@@ -40,16 +12,16 @@ const SongDisplay = () => {
         <div className="song-display-heading">
           <h1>{displayedSong.artist} - {displayedSong.title}</h1>
           <h3>
-            {spotifyKey &&
-              <p>{KeyMap(parseInt(spotifyKey))}</p>
+            {displayedSong.notes.spotifyKey &&
+              <p>{displayedSong.notes.spotifyKey}</p>
             }
           </h3>
         </div>
       }
-      {(spotifyID && displayedSong && loggedIn) &&
+      {(displayedSong && loggedIn) &&
         <iframe
           className = "spotify-embed"
-          src={`https://open.spotify.com/embed/track${spotifyID}`}
+          src={`https://open.spotify.com/embed/track${displayedSong.notes.spotifyID}`}
           width="100%"
           height="80"
           frameBorder="0"
@@ -57,15 +29,15 @@ const SongDisplay = () => {
         />
       }
       <div className="lyrics-and-video">
-        {(lyrics && displayedSong && loggedIn) &&
-          <p className="lyrics">{lyrics}</p>
+        {(displayedSong && loggedIn) &&
+          <p className="lyrics">{displayedSong.notes.lyrics}</p>
         }
-        {(videoId && displayedSong && loggedIn) &&
+        {(displayedSong && loggedIn) &&
           <iframe
           className = "youtube-video"
           width="100%"
           height="250"
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src={`https://www.youtube.com/embed/${displayedSong.notes.youtubeID}`}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           />

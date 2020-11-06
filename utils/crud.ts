@@ -1,5 +1,3 @@
-// SETS
-
 interface setData {
   name: string
 }
@@ -14,7 +12,7 @@ interface songDataPost {
   title: string,
   artist: string,
   set: string,
-  notes?: string,
+  notes?: {},
   newTitle?: string
 }
 
@@ -24,7 +22,9 @@ interface songDataDelete {
   set: string
 }
 
-// CREATE Collection
+// Set
+
+// CREATE
 export async function createSet(setData: setData) {
   const response = await fetch("/api/sets/create", {
     method: "POST",
@@ -90,13 +90,14 @@ export async function readSongs(songsData: string) {
   return songs.map((song: songDataGet) => ({
     artist: song.artist,
     title: song.title,
+    notes: song.notes
   }))
 }
 
 // readSongs("songs");
 
 
-// UPDATE NOTES
+// UPDATE Notes
 export async function updateSongNotes(songNoteData: songDataPost) {
   await fetch("api/songs/update-notes", {
     method: "PATCH",
@@ -123,7 +124,7 @@ export async function updateSongTitle(songTitleData: songDataPost) {
 // updateSongTitle({title: "test4", artist: "test", newTitle: "test5", set: "songs"})
 
 // UPDATE Artist
-async function updateSongArtist(songArtistData: songDataPost) {
+export async function updateSongArtist(songArtistData: songDataPost) {
   await fetch("api/songs/update-artist", {
     method: "PATCH",
     headers: {
