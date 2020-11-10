@@ -11,7 +11,7 @@ const SongListCard = ({song}) => {
       <div className="song-text">
         <h2>{song.title}</h2>
         <h3>{song.artist}</h3>
-        <h4>{song.notes.spotifyKey}</h4>
+        <h4>{song.notes.customKey ? song.notes.customKey : song.notes.spotifyKey}</h4>
       </div>
       <RemoveSongButton title = {song.title} artist = {song.artist}/>
     </div>
