@@ -26,7 +26,8 @@ const AddSongForm = () => {
       spotifyKey: KeyMap(parseInt(spotifyKey)),
       spotifyAlbumCover: spotifyAlbumCover,
       lyrics: apiLyrics,
-      youtubeID: youtubeID
+      youtubeID: youtubeID,
+      order: songList.length
     }
   }
 

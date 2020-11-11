@@ -32,8 +32,9 @@ const ChangeKeyForm = ({song}) => {
     <select
       name="keys"
       onChange = {(e) => handleChange(e)}
+      defaultValue = {""}
     >
-      <option value="" disabled selected hidden>Change Key</option>
+      <option value="" disabled hidden>Change Key</option>
       {keys.map((key, i) => {
         return(
           <option value={key} key={i}>

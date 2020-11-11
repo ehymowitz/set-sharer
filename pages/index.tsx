@@ -27,6 +27,7 @@ interface Notes {
   lyrics: string;
   youtubeID: string;
   userNotes?: any;
+  order: number;
 }
 
 const Container = () => {
