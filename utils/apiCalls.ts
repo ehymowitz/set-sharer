@@ -32,7 +32,7 @@ export async function callSpotifyID(spotifyData: SongData) {
     }
   })
 
-  const {tracks: {items }} = await response.json()
+  const {tracks: { items }} = await response.json()
 
   return items[0].external_urls.spotify.split('track')[1]
 }

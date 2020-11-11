@@ -1,9 +1,12 @@
 import React, { useState, useContext, SyntheticEvent, ChangeEvent } from 'react'
 import { LoggedIn } from '../../pages/_app'
 import { readSets } from '../../utils/crud'
+import { useQueryString } from '../../utils/queryString'
 
 const LoginForm = () => {
   const [setName, changeSetName] = useState("")
+  const [set, changeSet] = useQueryString("set")
+
   const { setLoggedIn } = useContext(LoggedIn)
 
   const handleSubmit = (e: SyntheticEvent) => {
@@ -11,7 +14,7 @@ const LoginForm = () => {
     readSets().then((data) => {
       if (data.includes(setName)) {
         setLoggedIn(setName)
-        sessionStorage.setItem('setSharerSet', setName)
+        changeSet(setName)
       } else {
         alert("Invalid Login")
       }
@@ -27,7 +30,8 @@ const LoginForm = () => {
     <div className="set-login-form">
       <h1>Log in to see a Set</h1>
       <form
-        onSubmit = { (e) => handleSubmit(e) }>
+        onSubmit = { (e) => handleSubmit(e) }
+      >
         <div className="inputs">
           <input
             placeholder = "Set Name"

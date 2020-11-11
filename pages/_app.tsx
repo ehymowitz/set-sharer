@@ -1,5 +1,7 @@
 import '../styles/index.scss'
 import React, { useState, createContext, useEffect } from 'react'
+import { getQueryStringValue } from '../utils/queryString'
+import type { AppProps } from 'next/app'
 
 export const LoggedIn = createContext<Context | undefined>(undefined);
 
@@ -8,15 +10,12 @@ interface Context {
   setLoggedIn: React.Dispatch<React.SetStateAction<string>>;
 }
 
-import type { AppProps } from 'next/app'
-
 function MyApp({ Component, pageProps }: AppProps) {
-
-  const [loggedIn, setLoggedIn] = useState<string>("")
+  const [loggedIn, setLoggedIn] = useState("")
 
   useEffect(() => {
-    if (sessionStorage.getItem('setSharerSet')) {
-      setLoggedIn(sessionStorage.getItem('setSharerSet'))
+    if (getQueryStringValue("set")) {
+      getQueryStringValue("set")
     }
   }, [])
 

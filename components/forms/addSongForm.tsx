@@ -1,4 +1,4 @@
-import React, {useState, useContext, ChangeEvent, SyntheticEvent} from 'react'
+import React, { useState, useContext, ChangeEvent, SyntheticEvent } from 'react'
 import { LoggedIn } from '../../pages/_app'
 import { createSong } from '../../utils/crud'
 import { DisplayedSong } from '../../pages/index'

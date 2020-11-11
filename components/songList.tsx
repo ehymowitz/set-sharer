@@ -10,7 +10,7 @@ const SongList = () => {
   const { songList, setSongList, setDisplayedSong } = useContext(DisplayedSong)
   const { loggedIn } = useContext(LoggedIn)
 
-  function updateMongoOrder(song: Song, order: number) {
+  const updateMongoOrder = (song: Song, order: number) => {
     updateSongNotes({
       title: song.title,
       artist: song.artist,
@@ -43,31 +43,31 @@ const SongList = () => {
 
   return (
     <div className = "song-list">
-    <DragDropContext onDragEnd = {handleDragEnd}>
-      <Droppable droppableId="songs">
-        {(provided) => (
-          <ul {...provided.droppableProps} ref={provided.innerRef}>
-            { songList.sort((a ,b) => a.notes.order - b.notes.order).map((song: Song, index) => {
-              return (
-                <Draggable key={song.title} draggableId={song.title} index={index}>
-                  {(provided) => (
-                    <li
-                      className = "song-card"
-                      key={index}
-                      ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-                      onClick = {() => handleClick(song)}
-                    >
-                      <SongListCard song={song}/>
-                    </li>
-                  )}
-                </Draggable>
-              )
-            })}
-            {provided.placeholder}
-          </ul>
-        )}
-      </Droppable>
-    </DragDropContext>
+      <DragDropContext onDragEnd = {handleDragEnd}>
+        <Droppable droppableId="songs">
+          {(provided) => (
+            <ul {...provided.droppableProps} ref={provided.innerRef}>
+              { songList.sort((a ,b) => a.notes.order - b.notes.order).map((song: Song, index) => {
+                return (
+                  <Draggable key={song.title} draggableId={song.title} index={index}>
+                    {(provided) => (
+                      <li
+                        className = "song-card"
+                        key={index}
+                        ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
+                        onClick = {() => handleClick(song)}
+                      >
+                        <SongListCard song={song}/>
+                      </li>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   )
 }

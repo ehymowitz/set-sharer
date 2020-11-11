@@ -1,16 +1,18 @@
 import React, { useState, useContext, SyntheticEvent, ChangeEvent } from 'react'
 import { createSet } from '../../utils/crud'
 import { LoggedIn } from '../../pages/_app'
+import { useQueryString } from '../../utils/queryString'
 
 const CreateSetForm = () => {
   const [setName, changeSetName] = useState("")
+  const [set, changeSet] = useQueryString("set")
   const { setLoggedIn } = useContext(LoggedIn)
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     createSet({name: setName})
-    sessionStorage.setItem('setSharerSet', setName)
     setLoggedIn(setName)
+    changeSet(setName)
     changeSetName("")
   }
 
