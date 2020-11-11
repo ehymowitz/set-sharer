@@ -5,14 +5,14 @@ import { useQueryString } from '../../utils/queryString'
 
 const CreateSetForm = () => {
   const [setName, changeSetName] = useState("")
-  const [set, changeSet] = useQueryString("set")
+  const [queryString, setQueryString] = useQueryString("set")
   const { setLoggedIn } = useContext(LoggedIn)
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     createSet({name: setName})
     setLoggedIn(setName)
-    changeSet(setName)
+    setQueryString(setName)
     changeSetName("")
   }
 

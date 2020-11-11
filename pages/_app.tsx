@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (getQueryStringValue("set")) {
-      getQueryStringValue("set")
+      setLoggedIn(getQueryStringValue("set"))
     }
   }, [])
 

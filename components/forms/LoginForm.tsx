@@ -5,7 +5,7 @@ import { useQueryString } from '../../utils/queryString'
 
 const LoginForm = () => {
   const [setName, changeSetName] = useState("")
-  const [set, changeSet] = useQueryString("set")
+  const [queryString, setQueryString] = useQueryString("set")
 
   const { setLoggedIn } = useContext(LoggedIn)
 
@@ -13,8 +13,8 @@ const LoginForm = () => {
     e.preventDefault()
     readSets().then((data) => {
       if (data.includes(setName)) {
+        setQueryString(setName)
         setLoggedIn(setName)
-        changeSet(setName)
       } else {
         alert("Invalid Login")
       }

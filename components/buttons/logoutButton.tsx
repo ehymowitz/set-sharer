@@ -6,12 +6,12 @@ import { useQueryString } from '../../utils/queryString'
 const logoutButton = () => {
   const { loggedIn, setLoggedIn } = useContext(LoggedIn)
   const { setDisplayedSong } = useContext(DisplayedSong)
-  const [set, changeSet] = useQueryString("set")
+  const [queryString, setQueryString] = useQueryString("set")
 
   const handleClick = () => {
     setDisplayedSong(undefined)
     setLoggedIn("")
-    changeSet("")
+    setQueryString("")
   }
 
   return (
