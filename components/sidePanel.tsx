@@ -7,7 +7,7 @@ import LogoutButton from './buttons/logoutButton'
 import { LoggedIn } from '../pages/_app'
 
 const SidePanel = () => {
-    const { loggedIn } = useContext(LoggedIn)
+  const { loggedIn } = useContext(LoggedIn)
 
   if (loggedIn == "") {
     return (

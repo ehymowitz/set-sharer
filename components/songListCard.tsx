@@ -16,7 +16,6 @@ const SongListCard = ({song}) => {
       <RemoveSongButton title = {song.title} artist = {song.artist}/>
     </div>
   )
-
 }
 
 export default SongListCard
