@@ -3,7 +3,7 @@ import { LoggedIn } from './_app'
 import { readSongs } from '../utils/crud'
 import SidePanel from '../components/sidePanel'
 import SongDisplay from '../components/songDisplay'
-import Head from 'next/head'
+import Seo from '../components/seo'
 
 export const DisplayedSong = createContext<Context | undefined>(undefined);
 
@@ -45,11 +45,7 @@ const Container = () => {
 
   return (
     <DisplayedSong.Provider value = {{ displayedSong, setDisplayedSong, songList, setSongList }} >
-      <Head>
-        <title>Set Sharer { loggedIn && ` - ${loggedIn.charAt(0).toUpperCase() + loggedIn.slice(1)}`}</title>
-        <meta property="og:title" content="Set Sharer" key="title" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+      <Seo page = {loggedIn}/>
       <div className = "container">
         <div className = "song-info">
           <h1>Set Sharer</h1>
