@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel:wght@400;700&family=Nunito:wght@200;300;400&family=Roboto:wght@100;300;400&display=swap');
+// Martel Sans 400, 700
+// Nunito 200, 300, 400
+// Roboto 100, 300, 400
+
 body {
   margin: 0;
 }
@@ -9,4 +14,17 @@ h1, h2, h3, h4, p, a {
 
 h1, h2, h3, h4 {
   text-transform: capitalize;
+}
+
+h1 {
+  font-family: 'Martel Sans', sans-serif;
+  margin-bottom: 10px;
+}
+
+h2, h3, h4 {
+  font-family: Nunito;
+}
+
+p, a {
+  font-family: Roboto;
 }
