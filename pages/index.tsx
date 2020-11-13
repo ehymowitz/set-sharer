@@ -27,8 +27,8 @@ interface Notes {
   customKey?: string;
   lyrics: string;
   youtubeID: string;
-  userNotes?: any;
   order: number;
+  userNotes: any;
 }
 
 const Container = () => {

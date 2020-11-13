@@ -27,7 +27,8 @@ const AddSongForm = () => {
       spotifyAlbumCover: spotifyAlbumCover,
       lyrics: apiLyrics,
       youtubeID: youtubeID,
-      order: songList.length
+      order: songList.length,
+      userNotes: {}
     }
   }
 
@@ -77,7 +78,7 @@ const AddSongForm = () => {
           name = "artist"
           value = {formInput.artist}
         />
-        <input type="submit"/>
+        <input type="submit" value="Add a Song"/>
       </form>
     </div>
   )

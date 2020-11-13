@@ -4,13 +4,39 @@
   max-height: 50vh;
   .song-display-heading {
     display: flex;
-    align-items: baseline;
     margin-bottom: 10px;
+    align-items: center;
     h1 {
+      margin: 0;
       margin-right: 30px;
     }
     select {
-      margin: 10px;
+      margin: 0 10px;
+    }
+  }
+  .notes {
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    .notes-display {
+      display: flex;
+      .note-box {
+        display: flex;
+        align-items: center;
+        margin: 5px 10px;
+        .remove-note-button {
+          margin-left: 5px;
+          background-color: brown;
+          border-radius: 50%;
+          width: 12px;
+          height: 12px;
+          border: none;
+        }
+      }
+    }
+    .notes-form {
+      button {
+        margin: 0 10px;
+      }
     }
   }
   .lyrics-and-video {
