@@ -36,9 +36,10 @@ const LoginForm = () => {
           <input
             placeholder = "Set Name"
             value = { setName }
+            type = "text"
             onChange = { (e) => handleChange(e) }
           />
-          <input type="submit"/>
+          <input className="text-button" type="submit" value="Log In"/>
         </div>
       </form>
     </div>

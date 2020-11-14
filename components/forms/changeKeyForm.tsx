@@ -32,6 +32,7 @@ const ChangeKeyForm = ({song}) => {
   return (
     <select
       name="keys"
+      className ="text-button"
       onChange = {(e) => handleChange(e)}
       defaultValue = {""}
     >

@@ -21,10 +21,12 @@ const SidePanel = () => {
   } else {
     return (
       <div className= "logged-in">
-        <h1>{loggedIn}</h1>
+        <div className = "title-and-logout">
+          <h1>{loggedIn}</h1>
+          <LogoutButton />
+        </div>
         <SongList/>
         <AddSongForm/>
-        <LogoutButton />
       </div>
     )
   }

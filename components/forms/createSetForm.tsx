@@ -29,10 +29,11 @@ const CreateSetForm = () => {
         <div className="inputs">
           <input
             placeholder = "Set Name"
+            type = "text"
             value = { setName }
             onChange = { (e) => handleChange(e) }
           />
-          <input type="submit"/>
+          <input className="text-button" type="submit" value="Create Set"/>
         </div>
       </form>
     </div>

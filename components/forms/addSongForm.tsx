@@ -79,7 +79,7 @@ const AddSongForm = () => {
           name = "artist"
           value = {formInput.artist}
         />
-        <input type="submit" value="Add a Song"/>
+        <input className = "text-button" type="submit" value="Add a Song"/>
       </form>
     </div>
   )

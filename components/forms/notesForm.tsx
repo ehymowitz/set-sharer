@@ -58,7 +58,12 @@ const NotesForm = () => {
         </div>
       }
       <form className="notes-form" onClick = {(e)=> handleSubmit(e)}>
-        <input type="submit" value="Add a Note" />
+        <input
+          className="text-button"
+          type="submit"
+          value="Add a Note"
+          style = {{marginRight: '15px'}}
+        />
         <input
           type="text"
           placeholder="Title"

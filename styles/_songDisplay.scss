@@ -6,6 +6,7 @@
     display: flex;
     margin-bottom: 10px;
     align-items: center;
+    padding-bottom: 5px;
     h1 {
       margin: 0;
       margin-right: 30px;
@@ -16,6 +17,7 @@
   }
   .notes {
     padding-bottom: 10px;
+    margin-bottom: 10px;
     border-bottom: 1px solid black;
     .notes-display {
       display: flex;
@@ -24,8 +26,8 @@
         display: flex;
         align-items: center;
         position: relative;
-        margin: 5px 10px;
-        padding: 10px 15px;
+        margin: 5px 5px 10px 0px;
+        padding: 10px 15px 10px 10px;
         border-radius: 15px;
         background-color: #998c75;
         strong {
