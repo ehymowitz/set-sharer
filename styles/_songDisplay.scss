@@ -19,11 +19,22 @@
     border-bottom: 1px solid black;
     .notes-display {
       display: flex;
+      flex-wrap: wrap;
       .note-box {
         display: flex;
         align-items: center;
+        position: relative;
         margin: 5px 10px;
+        padding: 10px 15px;
+        border-radius: 15px;
+        background-color: #998c75;
+        strong {
+          font-weight: 300;
+        }
         .remove-note-button {
+          position: relative;
+          bottom: 5px;
+          left: 5px;
           margin-left: 5px;
           background-color: brown;
           border-radius: 50%;

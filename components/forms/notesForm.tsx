@@ -46,7 +46,10 @@ const NotesForm = () => {
             Object.keys(displayedSong.notes.userNotes).map((key, index) => {
               return (
                 <div className="note-box" key={index}>
-                  <p>{`${key}: ${displayedSong.notes.userNotes[key]}`}</p>
+                  <p>
+                    <strong>{`${key}: `}</strong>
+                    {`${displayedSong.notes.userNotes[key]}`}
+                  </p>
                   <RemoveNoteButton target = {key} />
                 </div>
               )
