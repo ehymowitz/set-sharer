@@ -44,9 +44,10 @@ const AddSongForm = () => {
     e.preventDefault()
     if (formInput.artist !== "" && formInput.title !== "") {
       callAPIs(formInput.artist, formInput.title).then(apiData => {
+        const songInfo = {artist: formInput.artist, title: formInput.title, notes: apiData}
         createSong(Object.assign(formInput, { notes: apiData }))
-        setSongList([...songList, {artist: formInput.artist, title: formInput.title, notes: apiData}])
-        setDisplayedSong({artist: formInput.artist, title: formInput.title, notes: apiData})
+        setSongList([...songList, songInfo])
+        setDisplayedSong(songInfo)
       })
     } else {
       alert("Song form was not filled out")

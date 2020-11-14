@@ -23,8 +23,9 @@ const ChangeKeyForm = ({song}) => {
   ]
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    updateSongNotes({title: song.title, artist: song.artist, notes: Object.assign(song.notes, {customKey: e.target.value}), set: loggedIn})
-    setDisplayedSong({title: song.title, artist: song.artist, notes: Object.assign(song.notes, {customKey: e.target.value})})
+    const songInfo = {title: song.title, artist: song.artist, notes: Object.assign(song.notes, {customKey: e.target.value})}
+    updateSongNotes(Object.assign(songInfo, {set: loggedIn}))
+    setDisplayedSong(songInfo)
     e.target.value = ""
   }
 
