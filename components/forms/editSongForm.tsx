@@ -48,7 +48,7 @@ const EditSongForm = ({setOpen}) => {
   return (
     <form className="song-edit-form" onSubmit={(e)=> handleSubmit(e)}>
       <div className="left">
-        <input type="submit" id="modal-submit" className="text-button" value="Edit Song"/>
+        <input type="submit" id="modal-submit" className="text-button" value="Submit"/>
         <h2>lyrics</h2>
         <textarea
           onChange={(e)=> handleChange(e)}

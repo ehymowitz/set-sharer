@@ -57,7 +57,7 @@ const InfoEditModal = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 style = {{fontSize: "40px" }}id="modal-title">Edit All Song Info</h2>
-            <h3 style = {{textTransform: "none"}}>Be careful with this! Make sure the previews work before you enter the form</h3>
+            <h3 style = {{textTransform: "none"}}>Be careful with this! Make sure the previews work before you submit</h3>
             <EditSongForm setOpen = {setOpen}/>
           </div>
         </Fade>
