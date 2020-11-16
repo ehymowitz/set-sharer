@@ -57,7 +57,7 @@ const NotesForm = () => {
           }
         </div>
       }
-      <form className="notes-form" onClick = {(e)=> handleSubmit(e)}>
+      <form className="notes-form" onSubmit = {(e)=> handleSubmit(e)}>
         <input
           className="text-button"
           type="submit"

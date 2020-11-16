@@ -52,7 +52,7 @@
       }
     }
   }
-  .lyrics-and-video {
+  .song-dislay-info {
     margin: 10px;
     display: grid;
     grid-gap: 10px;
@@ -62,6 +62,53 @@
       max-height: 50vh;
       overflow-wrap: break-word;
       white-space: break-spaces;
+    }
+    .edit-modal {
+      margin: 10px;
+      margin-right: 0px;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+// inside modal
+.song-edit-form {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-gap: 25px;
+  margin-top: 10px;
+  height: 60%;
+  .left {
+    #lyrics {
+      max-width: none;
+      width: fit-content;
+      height: 100%;
+      width: 100%;
+      resize: none;
+      border-bottom: none;
+    }
+    #modal-submit {
+      margin: 10px 0;
+    }
+  }
+  .right {
+    display: grid;
+    grid-template-rows: 0.75fr 0.75fr 0.75fr;
+    .row{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      h2 {
+        margin-bottom: 10px;
+      }
+      input {
+        max-width: none;
+        width: 100%;
+      }
+      img {
+        height: 100px;
+      }
     }
   }
 }

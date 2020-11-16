@@ -39,7 +39,10 @@ const ChangeKeyForm = ({song}) => {
       <option value="" disabled hidden>Change Key</option>
       {keys.map((key, i) => {
         return(
-          <option value={key} key={i}>
+          <option
+            value={key}
+            key={i}
+          >
             {key === song.notes.spotifyKey ? `${key} (Default)` : key}
           </option>
         )

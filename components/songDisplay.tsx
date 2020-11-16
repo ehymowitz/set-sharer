@@ -3,6 +3,7 @@ import { DisplayedSong } from '../pages/index'
 import { LoggedIn } from '../pages/_app'
 import ChangeKeyForm from './forms/changeKeyForm'
 import NotesForm from './forms/notesForm'
+import InfoEditModal from './modals/infoEditModal'
 
 const SongDisplay = () => {
   const { displayedSong } = useContext(DisplayedSong)
@@ -24,7 +25,7 @@ const SongDisplay = () => {
           <div className="notes">
             <NotesForm />
           </div>
-          <div className="lyrics-and-video">
+          <div className="song-dislay-info">
             <p className="lyrics">{displayedSong.notes.lyrics}</p>
             <div>
               <iframe
@@ -43,6 +44,9 @@ const SongDisplay = () => {
                 frameBorder="0"
                 allow="encrypted-media"
               />
+              <div className="edit-modal">
+                <InfoEditModal />
+              </div>
             </div>
           </div>
         </>

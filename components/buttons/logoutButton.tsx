@@ -16,7 +16,11 @@ const logoutButton = () => {
 
   return (
     <div className = "logout-button">
-      <button className = "text-button" onClick = {() => handleClick()}>
+      <button
+        className = "text-button"
+        onClick = {() => handleClick()}
+        style={{textTransform: "capitalize"}}
+      >
         Log Out from {loggedIn}
       </button>
     </div>
