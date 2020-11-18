@@ -50,14 +50,16 @@ const SongDisplay = () => {
                         frameBorder="0"
                         allow="encrypted-media"
                       />
-                      <iframe
+                      {displayedSong.notes.soundCloud &&
+                        <iframe
                         className = "soundcloud-embed"
                         src={displayedSong.notes.soundCloud.split('src="')[1]}
                         width="100%"
                         height="80"
                         frameBorder="0"
                         allow="encrypted-media"
-                      />
+                        />
+                      }
                       <div className="edit-modal">
                         < InfoEditModal />
                       </div>

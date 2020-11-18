@@ -68,6 +68,7 @@ const EditSongForm = ({setOpen}) => {
               type="text"
               value={form.youtube}
               name="youtube"
+              placeholder="Youtube video URL - not embed code"
             />
           </div>
           <iframe
@@ -87,6 +88,7 @@ const EditSongForm = ({setOpen}) => {
               type="text"
               value={form.spotify}
               name="spotify"
+              placeholder="Spotify 'Copy Song' Link"
             />
           </div>
           <iframe
@@ -106,6 +108,7 @@ const EditSongForm = ({setOpen}) => {
               type="text"
               value={form.artwork}
               name="artwork"
+              placeholder="Any image url"
             />
           </div>
           <img src={form.artwork} alt="artwork"/>
@@ -118,6 +121,7 @@ const EditSongForm = ({setOpen}) => {
               type="text"
               value={form.soundcloud}
               name="soundcloud"
+              placeholder="SoundCloud embed code"
             />
           </div>
           <iframe
