@@ -25,6 +25,7 @@ interface Notes {
   spotifyKey: string;
   spotifyAlbumCover: string;
   customKey?: string;
+  soundCloud?: string;
   lyrics: string;
   youtubeID: string;
   order: number;

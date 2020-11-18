@@ -10,7 +10,8 @@ const EditSongForm = ({setOpen}) => {
     lyrics: displayedSong.notes.lyrics,
     youtube: `https://www.youtube.com/watch?v=${displayedSong.notes.youtubeID}`,
     spotify: `https://open.spotify.com/track${displayedSong.notes.spotifyID}`,
-    artwork: displayedSong.notes.spotifyAlbumCover
+    artwork: displayedSong.notes.spotifyAlbumCover,
+    soundcloud: displayedSong.notes.soundCloud || ""
   })
 
   const handleSubmit = (e: SyntheticEvent) => {
@@ -20,6 +21,7 @@ const EditSongForm = ({setOpen}) => {
     newNotes.spotifyAlbumCover = form.artwork
     newNotes.spotifyID = form.spotify.split('/track')[1]
     newNotes.youtubeID = form.youtube.split('/watch?v=')[1]
+    newNotes.soundCloud = form.soundcloud
     updateSongNotes({
       title: displayedSong.title,
       artist: displayedSong.artist,
@@ -108,9 +110,30 @@ const EditSongForm = ({setOpen}) => {
           </div>
           <img src={form.artwork} alt="artwork"/>
         </div>
+        <div className="row">
+          <div style={{width: '70%'}}>
+            <h2>SoundCloud</h2>
+            <input
+              onChange={(e)=> handleChange(e)}
+              type="text"
+              value={form.soundcloud}
+              name="soundcloud"
+            />
+          </div>
+          <iframe
+            className = "soundcloud-embed"
+            src={form.soundcloud.split('src="')[1]}
+            width="25%"
+            height="80"
+            frameBorder="0"
+            allow="encrypted-media"
+          />
+        </div>
       </div>
     </form>
   )
 }
 
 export default EditSongForm
+
+// <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/915558670&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/essily" title="مهرجان طب اندال اندال اندال احمد موزه" target="_blank" style="color: #cccccc; text-decoration: none;">مهرجان طب اندال اندال اندال احمد موزه</a> · <a href="https://soundcloud.com/essily/baskotaya" title="مهرجان - انتى بسكوتايه مقرمشة | حسن شاكوش - حمادة مجدى 2020" target="_blank" style="color: #cccccc; text-decoration: none;">مهرجان - انتى بسكوتايه مقرمشة | حسن شاكوش - حمادة مجدى 2020</a></div>
