@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import EditSongForm from '../forms/editSongForm'
+import EditChartForm from '../forms/editChartForm'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InfoEditModal = () => {
+const ChartEditModal = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -40,7 +40,7 @@ const InfoEditModal = () => {
         type="button"
         onClick={handleOpen}
       >
-        Edit Song Info
+        Upload or Edit Chart
       </button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -56,9 +56,9 @@ const InfoEditModal = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 style = {{fontSize: "40px" }}id="modal-title">Edit Song Info</h2>
-            <h3 style = {{textTransform: "none"}}>Be careful with this! Make sure the previews work before you submit</h3>
-            <EditSongForm setOpen = {setOpen}/>
+            <h2 style = {{fontSize: "40px" }}id="modal-title">Edit or Upload a Chart</h2>
+            <h3 style = {{textTransform: "none"}}>Be careful with this! Make sure the preview works before submitting</h3>
+            <EditChartForm setOpen = {setOpen}/>
           </div>
         </Fade>
       </Modal>
@@ -66,4 +66,4 @@ const InfoEditModal = () => {
   );
 };
 
-export default InfoEditModal
+export default ChartEditModal

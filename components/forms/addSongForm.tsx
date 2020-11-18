@@ -28,6 +28,7 @@ const AddSongForm = () => {
       lyrics: apiLyrics,
       youtubeID: youtubeID,
       order: songList.length,
+      chart: "",
       userNotes: {}
     }
   }

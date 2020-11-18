@@ -29,6 +29,7 @@ interface Notes {
   youtubeID: string;
   order: number;
   userNotes: any;
+  chart: string;
 }
 
 const Container = () => {

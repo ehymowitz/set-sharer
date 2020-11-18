@@ -1,7 +1,8 @@
 .song-display {
   margin-top: 20px;
   display: grid;
-  max-height: 50vh;
+  grid-template-rows: auto auto;
+  max-height: 80vh;
   .song-display-heading {
     display: flex;
     margin-bottom: 10px;
@@ -15,59 +16,94 @@
       margin: 0 10px;
     }
   }
-  .notes {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid black;
-    .notes-display {
-      display: flex;
-      flex-wrap: wrap;
-      .note-box {
-        display: flex;
-        align-items: center;
-        position: relative;
-        margin: 5px 5px 10px 0px;
-        padding: 10px 15px 10px 10px;
-        border-radius: 15px;
-        background-color: #998c75;
-        strong {
-          font-weight: 300;
-        }
-        .remove-note-button {
-          position: relative;
-          bottom: 5px;
-          left: 5px;
-          margin-left: 5px;
-          background-color: brown;
-          border-radius: 50%;
-          width: 12px;
-          height: 12px;
-          border: none;
-        }
-      }
-    }
-    .notes-form {
-      button {
-        margin: 0 10px;
-      }
-    }
-  }
-  .song-dislay-info {
-    margin: 10px;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 1fr;
-    .lyrics {
-      overflow-y: auto;
-      max-height: 50vh;
-      overflow-wrap: break-word;
-      white-space: break-spaces;
-    }
-    .edit-modal {
+  .song-display-info {
+    .slider-pane-one {
       margin: 10px;
-      margin-right: 0px;
+      .notes {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid black;
+        .notes-display {
+          display: flex;
+          flex-wrap: wrap;
+          .note-box {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin: 5px 5px 10px 0px;
+            padding: 10px 15px 10px 10px;
+            border-radius: 15px;
+            background-color: #998c75;
+            strong {
+              font-weight: 300;
+            }
+            .remove-note-button {
+              position: relative;
+              bottom: 5px;
+              left: 5px;
+              margin-left: 5px;
+              background-color: brown;
+              border-radius: 50%;
+              width: 12px;
+              height: 12px;
+              border: none;
+            }
+          }
+        }
+        .notes-form {
+          button {
+            margin: 0 10px;
+          }
+        }
+      }
+      .pane-one-grid {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 1fr 1fr;
+        height: 60vh;
+        .lyrics {
+          overflow-y: auto;
+          max-height: 95%;
+          overflow-wrap: break-word;
+          white-space: break-spaces;
+        }
+        .edit-modal {
+          margin: 10px;
+          margin-right: 0px;
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+    .slider-pane-two {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 63vh;
+      iframe {
+        width: 80%;
+        height: 100%;
+        margin: 10px 0;
+        min-height: 60vh;
+      }
+    }
+    .tablist {
+      position: absolute;
+      bottom: 10px;
+      display: flex;
+      padding: 0;
+      width: 50%;
+      justify-content: space-evenly;
+      li {
+        list-style-type: none;
+        cursor: pointer;
+      }
+      li[aria-selected="true"] {
+        h3 {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
@@ -110,5 +146,25 @@
         height: 100px;
       }
     }
+  }
+}
+
+.chart-edit-form {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  .inputs {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    input[type=text] {
+      max-width: none;
+      width: 70%;
+    }
+  }
+  .chart-preview {
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
   }
 }
