@@ -43,6 +43,7 @@ const EditChartForm = ({setOpen}) => {
           onChange={(e)=> handleChange(e)}
           type="text"
           value={chart}
+          placeholder="Any PDF URL"
         />
         <input type="submit" id="modal-submit" className="text-button" value="Submit"/>
       </div>
