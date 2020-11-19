@@ -98,7 +98,7 @@ export async function callLyrics(lyricData: SongData) {
     const {result: {track: {text}}} = await response.json()
     return text
   } catch {
-    return "Can't find lyrics for this song! Let me know if this happens, I'll do what I can"
+    return "Can't find lyrics for this song! Try to add your own"
   }
 }
 

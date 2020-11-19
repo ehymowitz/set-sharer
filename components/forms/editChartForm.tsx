@@ -8,8 +8,6 @@ const EditChartForm = ({setOpen}) => {
   const { loggedIn } = useContext(LoggedIn)
   const [chart, changeChart] = useState(displayedSong.notes.chart)
 
-  console.log(displayedSong)
-
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     const newNotes = displayedSong.notes
