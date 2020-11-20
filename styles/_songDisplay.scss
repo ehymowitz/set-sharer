@@ -2,7 +2,6 @@
   margin-top: 20px;
   display: grid;
   grid-template-rows: auto auto;
-  max-height: 80vh;
   .song-display-heading {
     display: flex;
     margin-bottom: 10px;
@@ -60,10 +59,9 @@
         display: grid;
         grid-gap: 10px;
         grid-template-columns: 1fr 1fr;
-        height: 60vh;
         .lyrics {
           overflow-y: auto;
-          max-height: 95%;
+          max-height: 60vh;
           overflow-wrap: break-word;
           white-space: break-spaces;
         }
@@ -89,11 +87,9 @@
       }
     }
     .tablist {
-      position: absolute;
       bottom: 10px;
       display: flex;
       padding: 0;
-      width: 50%;
       justify-content: space-evenly;
       li {
         list-style-type: none;
@@ -112,10 +108,7 @@
 .song-edit-form {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  grid-gap: 25px;
-  margin-top: 10px;
-  height: 80%;
-  overflow-y: hidden;
+  grid-gap: 15px;
   .left {
     display: grid;
     grid-template-rows: min-content min-content auto;
@@ -135,6 +128,7 @@
     display: grid;
     grid-template-rows: repeat(4, min-content);
     grid-gap: 20px;
+    overflow-y: auto;
     .row{
       display: flex;
       justify-content: space-between;

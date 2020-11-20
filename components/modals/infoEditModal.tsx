@@ -15,9 +15,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#998c75',
     border: 'none',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(3, 4, 3),
     width: '80vw',
-    height: '70vh'
+    height: '70%',
+    padding: '20px',
+    overflowY: 'auto',
   },
 }));
 
@@ -56,9 +57,9 @@ const InfoEditModal = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 style = {{fontSize: "40px" }}id="modal-title">Edit Song Info</h2>
-            <h3 style = {{textTransform: "none"}}>Be careful with this! Make sure the previews work before you submit</h3>
-            <EditSongForm setOpen = {setOpen}/>
+              <h2 style = {{fontSize: "40px" }}id="modal-title">Edit Song Info</h2>
+              <h3 style = {{textTransform: "none"}}>Be careful with this! Make sure the previews work before you submit</h3>
+              <EditSongForm setOpen = {setOpen}/>
           </div>
         </Fade>
       </Modal>
