@@ -32,9 +32,13 @@ export async function callSpotifyID(spotifyData: SongData) {
     }
   })
 
-  const {tracks: { items }} = await response.json()
+  try {
+    const {tracks: { items }} = await response.json()
 
-  return items[0].external_urls.spotify.split('track')[1]
+    return items[0].external_urls.spotify.split('track')[1]
+  } catch {
+    return undefined
+  }
 }
 
 // callSpotifyID({track: "Loud Pipes", artist: "Ratatat"})
@@ -50,9 +54,9 @@ export async function callSpotifyKey(songID: string) {
     }
   })
 
-  const {key} = await response.json()
+  const { key } = await response.json()
 
-  return key
+  if (key) return key
 }
 
 // callSpotifyKey('spotifyID')
@@ -68,9 +72,12 @@ export async function callSpotifyAlbumCover(songID: string) {
     }
   })
 
-  const {album: {images}} = await response.json()
-
-  return images[1].url
+  try {
+    const {album: {images}} = await response.json()
+    return images[1].url
+  } catch {
+    return "https://picsum.photos/id/1025/200"
+  }
 }
 
 // callSpotifyAlbumCover('spotifyID')
@@ -84,20 +91,26 @@ export async function callYoutubeSearch(video: string) {
     }
   })
 
-  const {items: [item]} = await response.json()
-
-  return item.id.videoId
+  try {
+    const {items: [item]} = await response.json()
+    return item.id.videoId
+  } catch {
+    return undefined
+  }
 }
 
 
 // Lyrics
 
 export async function callLyrics(lyricData: SongData) {
-  try {
-    const response = await fetch(`https://orion.apiseeds.com/api/music/lyric/${lyricData.artist}/${lyricData.track}?apikey=${process.env.NEXT_PUBLIC_LYRICS_KEY}`)
-    const {result: {track: {text}}} = await response.json()
+  const response = await fetch(`https://orion.apiseeds.com/api/music/lyric/${lyricData.artist}/${lyricData.track}?apikey=${process.env.NEXT_PUBLIC_LYRICS_KEY}`)
+
+  const value = await response.json()
+
+  if (!value.error) {
+    const {result: {track: {text}}} = value
     return text
-  } catch {
+  } else {
     return "Can't find lyrics for this song! Try to add your own"
   }
 }

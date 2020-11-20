@@ -19,9 +19,9 @@ const EditSongForm = ({setOpen}) => {
     const newNotes = displayedSong.notes
     newNotes.lyrics = form.lyrics
     newNotes.spotifyAlbumCover = form.artwork
-    newNotes.spotifyID = form.spotify.split('/track')[1]
-    newNotes.youtubeID = form.youtube.split('/watch?v=')[1]
-    newNotes.soundCloud = form.soundcloud
+    newNotes.spotifyID = form.spotify.split('/track')[1] == "undefined" ? undefined : form.spotify.split('/track')[1]
+    newNotes.youtubeID = form.youtube.split('/watch?v=')[1] == "undefined" ? undefined : form.youtube.split('/watch?v=')[1]
+    newNotes.soundCloud = form.soundcloud == "undefined" ? undefined : form.soundcloud
     updateSongNotes({
       title: displayedSong.title,
       artist: displayedSong.artist,

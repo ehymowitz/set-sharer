@@ -34,22 +34,26 @@ const SongDisplay = () => {
                   <div className="pane-one-grid">
                     <p className="lyrics">{displayedSong.notes.lyrics} </p>
                     <div>
-                      <iframe
+                      {displayedSong.notes.youtubeID &&
+                        <iframe
                         className = "youtube-video"
                         width="100%"
                         height="250"
                         src={`https://www.youtube.com/embed/${displayedSong.notes.youtubeID}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      />
-                      <iframe
+                        />
+                      }
+                      {displayedSong.notes.spotifyID &&
+                        <iframe
                         className = "spotify-embed"
                         src={`https://open.spotify.com/embed/track${displayedSong.notes.spotifyID}`}
                         width="100%"
                         height="80"
                         frameBorder="0"
                         allow="encrypted-media"
-                      />
+                        />
+                      }
                       {displayedSong.notes.soundCloud &&
                         <iframe
                         className = "soundcloud-embed"
