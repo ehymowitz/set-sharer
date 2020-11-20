@@ -49,8 +49,12 @@ const EditSongForm = ({setOpen}) => {
 
   return (
     <form className="song-edit-form" onSubmit={(e)=> handleSubmit(e)}>
-      <div className="left">
+      <div className='top'>
+        <h2 style = {{fontSize: "40px" }}id="modal-title">Edit Song Info</h2>
+        <h3 style = {{textTransform: "none"}}>Be careful with this! Make sure the previews work before you submit</h3>
         <input type="submit" id="modal-submit" className="text-button" value="Submit"/>
+      </div>
+      <div className="left">
         <h2>lyrics</h2>
         <textarea
           onChange={(e)=> handleChange(e)}
