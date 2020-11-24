@@ -13,8 +13,9 @@ const LoginForm = () => {
     e.preventDefault()
     readSets().then((data) => {
       if (data.includes(setName)) {
-        setQueryString(setName)
-        setLoggedIn(setName)
+        const usedSetName = setName.toLowerCase()
+        setQueryString(usedSetName)
+        setLoggedIn(usedSetName)
       } else {
         alert("Invalid Login")
       }

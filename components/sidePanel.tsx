@@ -14,6 +14,7 @@ const SidePanel = () => {
       <div className= "not-logged-in">
         <CreateSetForm />
         <LoginForm />
+        <small>(Inputs are not case sensitive)</small>
         <p>WARNING: This tool is very much in development. When you put information on here it very well could be deleted if I mess somthing up. So back up your data.</p>
         <p>I'm making this tool as a musician and for musicians, so if you have any suggestions for features feel free to reach me at ehymowitz@gmail.com </p>
       </div>

@@ -10,9 +10,10 @@ const CreateSetForm = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    createSet({name: setName})
-    setLoggedIn(setName)
-    setQueryString(setName)
+    const usedSetName = setName.toLowerCase()
+    createSet({name: usedSetName})
+    setLoggedIn(usedSetName)
+    setQueryString(usedSetName)
     changeSetName("")
   }
 
