@@ -11,9 +11,9 @@ const LoginForm = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
+    const usedSetName = setName.toLowerCase()
     readSets().then((data) => {
-      if (data.includes(setName)) {
-        const usedSetName = setName.toLowerCase()
+      if (data.includes(usedSetName)) {
         setQueryString(usedSetName)
         setLoggedIn(usedSetName)
       } else {
