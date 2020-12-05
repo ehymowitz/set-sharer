@@ -18,6 +18,8 @@
         margin-left: 20px;
         display: flex;
         align-items: center;
+        width: -webkit-fill-available;
+        justify-content: space-between;
         .timer {
           display: grid;
           align-items: center;
@@ -83,6 +85,45 @@
     display: grid;
     grid-template-columns: none;
     grid-template-rows: 1fr auto;
-    min-height: none;
+    min-height: unset;
+    height: 1500px;
+  }
+}
+
+@media (max-width: $Tablets) {
+  .container {
+    .song-info {
+      .app-heading {
+        .gigInterface {
+          display: grid;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $Phones) {
+  .container {
+    .song-info {
+      padding-left: 20px;
+      padding-right: 0;
+    }
+    .setlist {
+      padding-left: 20px;
+      padding-right: 0;
+      .logged-in {
+        .song-list {
+          .song-card {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $Laptops-big) {
+  .container {
+    width: inherit;
   }
 }
