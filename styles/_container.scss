@@ -9,6 +9,49 @@
   .song-info {
     padding: 40px;
     background-color: #CCB187;
+
+    .app-heading {
+      display: flex;
+      align-items: center;
+
+      .gigInterface {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        .timer {
+          display: grid;
+          align-items: center;
+          grid-template-columns: repeat(6, auto);
+          grid-gap: 10px;
+          .buttons {
+            border-radius: 45px;
+            button {
+              max-width: 150px;
+              padding: 5px 10px;
+              color: #000;
+              background-color: rgba(0,0,0,0);
+              border: none;
+              cursor: pointer;
+              outline: none;
+              font-size: 22px;
+            }
+          }
+        }
+        .song-change {
+          display: flex;
+          button {
+            padding: 5px 10px;
+            color: #000;
+            background-color: rgba(0,0,0,0);
+            border: none;
+            cursor: pointer;
+            outline: none;
+            font-size: 16px;
+          }
+        }
+      }
+
+    }
   }
 
   .setlist {

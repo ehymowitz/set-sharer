@@ -4,6 +4,7 @@ import { readSongs } from '../utils/crud'
 import SidePanel from '../components/sidePanel'
 import SongDisplay from '../components/songDisplay'
 import Seo from '../components/seo'
+import GigInterface from '../components/gigInterface'
 
 export const DisplayedSong = createContext<Context | undefined>(undefined);
 
@@ -50,7 +51,13 @@ const Container = () => {
       <Seo page = {loggedIn}/>
       <div className = "container">
         <div className = "song-info">
-          <h1>Set Sharer</h1>
+          <div className="app-heading">
+            <h1>Set Sharer</h1>
+            { displayedSong &&
+              <GigInterface/>
+            }
+          </div>
+
           <SongDisplay />
         </div>
         <div className = "setlist">
