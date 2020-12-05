@@ -1,10 +1,11 @@
 .container {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
   width: fit-content;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  height: min-content;
+  min-height: 100vh;
 
   .song-info {
     padding: 40px;
@@ -86,7 +87,9 @@
     grid-template-columns: none;
     grid-template-rows: 1fr auto;
     min-height: unset;
-    height: 1500px;
+    .setlist {
+      min-height: 95vh;
+    }
   }
 }
 
@@ -111,7 +114,6 @@
     .setlist {
       padding-left: 20px;
       padding-right: 0;
-      min-height: 95vh;
       .logged-in {
         .song-list {
           .song-card {
