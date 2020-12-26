@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import SongListCard from './songListCard'
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd'
 import { DisplayedSong, Song } from '../pages/index'
@@ -9,6 +9,10 @@ import { LoggedIn } from '../pages/_app'
 const SongList = () => {
   const { songList, setSongList, setDisplayedSong } = useContext(DisplayedSong)
   const { loggedIn } = useContext(LoggedIn)
+
+  useEffect(() => {
+    setDisplayedSong(songList[0])
+  }, [loggedIn])
 
   const updateMongoOrder = (song: Song, order: number) => {
     updateSongNotes({
