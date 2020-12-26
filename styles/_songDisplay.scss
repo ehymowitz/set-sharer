@@ -1,7 +1,8 @@
 .song-display {
-  margin-top: 20px;
+  padding: 0px 40px;
   display: grid;
   grid-template-rows: auto auto;
+  min-height: 80vh;
   .song-display-heading {
     display: flex;
     margin-bottom: 10px;
@@ -61,7 +62,7 @@
         grid-template-columns: 1fr 1fr;
         .lyrics {
           overflow-y: auto;
-          max-height: 60vh;
+          max-height: 55vh;
           overflow-wrap: break-word;
           white-space: break-spaces;
         }
@@ -174,5 +175,14 @@
     margin: 0 auto;
     width: 80%;
     height: 100%;
+  }
+}
+
+@media (max-width: $Phones) {
+  .song-display {
+    padding: 0px;
+    .lyrics {
+      max-height: 65vh !important;
+    }
   }
 }

@@ -1,4 +1,5 @@
 import React, { useState, useContext, SyntheticEvent, ChangeEvent } from 'react'
+import { DisplayedSong } from '../../pages'
 import { LoggedIn } from '../../pages/_app'
 import { readSets } from '../../utils/crud'
 import { useQueryString } from '../../utils/queryString'
@@ -8,12 +9,14 @@ const LoginForm = () => {
   const setQueryString = useQueryString("set")[1]
 
   const { setLoggedIn } = useContext(LoggedIn)
+  const { songList, setDisplayedSong } = useContext(DisplayedSong)
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     const usedSetName = setName.toLowerCase()
     readSets().then((data) => {
       if (data.includes(usedSetName)) {
+        setDisplayedSong(songList[0])
         setQueryString(usedSetName)
         setLoggedIn(usedSetName)
       } else {
