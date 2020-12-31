@@ -19,10 +19,12 @@ const SongDisplay = () => {
         <>
           <div className="song-display-heading">
             <h1>{displayedSong.artist} - {displayedSong.title}</h1>
-            <h3>
-              <p>{displayedSong.notes.customKey ? displayedSong.notes.customKey: displayedSong.notes.spotifyKey}</p>
-            </h3>
-            <ChangeKeyForm song = {displayedSong}/>
+            <div style={{display: "flex", alignItems: "center", paddingTop: "10px"}}>
+              <h3>
+                <p>{displayedSong.notes.customKey ? displayedSong.notes.customKey: displayedSong.notes.spotifyKey}</p>
+              </h3>
+              <ChangeKeyForm song = {displayedSong}/>
+            </div>
           </div>
           <div className="song-display-info">
             <Tabs>

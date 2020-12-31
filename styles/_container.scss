@@ -1,9 +1,9 @@
 .container {
   margin: 0;
   padding: 0;
-  width: fit-content;
+  width: 100vw;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   height: min-content;
   min-height: 100vh;
 
@@ -87,7 +87,7 @@
     width: 100vw;
     display: grid;
     grid-template-columns: none;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto auto;
     min-height: unset;
   }
 }
@@ -109,6 +109,13 @@
     .song-info {
       .app-heading {
         padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .gigInterface {
+          display: flex;
+          margin: 0;
+        }
       }
       padding-left: 20px;
       padding-right: 0;

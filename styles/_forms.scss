@@ -59,3 +59,16 @@ form {
   cursor: pointer;
   outline: none;
 }
+
+@media (max-width: $Phones) {
+  .notes {
+    form {
+      max-width: 300px;
+    }
+  }
+  .add-song-form {
+    form {
+      max-width: 300px;
+    }
+  }
+}

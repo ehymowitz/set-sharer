@@ -52,7 +52,7 @@ const Container = () => {
       <div className = "container">
         <div className = "song-info">
           <div className="app-heading">
-            <h1>Set Sharer</h1>
+            <h1 style={{fontSize: "28px"}}>Set Sharer</h1>
             { displayedSong &&
               <GigInterface/>
             }

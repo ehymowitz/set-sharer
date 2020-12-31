@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  background:  #7A6B51;
 }
 
 h1, h2, h3, h4, p, a {
@@ -32,4 +33,10 @@ p, a {
 small {
   font-family: 'Roboto';
   color: white;
+}
+
+@media (max-width: $Phones) {
+  h1 {
+    font-size: 24px;
+  }
 }
