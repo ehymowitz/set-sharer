@@ -181,15 +181,14 @@
 @media (max-width: $Laptops) {
   .song-display {
     min-height: 40vh;
+    .edit-modal {
+      display: none !important;
+    }
   }
 }
 @media (max-width: $Tablets) {
   .song-display {
     min-height: 37vh;
-    .edit-modal {
-      border: 1px solid red;
-      display: none !important;
-    }
   }
 }
 
