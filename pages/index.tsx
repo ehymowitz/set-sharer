@@ -41,8 +41,9 @@ const Container = () => {
 
   useEffect(() => {
     if (loggedIn) {
-      readSongs(loggedIn)
-      .then(setSongList)
+      const songs = readSongs(loggedIn)
+      songs.then(setSongList)
+      songs.then((data) => setDisplayedSong(data[0]))
     }
   }, [loggedIn])
 

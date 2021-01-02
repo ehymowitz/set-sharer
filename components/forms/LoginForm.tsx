@@ -1,5 +1,4 @@
 import React, { useState, useContext, SyntheticEvent, ChangeEvent } from 'react'
-import { DisplayedSong } from '../../pages'
 import { LoggedIn } from '../../pages/_app'
 import { readSets } from '../../utils/crud'
 import { useQueryString } from '../../utils/queryString'
