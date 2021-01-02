@@ -30,21 +30,19 @@ const GigInterface = () => {
           {({ start, pause, reset }) => (
             <React.Fragment>
                 <p>
-                  <Timer.Hours formatValue={(value) => `${(value < 10 ? `0${value}` : value)}h : `} />
-                </p>
-                <p>
-                  <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}m : `}/>
-                </p>
-                <p>
+                  <Timer.Hours formatValue={(value) => `${(value < 10 ? `0${value}` : value)}h :`} />
+                  <span> </span>
+                  <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}m :`}/>
+                  <span> </span>
                   <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}s`}/>
                 </p>
-                <div className="buttons">
-                  { timerOn ?
-                    <button onClick={pause}><BsPauseFill/></button> :
-                    <button onClick={start}><BsFillPlayFill/></button>
-                  }
-                  <button onClick={reset}><BiRefresh/></button>
-                </div>
+              <div className="buttons">
+                { timerOn ?
+                  <button onClick={pause}><BsPauseFill/></button> :
+                  <button onClick={start}><BsFillPlayFill/></button>
+                }
+                <button onClick={reset}><BiRefresh/></button>
+              </div>
             </React.Fragment>
           )}
         </Timer>
