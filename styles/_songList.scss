@@ -1,6 +1,7 @@
 .song-list {
   max-height: 65vh;
   margin-bottom: 20px;
+  overflow: auto;
   ul {
     list-style: none;
     padding: 0;
@@ -41,5 +42,12 @@
         border: none;
       }
     }
+  }
+}
+
+@media (max-width: $Laptops) {
+  .song-list {
+    max-height: none;
+    overflow: none;
   }
 }
