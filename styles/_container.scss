@@ -60,6 +60,7 @@
     background-color: #7A6B51;
     padding: 40px;
     padding-top: 80px;
+    position: relative;
   }
 
   .logged-in {
@@ -131,5 +132,11 @@
 @media (min-width: $Laptops-big) {
   .container {
     width: inherit;
+  }
+}
+
+@media (max-width: $Laptops) {
+  .coffee {
+    display: none;
   }
 }
