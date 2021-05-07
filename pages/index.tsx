@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import { LoggedIn } from './_app'
-import { readSongs } from '../utils/crud'
-import SidePanel from '../components/sidePanel'
-import SongDisplay from '../components/songDisplay'
-import Seo from '../components/seo'
-import GigInterface from '../components/gigInterface'
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { LoggedIn } from "./_app";
+import { readSongs } from "../utils/crud";
+import SidePanel from "../components/sidePanel";
+import SongDisplay from "../components/songDisplay";
+import Seo from "../components/seo";
+import GigInterface from "../components/gigInterface";
 
 export const DisplayedSong = createContext<Context | undefined>(undefined);
 
@@ -35,38 +35,38 @@ interface Notes {
 }
 
 const Container = () => {
-  const [displayedSong, setDisplayedSong] = useState(undefined)
-  const [songList, setSongList] = useState([])
-  const { loggedIn } = useContext(LoggedIn)
+  const [displayedSong, setDisplayedSong] = useState(undefined);
+  const [songList, setSongList] = useState([]);
+  const { loggedIn } = useContext(LoggedIn);
 
   useEffect(() => {
     if (loggedIn) {
-      const songs = readSongs(loggedIn)
-      songs.then(setSongList)
-      songs.then((data) => setDisplayedSong(data[0]))
+      const songs = readSongs(loggedIn);
+      songs.then(setSongList);
+      songs.then((data) => setDisplayedSong(data[0]));
     }
-  }, [loggedIn])
+  }, [loggedIn]);
 
   return (
-    <DisplayedSong.Provider value = {{ displayedSong, setDisplayedSong, songList, setSongList }} >
-      <Seo page = {loggedIn}/>
-      <div className = "container">
-        <div className = "song-info">
+    <DisplayedSong.Provider
+      value={{ displayedSong, setDisplayedSong, songList, setSongList }}
+    >
+      <Seo page={loggedIn} />
+      <div className="container">
+        <div className="song-info">
           <div className="app-heading">
-            <h1 style={{fontSize: "28px"}}>Set Sharer</h1>
-            { displayedSong &&
-              <GigInterface/>
-            }
+            <h1 style={{ fontSize: "28px" }}>Set Sharer</h1>
+            {displayedSong && <GigInterface />}
           </div>
 
           <SongDisplay />
         </div>
-        <div className = "setlist">
+        <div className="setlist">
           <SidePanel />
         </div>
       </div>
     </DisplayedSong.Provider>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;
