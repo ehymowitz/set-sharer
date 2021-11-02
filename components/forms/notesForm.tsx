@@ -1,8 +1,8 @@
 import React, {
-  useState,
-  useContext,
   ChangeEvent,
   SyntheticEvent,
+  useContext,
+  useState,
 } from "react";
 import { DisplayedSong } from "../../pages/index";
 import { LoggedIn } from "../../pages/_app";
@@ -14,13 +14,10 @@ const NotesForm = () => {
   const { loggedIn } = useContext(LoggedIn);
   const [note, setNote] = useState("");
 
-  console.log(displayedSong);
-
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (note == "") return;
 
-    console.log(displayedSong.notes.userNotes);
     displayedSong.notes.userNotes.push(note);
     updateSongNotes({
       title: displayedSong.title,

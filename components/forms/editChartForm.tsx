@@ -1,9 +1,5 @@
-import React, {
-  useState,
-  useContext,
-  SyntheticEvent,
-  ChangeEvent,
-} from "react";
+import React, { useContext, useState } from "react";
+import Dropzone from "react-dropzone";
 import { DisplayedSong } from "../../pages/index";
 import { LoggedIn } from "../../pages/_app";
 import { updateSongNotes } from "../../utils/crud";
@@ -11,52 +7,62 @@ import { updateSongNotes } from "../../utils/crud";
 const EditChartForm = ({ setOpen }) => {
   const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
   const { loggedIn } = useContext(LoggedIn);
-  const [chart, changeChart] = useState(displayedSong.notes.chart);
+  const [chart, setChart] = useState<string>();
 
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
-    const newNotes = displayedSong.notes;
-    newNotes.chart = chart;
-    updateSongNotes({
-      ...displayedSong,
-      set: loggedIn,
-      notes: newNotes,
-    });
+  const fileReader = new FileReader();
 
-    setOpen(false);
-
-    setDisplayedSong({
-      title: displayedSong.title,
-      artist: displayedSong.artist,
-      notes: newNotes,
+  const handleDrop = (file: File) => {
+    fileReader.readAsDataURL(file);
+    fileReader.addEventListener("load", (event) => {
+      const url = event.target.result;
+      if (typeof url === "string") {
+        setChart(url);
+      }
     });
   };
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    e.preventDefault();
-    changeChart(e.target.value);
+  const handleConfirm = () => {
+    if (chart) {
+      updateSongNotes({
+        ...displayedSong,
+        set: loggedIn,
+        notes: { ...displayedSong.notes, chart: chart },
+      });
+      setDisplayedSong({
+        title: displayedSong.title,
+        artist: displayedSong.artist,
+        notes: { ...displayedSong.notes, chart: chart },
+      });
+    }
+
+    setOpen(false);
   };
 
   return (
-    <form className="chart-edit-form" onSubmit={(e) => handleSubmit(e)}>
-      <div className="inputs">
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          value={chart}
-          placeholder="Any PDF URL"
-        />
-        <input
-          type="submit"
-          id="modal-submit"
-          className="text-button"
-          value="Submit"
-        />
-      </div>
-      <iframe src={chart} frameBorder="0" className="chart-preview" />
-    </form>
+    <div className="dropzone-container">
+      <Dropzone
+        onDrop={(acceptedFiles) => handleDrop(acceptedFiles[0])}
+        maxFiles={1}
+        maxSize={10000000}
+        multiple={false}
+        accept="application/pdf"
+      >
+        {({ getRootProps, getInputProps }) => (
+          <section>
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Drag some files in or click here to select files!</p>
+            </div>
+          </section>
+        )}
+      </Dropzone>
+      {chart && (
+        <iframe src={chart} frameBorder="0" className="chart-preview"></iframe>
+      )}
+      <button className="text-button" onClick={handleConfirm}>
+        Confirm
+      </button>
+    </div>
   );
 };
 
