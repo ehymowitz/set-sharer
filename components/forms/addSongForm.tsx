@@ -39,7 +39,7 @@ const AddSongForm = () => {
       youtubeID: youtubeID,
       order: songList.length,
       chart: "",
-      userNotes: {},
+      userNotes: [],
     };
   }
 

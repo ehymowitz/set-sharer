@@ -1,25 +1,25 @@
 interface setData {
-  name: string
+  name: string;
 }
 
 interface songDataGet {
-  title: string,
-  artist: string,
-  notes?: string
+  title: string;
+  artist: string;
+  notes?: string;
 }
 
 interface songDataPost {
-  title: string,
-  artist: string,
-  set: string,
-  notes?: {},
-  newTitle?: string
+  title: string;
+  artist: string;
+  set: string;
+  notes?: {};
+  newTitle?: string;
 }
 
 interface songDataDelete {
-  title: string,
-  artist: string,
-  set: string
+  title: string;
+  artist: string;
+  set: string;
 }
 
 // Set
@@ -33,8 +33,8 @@ export async function createSet(setData: setData) {
     },
     body: JSON.stringify(setData),
   });
-  const data = await response.json()
-  return data
+  const data = await response.json();
+  return data;
 }
 
 // createSet({name: 'test'})
@@ -46,19 +46,18 @@ export async function readSets() {
     headers: {
       "Content-Type": "application/json",
     },
-  })
+  });
 
-  const data = await response.json()
+  const data = await response.json();
 
   const names = data.map((data: setData) => {
-    return data.name
-  })
+    return data.name;
+  });
 
-  return names
+  return names;
 }
 
 // readSets();
-
 
 // SONGS
 
@@ -75,37 +74,35 @@ export async function createSong(songData: songDataPost) {
 
 // createSong({artist: "test", title: "test2", set: "songs"})
 
-
 // READ
 export async function readSongs(songsData: string) {
   const response = await fetch("api/songs/read", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "set": songsData
+      set: songsData,
     },
-  })
-  const {songs} = await response.json()
+  });
+  const { songs } = await response.json();
 
   return songs.map((song: songDataGet) => ({
     artist: song.artist,
     title: song.title,
-    notes: song.notes
-  }))
+    notes: song.notes,
+  }));
 }
 
 // readSongs("songs");
-
 
 // UPDATE Notes
 export async function updateSongNotes(songNoteData: songDataPost) {
   await fetch("api/songs/update-notes", {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(songNoteData)
-  })
+    body: JSON.stringify(songNoteData),
+  });
 }
 
 // updateSongNotes({title: "test2", artist: "test", notes: {note1: "note2"}, set: "songs"})
@@ -115,10 +112,10 @@ export async function updateSongTitle(songTitleData: songDataPost) {
   await fetch("api/songs/update-title", {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(songTitleData)
-  })
+    body: JSON.stringify(songTitleData),
+  });
 }
 
 // updateSongTitle({title: "test4", artist: "test", newTitle: "test5", set: "songs"})
@@ -128,24 +125,23 @@ export async function updateSongArtist(songArtistData: songDataPost) {
   await fetch("api/songs/update-artist", {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(songArtistData)
-  })
+    body: JSON.stringify(songArtistData),
+  });
 }
 
 // updateSongArtist({title: "test5", artist: "you", set: "songs"})
-
 
 // DELETE
 export async function deleteSong(songData: songDataDelete) {
   await fetch("api/songs/delete", {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(songData)
-  })
+    body: JSON.stringify(songData),
+  });
 }
 
 // deleteSong({title: "test5", artist: "test", set: "songs"})

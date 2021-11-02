@@ -30,7 +30,7 @@ interface Notes {
   lyrics: string;
   youtubeID: string;
   order: number;
-  userNotes: any;
+  userNotes: string[];
   chart: string;
 }
 

@@ -1,20 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connect } from "../../../utils/database"
+import { connect } from "../../../utils/database";
 
-export default async function (req: NextApiRequest, res: NextApiResponse ) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
   try {
-    const {db} = await connect();
-    const { title: title, artist: artist, set: set } = req.body
+    const { db } = await connect();
+    const { title, artist, set } = req.body;
 
-    await db.collection(set).updateOne(
-      {title: title},
-      {$set: {artist: artist}}
-    )
+    await db.collection(set).updateOne({ title }, { $set: { artist } });
 
-    res.json({title: title});
-
-  } catch(e) {
-    res.status(500)
-    res.json({error: "Couldn't Update"})
+    res.json({ title });
+  } catch (e) {
+    res.status(500);
+    res.json({ error: "Couldn't Update" });
   }
 }
