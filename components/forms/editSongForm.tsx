@@ -43,6 +43,7 @@ const EditSongForm = ({ setOpen }) => {
       title: displayedSong.title,
       artist: displayedSong.artist,
       notes: newNotes,
+      stems: displayedSong.stems,
     });
   };
 

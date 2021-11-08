@@ -1,3 +1,14 @@
+import { Stem } from "../components/forms/add-stem-form/addStemForm";
+
+interface SongIDReqs {
+  title: string;
+  set: string;
+}
+
+interface StemsReq extends SongIDReqs {
+  stems: Stem[];
+}
+
 interface setData {
   name: string;
 }
@@ -6,6 +17,7 @@ interface songDataGet {
   title: string;
   artist: string;
   notes?: string;
+  stems: Stem[];
 }
 
 interface songDataPost {
@@ -89,6 +101,7 @@ export async function readSongs(songsData: string) {
     artist: song.artist,
     title: song.title,
     notes: song.notes,
+    stems: song.stems,
   }));
 }
 
@@ -145,3 +158,13 @@ export async function deleteSong(songData: songDataDelete) {
 }
 
 // deleteSong({title: "test5", artist: "test", set: "songs"})
+
+export async function postStems(songStems: StemsReq) {
+  await fetch("api/songs/addStems", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(songStems),
+  });
+}

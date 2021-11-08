@@ -5,6 +5,7 @@ import SidePanel from "../components/sidePanel";
 import SongDisplay from "../components/songDisplay";
 import Seo from "../components/seo";
 import GigInterface from "../components/gigInterface";
+import { Stem } from "../components/forms/add-stem-form/addStemForm";
 
 export const DisplayedSong = createContext<Context | undefined>(undefined);
 
@@ -19,6 +20,7 @@ export interface Song {
   artist: string;
   title: string;
   notes: Notes;
+  stems: Stem[];
 }
 
 interface Notes {
