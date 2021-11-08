@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { DisplayedSong } from "../../pages/index";
 import { LoggedIn } from "../../pages/_app";
+import { TextButton } from "../../styles/clickables";
 import { updateSongNotes } from "../../utils/crud";
 
 const EditSongForm = ({ setOpen }) => {
@@ -66,12 +67,9 @@ const EditSongForm = ({ setOpen }) => {
         <h3 style={{ textTransform: "none" }}>
           Be careful with this! Make sure the previews work before you submit
         </h3>
-        <input
-          type="submit"
-          id="modal-submit"
-          className="text-button"
-          value="Submit"
-        />
+        <TextButton type="submit" id="modal-submit">
+          Submit
+        </TextButton>
       </div>
       <div className="left">
         <h2>lyrics</h2>

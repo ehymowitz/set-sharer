@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Dropzone from "react-dropzone";
 import { DisplayedSong } from "../../pages/index";
 import { LoggedIn } from "../../pages/_app";
+import { TextButton } from "../../styles/clickables";
 import { updateSongNotes } from "../../utils/crud";
 
 const EditChartForm = ({ setOpen }) => {
@@ -59,9 +60,7 @@ const EditChartForm = ({ setOpen }) => {
       {chart && (
         <iframe src={chart} frameBorder="0" className="chart-preview"></iframe>
       )}
-      <button className="text-button" onClick={handleConfirm}>
-        Confirm
-      </button>
+      <TextButton onClick={handleConfirm}>Confirm</TextButton>
     </div>
   );
 };

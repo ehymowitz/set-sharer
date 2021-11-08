@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { DisplayedSong } from "../../pages/index";
 import { LoggedIn } from "../../pages/_app";
+import { TextButton } from "../../styles/clickables";
 import { updateSongNotes } from "../../utils/crud";
 import RemoveNoteButton from "../buttons/removeNoteButton";
 
@@ -49,12 +50,7 @@ const NotesForm = () => {
         </div>
       )}
       <form className="notes-form" onSubmit={(e) => handleSubmit(e)}>
-        <input
-          className="text-button"
-          type="submit"
-          value="Add a Note"
-          style={{ marginRight: "15px" }}
-        />
+        <TextButton type="submit">Add a Note</TextButton>
         <input
           type="text"
           placeholder="Content"
