@@ -1,6 +1,7 @@
 import { Modal, Backdrop, Fade, makeStyles } from "@material-ui/core";
 import React, { useContext, useState } from "react";
 import { DisplayedSong } from "../../pages";
+import { TextButton } from "../../styles/clickables";
 import AddStemForm from "../forms/add-stem-form/addStemForm";
 import EditChartForm from "../forms/editChartForm";
 
@@ -57,9 +58,9 @@ const StemsModal = () => {
           ))}
       </div>
 
-      <button className="extra-padding" type="button" onClick={handleOpen}>
+      <TextButton className="extra-padding" onClick={handleOpen}>
         Add Stem Links (SoundCloud Only)
-      </button>
+      </TextButton>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

@@ -60,6 +60,7 @@ const AddSongForm = () => {
           artist: formInput.artist,
           title: formInput.title,
           notes: apiData,
+          stems: [],
         };
         createSong(Object.assign(formInput, { notes: apiData }));
         setSongList([...songList, songInfo]);
