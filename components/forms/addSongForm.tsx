@@ -15,6 +15,7 @@ import {
   callSpotifyAlbumCover,
 } from "../../utils/apiCalls";
 import KeyMap from "../../utils/keyMap";
+import { TextButton } from "../../styles/clickables";
 
 const AddSongForm = () => {
   const { loggedIn } = useContext(LoggedIn);
@@ -92,7 +93,7 @@ const AddSongForm = () => {
           name="artist"
           value={formInput.artist}
         />
-        <input className="text-button" type="submit" value="Add a Song" />
+        <TextButton type="submit">Add A Song</TextButton>
       </form>
     </div>
   );
