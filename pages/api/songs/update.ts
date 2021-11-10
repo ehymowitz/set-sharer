@@ -24,7 +24,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     } = req.body;
 
     await db.collection(set).updateOne(
-      {},
+      { artist, title },
       {
         $set: {
           artist,
