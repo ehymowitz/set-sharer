@@ -6,7 +6,7 @@ import { StyledSelect } from "../../styles/clickables";
 
 const ChangeKeyForm = ({ song }) => {
   const { loggedIn } = useContext(LoggedIn);
-  const { setDisplayedSong } = useContext(DisplayedSong);
+  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
 
   const keys = [
     "C",
@@ -25,11 +25,10 @@ const ChangeKeyForm = ({ song }) => {
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const songInfo = {
-      title: song.title,
-      artist: song.artist,
-      notes: Object.assign(song.notes, { customKey: e.target.value }),
+      ...displayedSong,
+      customKey: e.target.value,
     };
-    updateSongNotes(Object.assign(songInfo, { set: loggedIn }));
+    updateSongNotes(Object.assign(songInfo, { set: loggedIn })); // API Call
     setDisplayedSong(songInfo);
     e.target.value = "";
   };
@@ -46,7 +45,7 @@ const ChangeKeyForm = ({ song }) => {
       {keys.map((key, i) => {
         return (
           <option value={key} key={i}>
-            {key === song.notes.spotifyKey ? `${key} (Default)` : key}
+            {key === song.spotifyKey ? `${key} (Default)` : key}
           </option>
         );
       })}

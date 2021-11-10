@@ -25,14 +25,14 @@ const EditChartForm = ({ setOpen }) => {
   const handleConfirm = () => {
     if (chart) {
       updateSongNotes({
+        // API call
         ...displayedSong,
+        chart,
         set: loggedIn,
-        notes: { ...displayedSong.notes, chart: chart },
       });
       setDisplayedSong({
-        title: displayedSong.title,
-        artist: displayedSong.artist,
-        notes: { ...displayedSong.notes, chart: chart },
+        ...displayedSong,
+        chart,
       });
     }
 

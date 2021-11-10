@@ -59,10 +59,9 @@ const AddSongForm = () => {
         const songInfo = {
           artist: formInput.artist,
           title: formInput.title,
-          notes: apiData,
-          stems: [],
+          ...apiData,
         };
-        createSong(Object.assign(formInput, { notes: apiData }));
+        createSong(Object.assign(formInput, { ...apiData })); // API Call needs checking
         setSongList([...songList, songInfo]);
         setDisplayedSong(songInfo);
       });

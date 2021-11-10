@@ -31,9 +31,9 @@ const SongDisplay = () => {
             >
               <h3>
                 <p>
-                  {displayedSong.notes.customKey
-                    ? displayedSong.notes.customKey
-                    : displayedSong.notes.spotifyKey}
+                  {displayedSong.customKey
+                    ? displayedSong.customKey
+                    : displayedSong.spotifyKey}
                 </p>
               </h3>
               <ChangeKeyForm song={displayedSong} />
@@ -47,32 +47,32 @@ const SongDisplay = () => {
                     <NotesForm />
                   </div>
                   <div className="pane-one-grid">
-                    <p className="lyrics">{displayedSong.notes.lyrics} </p>
+                    <p className="lyrics">{displayedSong.lyrics} </p>
                     <div>
-                      {displayedSong.notes.youtubeID && (
+                      {displayedSong.youtubeID && (
                         <iframe
                           className="youtube-video"
                           width="100%"
                           height="250"
-                          src={`https://www.youtube.com/embed/${displayedSong.notes.youtubeID}`}
+                          src={`https://www.youtube.com/embed/${displayedSong.youtubeID}`}
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         />
                       )}
-                      {displayedSong.notes.spotifyID && (
+                      {displayedSong.spotifyID && (
                         <iframe
                           className="spotify-embed"
-                          src={`https://open.spotify.com/embed/track${displayedSong.notes.spotifyID}`}
+                          src={`https://open.spotify.com/embed/track${displayedSong.spotifyID}`}
                           width="100%"
                           height="80"
                           frameBorder="0"
                           allow="encrypted-media"
                         />
                       )}
-                      {displayedSong.notes.soundCloud && (
+                      {displayedSong.soundCloud && (
                         <iframe
                           className="soundcloud-embed"
-                          src={displayedSong.notes.soundCloud.split('src="')[1]}
+                          src={displayedSong.soundCloud.split('src="')[1]}
                           width="100%"
                           height="80"
                           frameBorder="0"
@@ -88,10 +88,7 @@ const SongDisplay = () => {
               </TabPanel>
               <TabPanel>
                 <div className="slider-pane-two">
-                  <iframe
-                    src={displayedSong.notes.chart}
-                    frameBorder="0"
-                  ></iframe>
+                  <iframe src={displayedSong.chart} frameBorder="0"></iframe>
                   <ChartEditModal />
                 </div>
               </TabPanel>

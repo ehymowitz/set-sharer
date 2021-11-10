@@ -19,11 +19,7 @@ interface Context {
 export interface Song {
   artist: string;
   title: string;
-  notes: Notes;
-  stems: Stem[];
-}
-
-interface Notes {
+  stems?: Stem[];
   spotifyID: string;
   spotifyKey: string;
   spotifyAlbumCover: string;

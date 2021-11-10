@@ -7,19 +7,14 @@ const RemoveNoteButton = ({ target }) => {
   const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
   const { loggedIn } = useContext(LoggedIn);
 
-  const handleClick = () => {
-    displayedSong.notes.userNotes.splice(target, 1);
+  const handleClick = async () => {
+    displayedSong.userNotes.splice(target, 1);
 
-    setDisplayedSong({
-      title: displayedSong.title,
-      artist: displayedSong.artist,
-      notes: displayedSong.notes,
-    });
+    setDisplayedSong({ ...displayedSong, userNotes: displayedSong.userNotes });
 
-    updateSongNotes({
-      title: displayedSong.title,
-      artist: displayedSong.artist,
-      notes: displayedSong.notes,
+    await updateSongNotes({
+      ...displayedSong,
+      userNotes: displayedSong.userNotes,
       set: loggedIn,
     });
   };

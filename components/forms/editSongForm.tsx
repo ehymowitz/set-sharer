@@ -13,16 +13,16 @@ const EditSongForm = ({ setOpen }) => {
   const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
   const { loggedIn } = useContext(LoggedIn);
   const [form, changeForm] = useState({
-    lyrics: displayedSong.notes.lyrics,
-    youtube: `https://www.youtube.com/watch?v=${displayedSong.notes.youtubeID}`,
-    spotify: `https://open.spotify.com/track${displayedSong.notes.spotifyID}`,
-    artwork: displayedSong.notes.spotifyAlbumCover,
-    soundcloud: displayedSong.notes.soundCloud || "",
+    lyrics: displayedSong.lyrics,
+    youtube: `https://www.youtube.com/watch?v=${displayedSong.youtubeID}`,
+    spotify: `https://open.spotify.com/track${displayedSong.spotifyID}`,
+    artwork: displayedSong.spotifyAlbumCover,
+    soundcloud: displayedSong.soundCloud || "",
   });
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const newNotes = displayedSong.notes;
+    const newNotes = displayedSong;
     newNotes.lyrics = form.lyrics;
     newNotes.spotifyAlbumCover = form.artwork;
     newNotes.spotifyID = !!form.spotify.split("/track")[1]
@@ -34,17 +34,15 @@ const EditSongForm = ({ setOpen }) => {
     newNotes.soundCloud = !!form.soundcloud ? form.soundcloud : undefined;
     updateSongNotes({
       ...displayedSong,
+      ...newNotes,
       set: loggedIn,
-      notes: newNotes,
     });
 
     setOpen(false);
 
     setDisplayedSong({
-      title: displayedSong.title,
-      artist: displayedSong.artist,
-      notes: newNotes,
-      stems: displayedSong.stems,
+      ...displayedSong,
+      ...newNotes,
     });
   };
 

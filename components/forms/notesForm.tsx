@@ -19,11 +19,9 @@ const NotesForm = () => {
     e.preventDefault();
     if (note == "") return;
 
-    displayedSong.notes.userNotes.push(note);
+    displayedSong.userNotes.push(note);
     updateSongNotes({
-      title: displayedSong.title,
-      artist: displayedSong.artist,
-      notes: displayedSong.notes,
+      ...displayedSong,
       set: loggedIn,
     });
 
@@ -37,9 +35,9 @@ const NotesForm = () => {
 
   return (
     <>
-      {displayedSong.notes.userNotes.length > 0 && (
+      {displayedSong.userNotes.length > 0 && (
         <div className="notes-display">
-          {displayedSong.notes.userNotes.map((note, index) => {
+          {displayedSong.userNotes.map((note, index) => {
             return (
               <div className="note-box" key={index}>
                 <p>{note}</p>
