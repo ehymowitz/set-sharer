@@ -80,7 +80,8 @@ const StemsModal = () => {
             </h2>
             <h3 style={{ textTransform: "none" }}>
               Be careful with this! Make sure the preview works before
-              submitting
+              submitting. Paste the embed code of the soundcloud link into the
+              'link' field
             </h3>
             <AddStemForm setOpen={setOpen} />
           </div>

@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
+import { TextInput } from "../../styles/text";
 import { createSet } from "../../utils/crud/set";
 import { useQueryString } from "../../utils/queryString";
 
@@ -32,7 +33,7 @@ const CreateSetForm = () => {
       <h1>Create a Set</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="inputs">
-          <input
+          <TextInput
             placeholder="Set Name"
             type="text"
             value={setName}

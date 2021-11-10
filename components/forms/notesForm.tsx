@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { DisplayedSong } from "../../pages/index";
 import { TextButton } from "../../styles/clickables";
+import { TextInput } from "../../styles/text";
 import useUpdateSong from "../../utils/useUpdateSong";
 import RemoveNoteButton from "../buttons/removeNoteButton";
 
@@ -46,7 +47,7 @@ const NotesForm = () => {
       )}
       <form className="notes-form" onSubmit={(e) => handleSubmit(e)}>
         <TextButton type="submit">Add a Note</TextButton>
-        <input
+        <TextInput
           type="text"
           placeholder="Content"
           onChange={(e) => handleChange(e)}

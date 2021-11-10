@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { DisplayedSong } from "../../../pages";
 import { TextButton } from "../../../styles/clickables";
 import useUpdateSong from "../../../utils/useUpdateSong";
+import { StemFormButtonRoom, StemFormContainer } from "./addStemForm.style";
 import StemRow from "./stemRow";
 
 export interface Stem {
@@ -18,12 +19,6 @@ const AddStemForm = ({ setOpen }) => {
     setStems([...stems, { name: "", link: "" }]);
   };
 
-  const removeStem = (i: number) => {
-    const newStems = [...stems];
-    newStems.splice(i, 1);
-    setStems(newStems);
-  };
-
   const closeModal = async () => {
     if (stems.every((stem) => stem.link !== "" && stem.name !== "")) {
       await updateSong({
@@ -35,16 +30,19 @@ const AddStemForm = ({ setOpen }) => {
   };
 
   return (
-    <div>
-      {stems.map((stem, i) => (
-        <>
-          <StemRow stem={stem} setStems={setStems} key={i} index={i} />
-          <TextButton onClick={() => removeStem(i)}>Remove Stem</TextButton>
-        </>
-      ))}
-      <TextButton onClick={addStem}>Add Stem</TextButton>
+    <StemFormButtonRoom>
+      <StemFormContainer>
+        {stems.map((stem, i) => (
+          <>
+            <StemRow stem={stem} setStems={setStems} key={i} index={i} />
+          </>
+        ))}
+      </StemFormContainer>
+      <TextButton style={{ marginRight: "5px" }} onClick={addStem}>
+        Add Stem
+      </TextButton>
       <TextButton onClick={closeModal}>Done Adding Stems</TextButton>
-    </div>
+    </StemFormButtonRoom>
   );
 };
 

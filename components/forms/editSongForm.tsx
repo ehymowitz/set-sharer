@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { DisplayedSong } from "../../pages/index";
 import { TextButton } from "../../styles/clickables";
+import { TextAreaInput, TextInput } from "../../styles/text";
 import useUpdateSong from "../../utils/useUpdateSong";
 
 const EditSongForm = ({ setOpen }) => {
@@ -65,7 +66,7 @@ const EditSongForm = ({ setOpen }) => {
       </div>
       <div className="left">
         <h2>lyrics</h2>
-        <textarea
+        <TextAreaInput
           onChange={(e) => handleChange(e)}
           id="lyrics"
           value={form.lyrics}
@@ -76,7 +77,7 @@ const EditSongForm = ({ setOpen }) => {
         <div className="row">
           <div style={{ width: "70%" }}>
             <h2>Youtube</h2>
-            <input
+            <TextInput
               onChange={(e) => handleChange(e)}
               type="text"
               value={form.youtube}
@@ -98,7 +99,7 @@ const EditSongForm = ({ setOpen }) => {
         <div className="row">
           <div style={{ width: "70%" }}>
             <h2>Spotify</h2>
-            <input
+            <TextInput
               onChange={(e) => handleChange(e)}
               type="text"
               value={form.spotify}
@@ -120,7 +121,7 @@ const EditSongForm = ({ setOpen }) => {
         <div className="row">
           <div style={{ width: "70%" }}>
             <h2>Album Cover</h2>
-            <input
+            <TextInput
               onChange={(e) => handleChange(e)}
               type="text"
               value={form.artwork}
@@ -133,7 +134,7 @@ const EditSongForm = ({ setOpen }) => {
         <div className="row">
           <div style={{ width: "70%" }}>
             <h2>SoundCloud</h2>
-            <input
+            <TextInput
               onChange={(e) => handleChange(e)}
               type="text"
               value={form.soundcloud}

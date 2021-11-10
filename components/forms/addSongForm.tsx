@@ -7,6 +7,7 @@ import React, {
 import { DisplayedSong } from "../../pages/index";
 import { LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
+import { TextInput } from "../../styles/text";
 import {
   callSpotifyAlbumCover,
   callSpotifyID,
@@ -81,7 +82,7 @@ const AddSongForm = () => {
   return (
     <div className="add-song-form">
       <form onSubmit={(e) => handeSubmit(e)}>
-        <input
+        <TextInput
           type="text"
           placeholder="Title"
           onChange={(e) => handleChange(e)}
@@ -89,7 +90,7 @@ const AddSongForm = () => {
           value={formInput.title}
         />
 
-        <input
+        <TextInput
           type="text"
           placeholder="Artist"
           onChange={(e) => handleChange(e)}

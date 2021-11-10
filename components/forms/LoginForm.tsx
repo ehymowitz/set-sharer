@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
+import { TextInput } from "../../styles/text";
 import { readSets } from "../../utils/crud/set";
 import { useQueryString } from "../../utils/queryString";
 
@@ -38,7 +39,7 @@ const LoginForm = () => {
       <h1>Log in to see a Set</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="inputs">
-          <input
+          <TextInput
             placeholder="Set Name"
             value={setName}
             type="text"

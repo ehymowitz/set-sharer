@@ -1,5 +1,8 @@
-import React, { SyntheticEvent, useState } from "react";
+import React from "react";
+import { TextButton } from "../../../styles/clickables";
+import { TextInput } from "../../../styles/text";
 import { Stem } from "./addStemForm";
+import { StemFormRow } from "./addStemForm.style";
 
 interface StemRowProps {
   stem: Stem;
@@ -24,11 +27,30 @@ const StemRow = ({ stem, setStems, index }: StemRowProps) => {
       return [...c];
     });
   };
-  return (
-    <div>
-      <input value={stem.name} placeholder="name" onChange={changeStemName} />
 
-      <input value={stem.link} placeholder="link" onChange={changeStemLink} />
+  const removeStem = (i: number) => {
+    setStems((c) => {
+      const newStems = [...c];
+      newStems.splice(i, 1);
+      return newStems;
+    });
+  };
+  return (
+    <StemFormRow>
+      <div>
+        <TextInput
+          value={stem.name}
+          placeholder="Name"
+          onChange={changeStemName}
+        />
+
+        <TextInput
+          value={stem.link}
+          placeholder="Link"
+          onChange={changeStemLink}
+        />
+        <TextButton onClick={() => removeStem(index)}>Remove Stem</TextButton>
+      </div>
       {!!stem.link?.split('src="')[1] && (
         <iframe
           width="100%"
@@ -40,7 +62,7 @@ const StemRow = ({ stem, setStems, index }: StemRowProps) => {
           }&download=true`}
         />
       )}
-    </div>
+    </StemFormRow>
   );
 };
 
