@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import {
   DragDropContext,
   Draggable,
@@ -7,40 +7,44 @@ import {
 } from "react-beautiful-dnd";
 import { DisplayedSong, Song } from "../pages/index";
 import { LoggedIn } from "../pages/_app";
-import { updateSong } from "../utils/crud/song";
 import SongListCard from "./songListCard";
+import { updateSong } from "../utils/crud/song";
 
 const SongList = () => {
-  const { songList, setSongList, displayedSong, setDisplayedSong } =
-    useContext(DisplayedSong);
+  const { songList, setSongList, setDisplayedSong } = useContext(DisplayedSong);
   const { loggedIn } = useContext(LoggedIn);
-
-  const updateMongoOrder = async (song: Song, order: number) => {
-    await updateSong({
-      song: { ...displayedSong, order: order },
-      set: loggedIn,
-    });
-  };
 
   const handleClick = (song: Song) => {
     setDisplayedSong(song);
   };
 
+  const reorder = (
+    list: Song[],
+    startIndex: number,
+    endIndex: number
+  ): Song[] => {
+    const songArray = Array.from(list);
+    const [removed] = songArray.splice(startIndex, 1);
+    songArray.splice(endIndex, 0, removed);
+
+    const result = songArray.map((song, i) => ({ ...song, order: i }));
+
+    return result;
+  };
+
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
-    if (result.source.index !== result.destination.index) {
-      const items = Array.from(songList);
-      const [reorderedSong] = items.splice(result.source.index, 1);
-      items.splice(result.destination.index, 0, reorderedSong);
+    const ordered = reorder(
+      songList,
+      result.source.index,
+      result.destination.index
+    );
 
-      items.forEach((item, index) => {
-        if (item.order !== index) {
-          item.order = index;
-          updateMongoOrder(item, item.order);
-        }
-      });
-      setSongList(items);
-    }
+    setSongList(ordered);
+
+    ordered.forEach(async (item) => {
+      await updateSong({ song: item, set: loggedIn });
+    });
   };
 
   return (
