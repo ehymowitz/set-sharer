@@ -9,7 +9,7 @@
 
   .song-info {
     display: grid;
-    background-color: #CCB187;
+    background-color: #ccb187;
 
     .app-heading {
       padding: 40px;
@@ -31,7 +31,7 @@
               max-width: 150px;
               padding: 5px 10px;
               color: #000;
-              background-color: rgba(0,0,0,0);
+              background-color: rgba(0, 0, 0, 0);
               border: none;
               cursor: pointer;
               outline: none;
@@ -44,7 +44,7 @@
           button {
             padding: 5px 10px;
             color: #000;
-            background-color: rgba(0,0,0,0);
+            background-color: rgba(0, 0, 0, 0);
             border: none;
             cursor: pointer;
             outline: none;
@@ -52,12 +52,11 @@
           }
         }
       }
-
     }
   }
 
   .setlist {
-    background-color: #7A6B51;
+    background-color: #7a6b51;
     padding: 40px;
     padding-top: 80px;
     position: relative;
@@ -72,13 +71,9 @@
     }
     .logout-button {
       width: 40%;
-      .text-button {
-        min-width: 100%;
-      }
     }
   }
 }
-
 
 @media (max-width: $Laptops) {
   .container {

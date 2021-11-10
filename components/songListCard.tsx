@@ -1,21 +1,20 @@
-import React from 'react'
-import RemoveSongButton from './buttons/removeSongButton'
+import React from "react";
+import RemoveSongButton from "./buttons/removeSongButton";
 
-const SongListCard = ({song}) => {
-
+const SongListCard = ({ song }) => {
   return (
     <div className="song-card-container">
       <div className="song-img">
-        <img src={song.notes.spotifyAlbumCover} alt="Album Cover"/>
+        <img src={song.spotifyAlbumCover} alt="Album Cover" />
       </div>
       <div className="song-text">
         <h2>{song.title}</h2>
         <h3>{song.artist}</h3>
-        <h4>{song.notes.customKey ? song.notes.customKey : song.notes.spotifyKey}</h4>
+        <h4>{song.customKey ? song.customKey : song.spotifyKey}</h4>
       </div>
-      <RemoveSongButton title = {song.title} artist = {song.artist}/>
+      <RemoveSongButton title={song.title} artist={song.artist} />
     </div>
-  )
-}
+  );
+};
 
-export default SongListCard
+export default SongListCard;

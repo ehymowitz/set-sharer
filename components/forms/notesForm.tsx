@@ -5,26 +5,22 @@ import React, {
   useState,
 } from "react";
 import { DisplayedSong } from "../../pages/index";
-import { LoggedIn } from "../../pages/_app";
-import { updateSongNotes } from "../../utils/crud";
+import { TextButton } from "../../styles/clickables";
+import useUpdateSong from "../../utils/useUpdateSong";
 import RemoveNoteButton from "../buttons/removeNoteButton";
 
 const NotesForm = () => {
   const { displayedSong } = useContext(DisplayedSong);
-  const { loggedIn } = useContext(LoggedIn);
   const [note, setNote] = useState("");
+  const updateSong = useUpdateSong();
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (note == "") return;
 
-    displayedSong.notes.userNotes.push(note);
-    updateSongNotes({
-      title: displayedSong.title,
-      artist: displayedSong.artist,
-      notes: displayedSong.notes,
-      set: loggedIn,
-    });
+    const newNotes = displayedSong.userNotes || [];
+    newNotes.push(note);
+    await updateSong({ ...displayedSong, userNotes: newNotes });
 
     setNote("");
   };
@@ -36,9 +32,9 @@ const NotesForm = () => {
 
   return (
     <>
-      {displayedSong.notes.userNotes.length > 0 && (
+      {displayedSong.userNotes?.length > 0 && (
         <div className="notes-display">
-          {displayedSong.notes.userNotes.map((note, index) => {
+          {displayedSong.userNotes.map((note, index) => {
             return (
               <div className="note-box" key={index}>
                 <p>{note}</p>
@@ -49,12 +45,7 @@ const NotesForm = () => {
         </div>
       )}
       <form className="notes-form" onSubmit={(e) => handleSubmit(e)}>
-        <input
-          className="text-button"
-          type="submit"
-          value="Add a Note"
-          style={{ marginRight: "15px" }}
-        />
+        <TextButton type="submit">Add a Note</TextButton>
         <input
           type="text"
           placeholder="Content"

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import Dropzone from "react-dropzone";
 import { DisplayedSong } from "../../pages/index";
-import { LoggedIn } from "../../pages/_app";
-import { updateSongNotes } from "../../utils/crud";
+import { TextButton } from "../../styles/clickables";
+import useUpdateSong from "../../utils/useUpdateSong";
 
 const EditChartForm = ({ setOpen }) => {
-  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
-  const { loggedIn } = useContext(LoggedIn);
+  const { displayedSong } = useContext(DisplayedSong);
   const [chart, setChart] = useState<string>();
+  const updateSong = useUpdateSong();
 
   const fileReader = new FileReader();
 
@@ -21,17 +21,11 @@ const EditChartForm = ({ setOpen }) => {
     });
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (chart) {
-      updateSongNotes({
+      await updateSong({
         ...displayedSong,
-        set: loggedIn,
-        notes: { ...displayedSong.notes, chart: chart },
-      });
-      setDisplayedSong({
-        title: displayedSong.title,
-        artist: displayedSong.artist,
-        notes: { ...displayedSong.notes, chart: chart },
+        chart,
       });
     }
 
@@ -59,9 +53,7 @@ const EditChartForm = ({ setOpen }) => {
       {chart && (
         <iframe src={chart} frameBorder="0" className="chart-preview"></iframe>
       )}
-      <button className="text-button" onClick={handleConfirm}>
-        Confirm
-      </button>
+      <TextButton onClick={handleConfirm}>Confirm</TextButton>
     </div>
   );
 };

@@ -11,8 +11,8 @@ const MAP = {
   9: "A",
   10: "Bb",
   11: "B",
-}
+};
 
-export default function KeyMap(key: number) {
-  return MAP[key]
+export default function KeyMap(key: number): string {
+  return MAP[key];
 }

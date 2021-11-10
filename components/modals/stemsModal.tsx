@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import EditChartForm from "../forms/editChartForm";
+import { Modal, Backdrop, Fade, makeStyles } from "@material-ui/core";
+import React, { useContext, useState } from "react";
+import { DisplayedSong } from "../../pages";
 import { TextButton } from "../../styles/clickables";
+import AddStemForm from "../forms/add-stem-form/addStemForm";
+import EditChartForm from "../forms/editChartForm";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -23,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ChartEditModal = () => {
+const StemsModal = () => {
+  const { displayedSong } = useContext(DisplayedSong);
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -37,8 +38,28 @@ const ChartEditModal = () => {
 
   return (
     <>
-      <TextButton type="button" onClick={handleOpen}>
-        Upload or Edit Chart
+      <div className="stems-container">
+        {displayedSong.stems &&
+          displayedSong.stems.map((stem, i) => (
+            <React.Fragment key={i}>
+              <p>{stem.name}</p>
+              {!!stem.link.split('src="')[1]?.split('"></iframe>')[0] && (
+                <iframe
+                  width="100%"
+                  height="80"
+                  scrolling="no"
+                  allow="autoplay"
+                  src={`${
+                    stem.link.split('src="')[1].split('"></iframe>')[0]
+                  }&download=true`}
+                />
+              )}
+            </React.Fragment>
+          ))}
+      </div>
+
+      <TextButton className="extra-padding" onClick={handleOpen}>
+        Add Stem Links (SoundCloud Only)
       </TextButton>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -55,13 +76,13 @@ const ChartEditModal = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 style={{ fontSize: "40px" }} id="modal-title">
-              Edit or Upload a Chart
+              Add Stem Links (SoundCloud Only)
             </h2>
             <h3 style={{ textTransform: "none" }}>
               Be careful with this! Make sure the preview works before
               submitting
             </h3>
-            <EditChartForm setOpen={setOpen} />
+            <AddStemForm setOpen={setOpen} />
           </div>
         </Fade>
       </Modal>
@@ -69,4 +90,4 @@ const ChartEditModal = () => {
   );
 };
 
-export default ChartEditModal;
+export default StemsModal;

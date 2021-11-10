@@ -1,20 +1,21 @@
 import React, {
-  useState,
-  useContext,
   ChangeEvent,
   SyntheticEvent,
+  useContext,
+  useState,
 } from "react";
-import { LoggedIn } from "../../pages/_app";
-import { createSong } from "../../utils/crud";
 import { DisplayedSong } from "../../pages/index";
+import { LoggedIn } from "../../pages/_app";
+import { TextButton } from "../../styles/clickables";
 import {
+  callSpotifyAlbumCover,
   callSpotifyID,
   callSpotifyKey,
-  callLyrics,
   callYoutubeSearch,
-  callSpotifyAlbumCover,
 } from "../../utils/apiCalls";
+import { createSong } from "../../utils/crud/song";
 import KeyMap from "../../utils/keyMap";
+import useUpdateSong from "../../utils/useUpdateSong";
 
 const AddSongForm = () => {
   const { loggedIn } = useContext(LoggedIn);
@@ -25,11 +26,13 @@ const AddSongForm = () => {
     set: loggedIn,
   });
 
+  const updateSong = useUpdateSong();
+
   async function callAPIs(artist: string, track: string) {
-    const spotifyID = await callSpotifyID({ artist, track });
-    const spotifyKey = await callSpotifyKey(spotifyID);
-    const spotifyAlbumCover = await callSpotifyAlbumCover(spotifyID);
-    const youtubeID = await callYoutubeSearch(`${track} by ${artist}`);
+    const spotifyID: string = await callSpotifyID({ artist, track });
+    const spotifyKey: string = await callSpotifyKey(spotifyID);
+    const spotifyAlbumCover: string = await callSpotifyAlbumCover(spotifyID);
+    const youtubeID: string = await callYoutubeSearch(`${track} by ${artist}`);
 
     return {
       spotifyID: spotifyID,
@@ -38,8 +41,6 @@ const AddSongForm = () => {
       lyrics: "Add lyrics",
       youtubeID: youtubeID,
       order: songList.length,
-      chart: "",
-      userNotes: [],
     };
   }
 
@@ -51,19 +52,22 @@ const AddSongForm = () => {
     });
   };
 
-  const handeSubmit = (e: SyntheticEvent) => {
+  const handeSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (formInput.artist !== "" && formInput.title !== "") {
-      callAPIs(formInput.artist, formInput.title).then((apiData) => {
-        const songInfo = {
-          artist: formInput.artist,
-          title: formInput.title,
-          notes: apiData,
-        };
-        createSong(Object.assign(formInput, { notes: apiData }));
-        setSongList([...songList, songInfo]);
-        setDisplayedSong(songInfo);
-      });
+      await callAPIs(formInput.artist, formInput.title).then(
+        async (apiData) => {
+          const songInfo = {
+            artist: formInput.artist,
+            title: formInput.title,
+            ...apiData,
+          };
+
+          setDisplayedSong(songInfo);
+          setSongList([...songList, songInfo]);
+          await createSong({ song: songInfo, set: loggedIn });
+        }
+      );
     } else {
       alert("Song form was not filled out");
     }
@@ -92,7 +96,7 @@ const AddSongForm = () => {
           name="artist"
           value={formInput.artist}
         />
-        <input className="text-button" type="submit" value="Add a Song" />
+        <TextButton type="submit">Add A Song</TextButton>
       </form>
     </div>
   );

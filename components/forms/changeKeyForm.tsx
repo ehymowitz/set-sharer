@@ -1,11 +1,11 @@
-import React, { useContext, ChangeEvent } from 'react'
-import { LoggedIn } from '../../pages/_app'
-import { DisplayedSong } from '../../pages/index'
-import { updateSongNotes } from '../../utils/crud'
+import React, { ChangeEvent, useContext } from "react";
+import { DisplayedSong } from "../../pages/index";
+import { StyledSelect } from "../../styles/clickables";
+import useUpdateSong from "../../utils/useUpdateSong";
 
-const ChangeKeyForm = ({song}) => {
-  const { loggedIn } = useContext(LoggedIn)
-  const { setDisplayedSong } = useContext(DisplayedSong)
+const ChangeKeyForm = ({ song }) => {
+  const { displayedSong } = useContext(DisplayedSong);
+  const updateSong = useUpdateSong();
 
   const keys = [
     "C",
@@ -20,35 +20,36 @@ const ChangeKeyForm = ({song}) => {
     "A",
     "Bb",
     "B",
-  ]
+  ];
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const songInfo = {title: song.title, artist: song.artist, notes: Object.assign(song.notes, {customKey: e.target.value})}
-    updateSongNotes(Object.assign(songInfo, {set: loggedIn}))
-    setDisplayedSong(songInfo)
-    e.target.value = ""
-  }
+  const handleChange = async (e: ChangeEvent<HTMLSelectElement>) => {
+    let val = e.target.value;
+    const songInfo = {
+      ...displayedSong,
+      customKey: val,
+    };
+    await updateSong(songInfo);
+    val = "";
+  };
 
   return (
-    <select
+    <StyledSelect
       name="keys"
-      className ="text-button"
-      onChange = {(e) => handleChange(e)}
-      defaultValue = {""}
+      onChange={(e) => handleChange(e)}
+      defaultValue={""}
     >
-      <option value="" disabled hidden>Change Key</option>
+      <option value="" disabled hidden>
+        Change Key
+      </option>
       {keys.map((key, i) => {
-        return(
-          <option
-            value={key}
-            key={i}
-          >
-            {key === song.notes.spotifyKey ? `${key} (Default)` : key}
+        return (
+          <option value={key} key={i}>
+            {key === song.spotifyKey ? `${key} (Default)` : key}
           </option>
-        )
+        );
       })}
-    </select>
-  )
-}
+    </StyledSelect>
+  );
+};
 
-export default ChangeKeyForm
+export default ChangeKeyForm;

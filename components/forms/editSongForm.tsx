@@ -1,27 +1,27 @@
 import React, {
-  useState,
-  useContext,
-  SyntheticEvent,
   ChangeEvent,
+  SyntheticEvent,
+  useContext,
+  useState,
 } from "react";
 import { DisplayedSong } from "../../pages/index";
-import { LoggedIn } from "../../pages/_app";
-import { updateSongNotes } from "../../utils/crud";
+import { TextButton } from "../../styles/clickables";
+import useUpdateSong from "../../utils/useUpdateSong";
 
 const EditSongForm = ({ setOpen }) => {
-  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
-  const { loggedIn } = useContext(LoggedIn);
+  const { displayedSong } = useContext(DisplayedSong);
   const [form, changeForm] = useState({
-    lyrics: displayedSong.notes.lyrics,
-    youtube: `https://www.youtube.com/watch?v=${displayedSong.notes.youtubeID}`,
-    spotify: `https://open.spotify.com/track${displayedSong.notes.spotifyID}`,
-    artwork: displayedSong.notes.spotifyAlbumCover,
-    soundcloud: displayedSong.notes.soundCloud || "",
+    lyrics: displayedSong.lyrics,
+    youtube: `https://www.youtube.com/watch?v=${displayedSong.youtubeID}`,
+    spotify: `https://open.spotify.com/track${displayedSong.spotifyID}`,
+    artwork: displayedSong.spotifyAlbumCover,
+    soundcloud: displayedSong.soundCloud || "",
   });
+  const updateSong = useUpdateSong();
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    const newNotes = displayedSong.notes;
+    const newNotes = displayedSong;
     newNotes.lyrics = form.lyrics;
     newNotes.spotifyAlbumCover = form.artwork;
     newNotes.spotifyID = !!form.spotify.split("/track")[1]
@@ -31,19 +31,13 @@ const EditSongForm = ({ setOpen }) => {
       ? form.youtube.split("v=")[1]?.split("&")[0]
       : undefined;
     newNotes.soundCloud = !!form.soundcloud ? form.soundcloud : undefined;
-    updateSongNotes({
+
+    await updateSong({
       ...displayedSong,
-      set: loggedIn,
-      notes: newNotes,
+      ...newNotes,
     });
 
     setOpen(false);
-
-    setDisplayedSong({
-      title: displayedSong.title,
-      artist: displayedSong.artist,
-      notes: newNotes,
-    });
   };
 
   const handleChange = (
@@ -65,12 +59,9 @@ const EditSongForm = ({ setOpen }) => {
         <h3 style={{ textTransform: "none" }}>
           Be careful with this! Make sure the previews work before you submit
         </h3>
-        <input
-          type="submit"
-          id="modal-submit"
-          className="text-button"
-          value="Submit"
-        />
+        <TextButton type="submit" id="modal-submit">
+          Submit
+        </TextButton>
       </div>
       <div className="left">
         <h2>lyrics</h2>

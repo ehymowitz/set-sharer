@@ -1,10 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { LoggedIn } from "./_app";
-import { readSongs } from "../utils/crud";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { Stem } from "../components/forms/add-stem-form/addStemForm";
+import GigInterface from "../components/gigInterface";
+import Seo from "../components/seo";
 import SidePanel from "../components/sidePanel";
 import SongDisplay from "../components/songDisplay";
-import Seo from "../components/seo";
-import GigInterface from "../components/gigInterface";
+import { readSongs } from "../utils/crud/song";
+import { LoggedIn } from "./_app";
 
 export const DisplayedSong = createContext<Context | undefined>(undefined);
 
@@ -18,10 +19,7 @@ interface Context {
 export interface Song {
   artist: string;
   title: string;
-  notes: Notes;
-}
-
-interface Notes {
+  stems?: Stem[];
   spotifyID: string;
   spotifyKey: string;
   spotifyAlbumCover: string;
@@ -30,8 +28,8 @@ interface Notes {
   lyrics: string;
   youtubeID: string;
   order: number;
-  userNotes: string[];
-  chart: string;
+  userNotes?: string[];
+  chart?: string;
 }
 
 const Container = () => {

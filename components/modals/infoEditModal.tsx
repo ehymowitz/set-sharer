@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import EditSongForm from '../forms/editSongForm'
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import EditSongForm from "../forms/editSongForm";
+import { TextButton } from "../../styles/clickables";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   paper: {
-    backgroundColor: '#998c75',
-    border: 'none',
+    backgroundColor: "#998c75",
+    border: "none",
     boxShadow: theme.shadows[5],
-    width: '80vw',
-    height: '70%',
-    padding: '20px',
-    overflowY: 'auto',
+    width: "80vw",
+    height: "70%",
+    padding: "20px",
+    overflowY: "auto",
   },
 }));
 
@@ -36,13 +37,7 @@ const InfoEditModal = () => {
 
   return (
     <>
-      <button
-        className="text-button"
-        type="button"
-        onClick={handleOpen}
-      >
-        Edit Song Info
-      </button>
+      <TextButton onClick={handleOpen}>Edit Song Info</TextButton>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -57,7 +52,7 @@ const InfoEditModal = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-              <EditSongForm setOpen = {setOpen}/>
+            <EditSongForm setOpen={setOpen} />
           </div>
         </Fade>
       </Modal>
@@ -65,4 +60,4 @@ const InfoEditModal = () => {
   );
 };
 
-export default InfoEditModal
+export default InfoEditModal;
