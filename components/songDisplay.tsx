@@ -92,11 +92,11 @@ const SongDisplay = () => {
                   <ChartEditModal />
                 </div>
               </TabPanel>
-              <TabPanel>
+              {/* <TabPanel>
                 <div className="slider-pane-three">
                   <StemsModal />
                 </div>
-              </TabPanel>
+              </TabPanel> */}
               <TabList className="tablist">
                 <Tab>
                   <h3>Song Info</h3>
@@ -104,9 +104,9 @@ const SongDisplay = () => {
                 <Tab>
                   <h3>Chart</h3>
                 </Tab>
-                <Tab>
+                {/* <Tab>
                   <h3>Stems</h3>
-                </Tab>
+                </Tab> */}
               </TabList>
             </Tabs>
           </div>
