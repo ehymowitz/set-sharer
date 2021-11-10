@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import { DisplayedSong } from "../../../pages";
-import { LoggedIn } from "../../../pages/_app";
 import { TextButton } from "../../../styles/clickables";
-import { postStems } from "../../../utils/crud";
+import useUpdateSong from "../../../utils/useUpdateSong";
 import StemRow from "./stemRow";
 
 export interface Stem {
@@ -11,11 +10,9 @@ export interface Stem {
 }
 
 const AddStemForm = ({ setOpen }) => {
-  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
-
-  const { loggedIn } = useContext(LoggedIn);
-
+  const { displayedSong } = useContext(DisplayedSong);
   const [stems, setStems] = useState<Stem[]>(displayedSong.stems || []);
+  const updateSong = useUpdateSong();
 
   const addStem = () => {
     setStems([...stems, { name: "", link: "" }]);
@@ -29,16 +26,11 @@ const AddStemForm = ({ setOpen }) => {
 
   const closeModal = async () => {
     if (stems.every((stem) => stem.link !== "" && stem.name !== "")) {
-      await postStems({
-        stems: stems,
-        title: displayedSong.title,
-        set: loggedIn,
+      await updateSong({
+        ...displayedSong,
+        stems,
       });
     }
-    setDisplayedSong({
-      ...displayedSong,
-      stems,
-    });
     setOpen(false);
   };
 

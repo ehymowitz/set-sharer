@@ -1,22 +1,15 @@
 import React, { useContext } from "react";
 import { DisplayedSong } from "../../pages/index";
-import { LoggedIn } from "../../pages/_app";
-import { updateSongNotes } from "../../utils/crud";
+import useUpdateSong from "../../utils/useUpdateSong";
 
 const RemoveNoteButton = ({ target }) => {
-  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
-  const { loggedIn } = useContext(LoggedIn);
+  const { displayedSong } = useContext(DisplayedSong);
+  const updateSong = useUpdateSong();
 
   const handleClick = async () => {
     displayedSong.userNotes.splice(target, 1);
 
-    setDisplayedSong({ ...displayedSong, userNotes: displayedSong.userNotes });
-
-    await updateSongNotes({
-      ...displayedSong,
-      userNotes: displayedSong.userNotes,
-      set: loggedIn,
-    });
+    await updateSong({ ...displayedSong, userNotes: displayedSong.userNotes });
   };
 
   return (

@@ -1,17 +1,15 @@
 import React, {
-  useState,
-  useContext,
-  SyntheticEvent,
   ChangeEvent,
+  SyntheticEvent,
+  useContext,
+  useState,
 } from "react";
 import { DisplayedSong } from "../../pages/index";
-import { LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
-import { updateSongNotes } from "../../utils/crud";
+import useUpdateSong from "../../utils/useUpdateSong";
 
 const EditSongForm = ({ setOpen }) => {
-  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
-  const { loggedIn } = useContext(LoggedIn);
+  const { displayedSong } = useContext(DisplayedSong);
   const [form, changeForm] = useState({
     lyrics: displayedSong.lyrics,
     youtube: `https://www.youtube.com/watch?v=${displayedSong.youtubeID}`,
@@ -19,8 +17,9 @@ const EditSongForm = ({ setOpen }) => {
     artwork: displayedSong.spotifyAlbumCover,
     soundcloud: displayedSong.soundCloud || "",
   });
+  const updateSong = useUpdateSong();
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     const newNotes = displayedSong;
     newNotes.lyrics = form.lyrics;
@@ -32,18 +31,13 @@ const EditSongForm = ({ setOpen }) => {
       ? form.youtube.split("v=")[1]?.split("&")[0]
       : undefined;
     newNotes.soundCloud = !!form.soundcloud ? form.soundcloud : undefined;
-    updateSongNotes({
+
+    await updateSong({
       ...displayedSong,
       ...newNotes,
-      set: loggedIn,
     });
 
     setOpen(false);
-
-    setDisplayedSong({
-      ...displayedSong,
-      ...newNotes,
-    });
   };
 
   const handleChange = (

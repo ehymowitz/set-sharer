@@ -1,23 +1,23 @@
 import React, {
-  useState,
-  useContext,
-  SyntheticEvent,
   ChangeEvent,
+  SyntheticEvent,
+  useContext,
+  useState,
 } from "react";
-import { createSet } from "../../utils/crud";
 import { LoggedIn } from "../../pages/_app";
-import { useQueryString } from "../../utils/queryString";
 import { TextButton } from "../../styles/clickables";
+import { createSet } from "../../utils/crud/set";
+import { useQueryString } from "../../utils/queryString";
 
 const CreateSetForm = () => {
   const [setName, changeSetName] = useState("");
   const setQueryString = useQueryString("set")[1];
   const { setLoggedIn } = useContext(LoggedIn);
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     const usedSetName = setName.toLowerCase();
-    createSet({ name: usedSetName });
+    await createSet({ name: usedSetName });
     setLoggedIn(usedSetName);
     setQueryString(usedSetName);
     changeSetName("");

@@ -5,25 +5,22 @@ import React, {
   useState,
 } from "react";
 import { DisplayedSong } from "../../pages/index";
-import { LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
-import { updateSongNotes } from "../../utils/crud";
+import useUpdateSong from "../../utils/useUpdateSong";
 import RemoveNoteButton from "../buttons/removeNoteButton";
 
 const NotesForm = () => {
   const { displayedSong } = useContext(DisplayedSong);
-  const { loggedIn } = useContext(LoggedIn);
   const [note, setNote] = useState("");
+  const updateSong = useUpdateSong();
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (note == "") return;
 
-    displayedSong.userNotes.push(note);
-    updateSongNotes({
-      ...displayedSong,
-      set: loggedIn,
-    });
+    const newNotes = displayedSong.userNotes || [];
+    newNotes.push(note);
+    await updateSong({ ...displayedSong, userNotes: newNotes });
 
     setNote("");
   };

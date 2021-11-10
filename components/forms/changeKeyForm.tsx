@@ -1,12 +1,11 @@
-import React, { useContext, ChangeEvent } from "react";
-import { LoggedIn } from "../../pages/_app";
+import React, { ChangeEvent, useContext } from "react";
 import { DisplayedSong } from "../../pages/index";
-import { updateSongNotes } from "../../utils/crud";
 import { StyledSelect } from "../../styles/clickables";
+import useUpdateSong from "../../utils/useUpdateSong";
 
 const ChangeKeyForm = ({ song }) => {
-  const { loggedIn } = useContext(LoggedIn);
-  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
+  const { displayedSong } = useContext(DisplayedSong);
+  const updateSong = useUpdateSong();
 
   const keys = [
     "C",
@@ -23,14 +22,14 @@ const ChangeKeyForm = ({ song }) => {
     "B",
   ];
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = async (e: ChangeEvent<HTMLSelectElement>) => {
+    let val = e.target.value;
     const songInfo = {
       ...displayedSong,
-      customKey: e.target.value,
+      customKey: val,
     };
-    updateSongNotes(Object.assign(songInfo, { set: loggedIn })); // API Call
-    setDisplayedSong(songInfo);
-    e.target.value = "";
+    await updateSong(songInfo);
+    val = "";
   };
 
   return (

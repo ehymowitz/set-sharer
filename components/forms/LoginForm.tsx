@@ -1,12 +1,12 @@
 import React, {
-  useState,
-  useContext,
-  SyntheticEvent,
   ChangeEvent,
+  SyntheticEvent,
+  useContext,
+  useState,
 } from "react";
 import { LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
-import { readSets } from "../../utils/crud";
+import { readSets } from "../../utils/crud/set";
 import { useQueryString } from "../../utils/queryString";
 
 const LoginForm = () => {

@@ -1,24 +1,23 @@
 import React, { useContext } from "react";
-import SongListCard from "./songListCard";
 import {
   DragDropContext,
-  Droppable,
   Draggable,
+  Droppable,
   DropResult,
 } from "react-beautiful-dnd";
 import { DisplayedSong, Song } from "../pages/index";
-import { updateSongNotes } from "../utils/crud";
 import { LoggedIn } from "../pages/_app";
+import { updateSong } from "../utils/crud/song";
+import SongListCard from "./songListCard";
 
 const SongList = () => {
   const { songList, setSongList, displayedSong, setDisplayedSong } =
     useContext(DisplayedSong);
   const { loggedIn } = useContext(LoggedIn);
 
-  const updateMongoOrder = (song: Song, order: number) => {
-    updateSongNotes({
-      ...displayedSong,
-      order: order,
+  const updateMongoOrder = async (song: Song, order: number) => {
+    await updateSong({
+      song: { ...displayedSong, order: order },
       set: loggedIn,
     });
   };

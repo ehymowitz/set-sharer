@@ -2,7 +2,6 @@ interface setData {
   name: string;
 }
 
-// CREATE
 export async function createSet(setData: setData) {
   const response = await fetch("/api/sets/create", {
     method: "POST",
@@ -15,9 +14,6 @@ export async function createSet(setData: setData) {
   return data;
 }
 
-// createSet({name: 'test'})
-
-// READ
 export async function readSets() {
   const response = await fetch("/api/sets/read", {
     method: "GET",
@@ -34,5 +30,3 @@ export async function readSets() {
 
   return names;
 }
-
-// readSets();

@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
 import Dropzone from "react-dropzone";
 import { DisplayedSong } from "../../pages/index";
-import { LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
-import { updateSongNotes } from "../../utils/crud";
+import useUpdateSong from "../../utils/useUpdateSong";
 
 const EditChartForm = ({ setOpen }) => {
-  const { displayedSong, setDisplayedSong } = useContext(DisplayedSong);
-  const { loggedIn } = useContext(LoggedIn);
+  const { displayedSong } = useContext(DisplayedSong);
   const [chart, setChart] = useState<string>();
+  const updateSong = useUpdateSong();
 
   const fileReader = new FileReader();
 
@@ -22,15 +21,9 @@ const EditChartForm = ({ setOpen }) => {
     });
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (chart) {
-      updateSongNotes({
-        // API call
-        ...displayedSong,
-        chart,
-        set: loggedIn,
-      });
-      setDisplayedSong({
+      await updateSong({
         ...displayedSong,
         chart,
       });
