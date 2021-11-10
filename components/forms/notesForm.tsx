@@ -35,7 +35,7 @@ const NotesForm = () => {
 
   return (
     <>
-      {displayedSong.userNotes.length > 0 && (
+      {displayedSong.userNotes?.length > 0 && (
         <div className="notes-display">
           {displayedSong.userNotes.map((note, index) => {
             return (
