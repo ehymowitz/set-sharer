@@ -7,10 +7,13 @@
     padding: 0;
   }
 
+  .displayed-song {
+    border: 3px solid #998c75;
+  }
   .song-card {
     position: relative;
     border-radius: 15px;
-    background-color: #887A62;
+    background-color: #887a62;
     padding: 15px;
     margin-bottom: 20px;
 

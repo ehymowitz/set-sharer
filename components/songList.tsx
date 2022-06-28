@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import {
   DragDropContext,
   Draggable,
@@ -11,12 +11,15 @@ import SongListCard from "./songListCard";
 import { updateSong } from "../utils/crud/song";
 
 const SongList = () => {
-  const { songList, setSongList, setDisplayedSong } = useContext(DisplayedSong);
+  const { songList, setSongList, displayedSong, setDisplayedSong } =
+    useContext(DisplayedSong);
   const { loggedIn } = useContext(LoggedIn);
 
   const handleClick = (song: Song) => {
     setDisplayedSong(song);
   };
+
+  console.log(displayedSong);
 
   const reorder = (
     list: Song[],
@@ -64,7 +67,11 @@ const SongList = () => {
                     >
                       {(provided) => (
                         <li
-                          className="song-card"
+                          className={
+                            displayedSong === song
+                              ? "song-card displayed-song"
+                              : "song-card"
+                          }
                           key={index}
                           ref={provided.innerRef}
                           {...provided.draggableProps}

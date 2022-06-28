@@ -10,6 +10,9 @@ const logoutButton = () => {
   const setQueryString = useQueryString("set")[1];
 
   const handleClick = () => {
+    if (!confirm("Would you like to logout?")) {
+      return;
+    }
     setDisplayedSong(undefined);
     setLoggedIn("");
     setQueryString("");

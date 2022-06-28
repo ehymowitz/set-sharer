@@ -9,6 +9,10 @@ const RemoveSongButton = ({ title, artist }) => {
   const { loggedIn } = useContext(LoggedIn);
 
   const handleClick = async (e: SyntheticEvent) => {
+    if (!confirm("Would you like to remove the song?")) {
+      return;
+    }
+
     const newSongList = [...songList]
       .filter((song) => song.artist != artist && song.title != title)
       .map((song, i) => ({ ...song, order: i }));

@@ -7,6 +7,9 @@ const RemoveNoteButton = ({ target }) => {
   const updateSong = useUpdateSong();
 
   const handleClick = async () => {
+    if (!confirm("Would you like to remove the note?")) {
+      return;
+    }
     displayedSong.userNotes.splice(target, 1);
 
     await updateSong({ ...displayedSong, userNotes: displayedSong.userNotes });
