@@ -1,10 +1,5 @@
-import React, {
-  ChangeEvent,
-  SyntheticEvent,
-  useContext,
-  useState,
-} from "react";
-import { LoggedIn } from "../../pages/_app";
+import { ChangeEvent, SyntheticEvent, useContext, useState } from "react";
+import { IsLoading, LoggedIn } from "../../pages/_app";
 import { TextButton } from "../../styles/clickables";
 import { TextInput } from "../../styles/text";
 import { readSets } from "../../utils/crud/set";
@@ -15,8 +10,10 @@ const LoginForm = () => {
   const setQueryString = useQueryString("set")[1];
 
   const { setLoggedIn } = useContext(LoggedIn);
+  const { setLoading } = useContext(IsLoading);
 
   const handleSubmit = (e: SyntheticEvent) => {
+    setLoading(true);
     e.preventDefault();
     const usedSetName = setName.toLowerCase();
     readSets().then((data) => {

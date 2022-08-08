@@ -5,7 +5,8 @@ import Seo from "../components/seo";
 import SidePanel from "../components/sidePanel";
 import SongDisplay from "../components/songDisplay";
 import { readSongs } from "../utils/crud/song";
-import { LoggedIn } from "./_app";
+import { IsLoading, LoggedIn } from "./_app";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const DisplayedSong = createContext<Context | undefined>(undefined);
 
@@ -36,12 +37,15 @@ const Container = () => {
   const [displayedSong, setDisplayedSong] = useState(undefined);
   const [songList, setSongList] = useState([]);
   const { loggedIn } = useContext(LoggedIn);
+  const { isLoading, setLoading } = useContext(IsLoading);
 
   useEffect(() => {
     if (loggedIn) {
       const songs = readSongs(loggedIn);
       songs.then(setSongList);
-      songs.then((data) => setDisplayedSong(data[0]));
+      songs
+        .then((data) => setDisplayedSong(data[0]))
+        .then(() => setLoading(false));
     }
   }, [loggedIn]);
 
@@ -57,7 +61,15 @@ const Container = () => {
             {displayedSong && <GigInterface />}
           </div>
 
-          <SongDisplay />
+          {!isLoading ? (
+            displayedSong && loggedIn ? (
+              <SongDisplay />
+            ) : null
+          ) : (
+            <div className="spinner">
+              <ClipLoader />
+            </div>
+          )}
         </div>
         <div className="setlist">
           <SidePanel />

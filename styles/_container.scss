@@ -10,12 +10,18 @@
   .song-info {
     display: grid;
     background-color: #ccb187;
+    position: relative;
+
+    .spinner {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+    }
 
     .app-heading {
       padding: 40px;
       padding-bottom: 0;
       display: flex;
-      align-items: flex-end;
 
       .gigInterface {
         margin-left: 20px;

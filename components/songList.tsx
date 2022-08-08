@@ -19,8 +19,6 @@ const SongList = () => {
     setDisplayedSong(song);
   };
 
-  console.log(displayedSong);
-
   const reorder = (
     list: Song[],
     startIndex: number,
