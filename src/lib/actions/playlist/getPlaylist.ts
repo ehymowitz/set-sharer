@@ -18,6 +18,7 @@ export async function getPlaylistById(id: string) {
   try {
     const playlist = await prisma.playlist.findUniqueOrThrow({
       where: { id },
+      include: { songs: true },
     });
     return playlist;
   } catch (error) {

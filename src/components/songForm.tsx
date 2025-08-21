@@ -1,0 +1,24 @@
+"use client";
+
+import { createSong } from "@/lib/actions/song/createSong";
+import { Song } from "@prisma/client";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+export type SongInputs = Omit<Song, "id">;
+const SongForm = ({ playlistId }: { playlistId: string }) => {
+  const { register, handleSubmit } = useForm<SongInputs>();
+
+  const onSubmit: SubmitHandler<SongInputs> = async (data) => {
+    await createSong({ ...data, playlistId });
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input placeholder="Song Title" type="text" {...register("title")} />
+      <input placeholder="Song Artist" type="text" {...register("artist")} />
+      <button type="submit">Add Song</button>
+    </form>
+  );
+};
+
+export default SongForm;

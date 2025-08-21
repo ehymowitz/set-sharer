@@ -16,11 +16,11 @@ model Playlist {
 
 model Song {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
+  title       String
   artist      String
-  youtubeUrl  String
-  key         String
-  gDriveChart String
+  youtubeUrl  String?
+  key         String?
+  gDriveChart String?
   notes       String[]
   playlistId  String   @db.ObjectId
   playlist    Playlist @relation(fields: [playlistId], references: [id])
