@@ -9,7 +9,7 @@ datasource db {
 
 model Playlist {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
+  name      String   @unique
   songs     Song[]
   createdAt DateTime @default(now())
 }

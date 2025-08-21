@@ -1,13 +1,16 @@
 "use client";
 import PlayListForm from "@/components/playlistForm";
 import { createPlaylist } from "@/lib/actions/playlist/createPlaylist";
-import { getPlaylist } from "@/lib/actions/playlist/getPlaylist";
+import { getPlaylistByName } from "@/lib/actions/playlist/getPlaylist";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const handleLogin = async (name: string) => {
-    getPlaylist(name).then((data) => {
+    getPlaylistByName(name).then((data) => {
       if (data) {
-        console.log("Playlist found:", data);
+        router.push(`/${data.id}`);
       } else {
         alert("Invalid Login");
       }
@@ -17,9 +20,9 @@ export default function Home() {
   const handleCreate = async (name: string) => {
     createPlaylist(name).then((data) => {
       if (data) {
-        console.log("Playlist found:", data);
+        router.push(`/${data.id}`);
       } else {
-        alert("Invalid Login");
+        alert("Error Creating Playlist - Try a different name?");
       }
     });
   };
