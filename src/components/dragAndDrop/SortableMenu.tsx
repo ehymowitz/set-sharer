@@ -19,6 +19,7 @@ import {
 
 import { SortableItem } from "./SortableItem";
 import { Song } from "@prisma/client";
+import { updateSong } from "@/lib/actions/song/updateSong";
 
 interface SortableMenuProps {
   songs: Song[];
@@ -56,12 +57,15 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
     const { active, over } = event;
 
     if (active.id !== over?.id) {
-      setItems((items) => {
-        const indexArray = items.map((item) => item.id);
-        const oldIndex = indexArray.indexOf(active.id as string);
-        const newIndex = indexArray.indexOf(over?.id as string);
+      const indexArray = items.map((item) => item.id);
+      const oldIndex = indexArray.indexOf(active.id as string);
+      const newIndex = indexArray.indexOf(over?.id as string);
 
-        return arrayMove(items, oldIndex, newIndex);
+      const reorderedItems = arrayMove(items, oldIndex, newIndex);
+      setItems(reorderedItems);
+
+      reorderedItems.forEach(async (item, i) => {
+        updateSong({ ...item, index: i });
       });
     }
   }

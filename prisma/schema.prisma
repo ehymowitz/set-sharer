@@ -16,6 +16,7 @@ model Playlist {
 
 model Song {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  index       Int
   title       String
   artist      String
   youtubeUrl  String?
