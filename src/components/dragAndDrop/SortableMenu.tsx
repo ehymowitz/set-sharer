@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DndContext,
   closestCenter,
@@ -26,6 +26,10 @@ interface SortableMenuProps {
 
 const SortableMenu = ({ songs }: SortableMenuProps) => {
   const [items, setItems] = useState(songs);
+  useEffect(() => {
+    setItems(songs);
+  }, [songs]);
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -33,13 +37,12 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
     })
   );
 
-  console.log(items);
-
   return (
     <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
+      id="song-drag-list"
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         {items.map(({ id }) => (
