@@ -3,12 +3,15 @@
 import { deleteSong } from "@/lib/actions/song/deleteSong";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { Song } from "@prisma/client";
 
 interface SortableItemProps {
-  id: string;
+  item: Song;
+  onSelectItem: (song: Song) => void;
 }
 
-export function SortableItem({ id }: SortableItemProps) {
+export function SortableItem({ item, onSelectItem }: SortableItemProps) {
+  const { id, title, artist } = item;
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -26,11 +29,14 @@ export function SortableItem({ id }: SortableItemProps) {
       ref={setNodeRef}
       style={style}
       className="border p-4 mb-2 rounded flex justify-between"
+      onClick={() => onSelectItem(item)}
     >
       <div {...attributes} {...listeners} className="cursor-move">
-        drag handle
+        reorder
       </div>
-      <p>test {id} </p>
+      <p>
+        {title} by {artist}
+      </p>
       <button className="cursor-pointer" onClick={handleDelete}>
         delete
       </button>

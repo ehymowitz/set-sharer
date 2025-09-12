@@ -20,13 +20,17 @@ import {
 import { SortableItem } from "./SortableItem";
 import { Song } from "@prisma/client";
 import { updateSong } from "@/lib/actions/song/updateSong";
+import { useSetAtom } from "jotai";
+import { selectedSongAtom } from "@/jotai/selectedSong";
 
 interface SortableMenuProps {
   songs: Song[];
 }
 
 const SortableMenu = ({ songs }: SortableMenuProps) => {
-  const [items, setItems] = useState(songs);
+  const [items, setItems] = useState<Song[]>(songs);
+  const setSelectedSong = useSetAtom(selectedSongAtom);
+
   useEffect(() => {
     setItems(songs);
   }, [songs]);
@@ -38,6 +42,8 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
     })
   );
 
+  const handleSelectSong = (song: Song) => setSelectedSong(song);
+
   return (
     <DndContext
       sensors={sensors}
@@ -46,8 +52,12 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
       id="song-drag-list"
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map(({ id }) => (
-          <SortableItem key={id} id={id} />
+        {items.map((item) => (
+          <SortableItem
+            key={item.id}
+            item={item}
+            onSelectItem={handleSelectSong}
+          />
         ))}
       </SortableContext>
     </DndContext>

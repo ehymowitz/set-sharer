@@ -6,10 +6,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 export type SongInputs = Omit<Song, "id">;
 const SongForm = ({ playlistId }: { playlistId: string }) => {
-  const { register, handleSubmit } = useForm<SongInputs>();
+  const { register, handleSubmit, reset } = useForm<SongInputs>();
 
   const onSubmit: SubmitHandler<SongInputs> = async (data) => {
     await createSong({ ...data, playlistId });
+    reset();
   };
 
   return (
