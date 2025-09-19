@@ -1,10 +1,15 @@
 "use server";
 
 import { SongInputs } from "@/components/songForm";
+import { getSpotifySongInfo } from "@/lib/apiCalls/spotify";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function createSong(songData: SongInputs) {
+  const spotifyInfo = await getSpotifySongInfo();
+
+  console.log(spotifyInfo);
+
   const lastSong = await prisma.song.findFirst({
     where: { playlistId: songData.playlistId },
     orderBy: { index: "desc" },
