@@ -19,7 +19,7 @@ model Song {
   index       Int
   title       String
   artist      String
-  youtubeUrl  String?
+  youtubeId   String?
   key         String?
   gDriveChart String?
   notes       String[]

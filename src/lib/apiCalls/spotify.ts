@@ -61,8 +61,6 @@ const searchSpotifyId = async (cookie: string): Promise<string | undefined> => {
       authOptions
     );
 
-    console.log(response);
-
     if (response.ok) {
       const data: SpotifyApi.TrackSearchResponse = await response.json();
       return data.tracks.items[0].id;
@@ -89,8 +87,6 @@ const getSongInfoFromId = async (cookie: string, id: string) => {
       authOptions
     );
 
-    console.log(response);
-
     if (response.ok) {
       const data: SpotifyApi.AudioFeaturesObject = await response.json();
       return data;
@@ -108,11 +104,9 @@ export const getSpotifySongInfo = async () => {
     spotifyCookie = await getSpotifyCredential();
   }
 
-  console.log("cookie1", spotifyCookie);
   if (!spotifyCookie) return Error("Problem with cookie");
   const id = await searchSpotifyId(spotifyCookie);
 
-  console.log("cookie2", spotifyCookie);
   if (!id) return Error("no id");
   const songInfo = getSongInfoFromId(spotifyCookie, id);
 
