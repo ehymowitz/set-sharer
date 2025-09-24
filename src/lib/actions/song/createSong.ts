@@ -6,8 +6,9 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function createSong(songData: SongInputs) {
-  // const spotifyInfo = await getSpotifySongInfo(); // API doesn't return values we want anymore
-  // Switch to Tidal API
+  // const tidalInfo = await getTidalSongInfo(
+  //   `${songData.artist}, ${songData.title}`
+  // ); // WIP
 
   const id = await searchYoutube(songData.artist, songData.title);
 

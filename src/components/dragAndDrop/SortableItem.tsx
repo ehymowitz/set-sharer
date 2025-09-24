@@ -1,9 +1,11 @@
 "use client";
 
+import { selectedSongAtom } from "@/jotai/selectedSong";
 import { deleteSong } from "@/lib/actions/song/deleteSong";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Song } from "@prisma/client";
+import { useSetAtom } from "jotai";
 
 interface SortableItemProps {
   item: Song;
@@ -15,6 +17,8 @@ export function SortableItem({ item, onSelectItem }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
+  const setSelectedSong = useSetAtom(selectedSongAtom);
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -22,6 +26,7 @@ export function SortableItem({ item, onSelectItem }: SortableItemProps) {
 
   const handleDelete = async () => {
     await deleteSong(id);
+    setSelectedSong(null);
   };
 
   return (

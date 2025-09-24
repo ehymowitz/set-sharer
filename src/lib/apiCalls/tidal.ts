@@ -1,16 +1,15 @@
 import { cookieIsNotSet, getCookie, setCookie } from "./cookies";
 
-type SpotifyClientCredentials = {
+type TidalClientCredentials = {
   access_token: string;
   token_type: string;
   expires_in: number;
 };
 
-export const getSpotifyCredential = async () => {
-  if (!(await cookieIsNotSet("spotify"))) return;
-
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+const getTidalCredential = async () => {
+  if (!(await cookieIsNotSet("tidal"))) return;
+  const clientId = process.env.TIDAL_CLIENT_ID;
+  const clientSecret = process.env.TIDAL_SECRET;
 
   const base64Credentials = btoa(clientId + ":" + clientSecret);
 
@@ -27,17 +26,17 @@ export const getSpotifyCredential = async () => {
 
   try {
     const response = await fetch(
-      "https://accounts.spotify.com/api/token",
+      "https://auth.tidal.com/v1/oauth2/token",
       authOptions
     );
 
     if (response.ok) {
-      const data: SpotifyClientCredentials = await response.json();
-      await setCookie("spotify", {
+      const data: TidalClientCredentials = await response.json();
+      await setCookie("tidal", {
         value: data?.access_token,
         expires_in: data?.expires_in,
       });
-      return getCookie("spotify");
+      return getCookie("tidal");
     } else {
       throw new Error("Failed to authenticate");
     }
@@ -46,7 +45,10 @@ export const getSpotifyCredential = async () => {
   }
 };
 
-const searchSpotifyId = async (cookie: string): Promise<string | undefined> => {
+const searchTidalId = async (
+  cookie: string,
+  search: string
+): Promise<string | undefined> => {
   const authOptions = {
     method: "GET",
     headers: {
@@ -57,13 +59,14 @@ const searchSpotifyId = async (cookie: string): Promise<string | undefined> => {
 
   try {
     const response = await fetch(
-      "https://api.spotify.com/v1/search?q=remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&type=track&limit=1&offset=0",
+      `https://openapi.tidal.com/v2/searchResults/${search}?countryCode=US&explicitFilter=include%2C%20exclude&include=tracks`,
       authOptions
     );
 
     if (response.ok) {
-      const data: SpotifyApi.TrackSearchResponse = await response.json();
-      return data.tracks.items[0].id;
+      const data = await response.json();
+      console.log(JSON.stringify(data, undefined, 2));
+      return data.id;
     } else {
       throw new Error("Failed to authenticate");
     }
@@ -83,12 +86,12 @@ const getSongInfoFromId = async (cookie: string, id: string) => {
 
   try {
     const response = await fetch(
-      `https://api.spotify.com/v1/audio-features/${id}`,
+      `https://openapi.tidal.com/v2/tracks/${id}?countryCode=US`,
       authOptions
     );
 
     if (response.ok) {
-      const data: SpotifyApi.AudioFeaturesObject = await response.json();
+      const data = await response.json();
       return data;
     } else {
       throw new Error("Failed to authenticate");
@@ -98,17 +101,19 @@ const getSongInfoFromId = async (cookie: string, id: string) => {
   }
 };
 
-export const getSpotifySongInfo = async () => {
-  let spotifyCookie = await getCookie("spotify");
-  if (!spotifyCookie) {
-    spotifyCookie = await getSpotifyCredential();
+export const getTidalSongInfo = async (search: string) => {
+  let tidalCookie = await getCookie("tidal");
+
+  console.log("cookie", tidalCookie);
+  if (!tidalCookie) {
+    tidalCookie = await getTidalCredential();
   }
 
-  if (!spotifyCookie) return Error("Problem with cookie");
-  const id = await searchSpotifyId(spotifyCookie);
+  if (!tidalCookie) return Error("Problem with cookie");
+  const id = await searchTidalId(tidalCookie, search);
 
   if (!id) return Error("no id");
-  const songInfo = getSongInfoFromId(spotifyCookie, id);
+  const songInfo = getSongInfoFromId(tidalCookie, id);
 
   return songInfo;
 };

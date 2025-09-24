@@ -1,16 +1,20 @@
 "use client";
 
+import { selectedSongAtom } from "@/jotai/selectedSong";
 import { createSong } from "@/lib/actions/song/createSong";
 import { Song } from "@prisma/client";
+import { useSetAtom } from "jotai";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export type SongInputs = Omit<Song, "id">;
 const SongForm = ({ playlistId }: { playlistId: string }) => {
   const { register, handleSubmit, reset } = useForm<SongInputs>();
+  const setSelectedSong = useSetAtom(selectedSongAtom);
 
   const onSubmit: SubmitHandler<SongInputs> = async (data) => {
-    await createSong({ ...data, playlistId });
+    const newSong = await createSong({ ...data, playlistId });
     reset();
+    setSelectedSong(newSong);
   };
 
   return (
