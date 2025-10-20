@@ -26,8 +26,10 @@ const Playlist = async ({
         <LogoutButton />
       </div>
       <SongForm playlistId={playlistId} />
-      <SortableMenu songs={data.songs || []} />
-      <SelectedSong />
+      <div className="grid grid-cols-[3fr_1fr]">
+        <SelectedSong />
+        <SortableMenu songs={data.songs || []} />
+      </div>
     </div>
   );
 };

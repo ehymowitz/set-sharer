@@ -8,7 +8,6 @@ const SelectedSong = () => {
   const selectedSong = useAtomValue(selectedSongAtom);
   return (
     <div>
-      <p>{selectedSong?.title} </p>
       {selectedSong?.youtubeId && (
         <iframe
           width="400"
@@ -18,6 +17,8 @@ const SelectedSong = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         />
       )}
+      <p>{selectedSong?.title} </p>
+      <p>{selectedSong?.artist} </p>
     </div>
   );
 };

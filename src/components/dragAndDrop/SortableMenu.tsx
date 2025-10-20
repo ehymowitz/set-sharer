@@ -45,22 +45,24 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
   const handleSelectSong = (song: Song) => setSelectedSong(song);
 
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
-      id="song-drag-list"
-    >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map((item) => (
-          <SortableItem
-            key={item.id}
-            item={item}
-            onSelectItem={handleSelectSong}
-          />
-        ))}
-      </SortableContext>
-    </DndContext>
+    <div>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        id="song-drag-list"
+      >
+        <SortableContext items={items} strategy={verticalListSortingStrategy}>
+          {items.map((item) => (
+            <SortableItem
+              key={item.id}
+              item={item}
+              onSelectItem={handleSelectSong}
+            />
+          ))}
+        </SortableContext>
+      </DndContext>
+    </div>
   );
 
   function handleDragEnd(event: DragEndEvent) {
