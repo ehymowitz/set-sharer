@@ -2,12 +2,15 @@
 
 import { selectedSongAtom } from "@/jotai/selectedSong";
 import { useAtomValue } from "jotai";
-import React from "react";
+import KeySelect from "./keySelect";
 
 const SelectedSong = () => {
   const selectedSong = useAtomValue(selectedSongAtom);
+  if (!selectedSong) return null;
+
   return (
     <div>
+      <KeySelect />
       {selectedSong?.youtubeId && (
         <iframe
           width="400"
