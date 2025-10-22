@@ -6,7 +6,8 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Song } from "@prisma/client";
 import { useSetAtom } from "jotai";
-
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdDelete } from "react-icons/md";
 interface SortableItemProps {
   item: Song;
   onSelectItem: (song: Song) => void;
@@ -36,14 +37,18 @@ export function SortableItem({ item, onSelectItem }: SortableItemProps) {
       className="border p-4 mb-2 rounded flex justify-between"
       onClick={() => onSelectItem(item)}
     >
-      <div {...attributes} {...listeners} className="cursor-move">
-        reorder
+      <div
+        {...attributes}
+        {...listeners}
+        className="cursor-move flex items-center"
+      >
+        <GiHamburgerMenu />
       </div>
       <p>
         {title} by {artist}
       </p>
       <button className="cursor-pointer" onClick={handleDelete}>
-        delete
+        <MdDelete />
       </button>
     </div>
   );
