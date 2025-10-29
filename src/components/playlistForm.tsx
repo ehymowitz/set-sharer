@@ -26,7 +26,9 @@ const PlayListForm = ({ onSubmit }: PlayListFormProps) => {
           type="text"
           onChange={(e) => handleChange(e)}
         />
-        <button type="submit">Log In</button>
+        <button type="submit" className="cursor-pointer">
+          Log In
+        </button>
       </div>
     </form>
   );

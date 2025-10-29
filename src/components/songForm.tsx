@@ -7,6 +7,7 @@ import { useSetAtom } from "jotai";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export type SongInputs = Omit<Song, "id">;
+
 const SongForm = ({ playlistId }: { playlistId: string }) => {
   const { register, handleSubmit, reset } = useForm<SongInputs>();
   const setSelectedSong = useSetAtom(selectedSongAtom);
@@ -21,7 +22,9 @@ const SongForm = ({ playlistId }: { playlistId: string }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <input placeholder="Song Title" type="text" {...register("title")} />
       <input placeholder="Song Artist" type="text" {...register("artist")} />
-      <button type="submit">Add Song</button>
+      <button type="submit" className="cursor-pointer">
+        Add Song
+      </button>
     </form>
   );
 };

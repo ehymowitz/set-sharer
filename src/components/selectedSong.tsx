@@ -4,18 +4,19 @@ import { selectedSongAtom } from "@/jotai/selectedSong";
 import { useAtomValue } from "jotai";
 import KeySelect from "./keySelect";
 import { FaEdit } from "react-icons/fa";
+import { useState } from "react";
+import EditModal from "./EditModal";
 
 const SelectedSong = () => {
   const selectedSong = useAtomValue(selectedSongAtom);
+  const [isOpen, setIsOpen] = useState(false);
   if (!selectedSong) return null;
-
-  const handleEdit = () => {};
 
   return (
     <div className="flex gap-4">
       <div>
         <KeySelect />
-        <button className="cursor-pointer ml-4" onClick={handleEdit}>
+        <button className="cursor-pointer ml-4" onClick={() => setIsOpen(true)}>
           <FaEdit />
         </button>
         {selectedSong?.youtubeId && (
@@ -33,6 +34,7 @@ const SelectedSong = () => {
         <p>{selectedSong?.title} </p>
         <p>{selectedSong?.artist} </p>
       </div>
+      <EditModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };
