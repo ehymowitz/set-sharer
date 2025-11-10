@@ -13,9 +13,14 @@ const SongForm = ({ playlistId }: { playlistId: string }) => {
   const setSelectedSong = useSetAtom(selectedSongAtom);
 
   const onSubmit: SubmitHandler<SongInputs> = async (data) => {
-    const newSong = await createSong({ ...data, playlistId });
-    reset();
-    setSelectedSong(newSong);
+    if (!data.artist || !data.title) {
+      alert("Missing artist or title");
+      reset();
+    } else {
+      const newSong = await createSong({ ...data, playlistId });
+      reset();
+      setSelectedSong(newSong);
+    }
   };
 
   return (

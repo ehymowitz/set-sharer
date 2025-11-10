@@ -6,6 +6,7 @@ import KeySelect from "./keySelect";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import EditModal from "./EditModal";
+import SongNotes from "./songNotes";
 
 const SelectedSong = () => {
   const selectedSong = useAtomValue(selectedSongAtom);
@@ -28,11 +29,11 @@ const SelectedSong = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           />
         )}
-      </div>
-
-      <div>
-        <p>{selectedSong?.title} </p>
-        <p>{selectedSong?.artist} </p>
+        <div>
+          <p>{selectedSong?.title} </p>
+          <p>{selectedSong?.artist} </p>
+        </div>
+        <SongNotes />
       </div>
       <EditModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
