@@ -5,13 +5,14 @@ import { updateSong } from "@/lib/actions/song/updateSong";
 import { Song } from "@prisma/client";
 import { useAtom } from "jotai";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { MdDelete } from "react-icons/md";
 
 const SongNotes = () => {
   const [selectedSong, setSelectedSong] = useAtom(selectedSongAtom);
   const { register, handleSubmit, reset } = useForm<{ note: string }>();
 
   const onSubmit: SubmitHandler<{ note: string }> = async (data) => {
-    if (!selectedSong) return;
+    if (!selectedSong || data.note.length < 1) return;
 
     const cleanedData: Song = {
       ...selectedSong,
@@ -20,6 +21,17 @@ const SongNotes = () => {
     await updateSong(cleanedData);
     setSelectedSong(cleanedData);
     reset();
+  };
+
+  const handleDelete = async (index: number) => {
+    if (!selectedSong) return;
+    selectedSong?.notes.splice(index, 1);
+    const updatedSong: Song = {
+      ...selectedSong,
+      notes: selectedSong?.notes || [],
+    };
+    await updateSong(updatedSong);
+    setSelectedSong(updatedSong);
   };
 
   return (
@@ -40,7 +52,12 @@ const SongNotes = () => {
         </button>
       </form>
       {selectedSong?.notes.map((note, i) => (
-        <p key={i}>{note}</p>
+        <div key={i} className="flex">
+          <p>{note}</p>
+          <button className="cursor-pointer" onClick={() => handleDelete(i)}>
+            <MdDelete />
+          </button>
+        </div>
       ))}
     </div>
   );
