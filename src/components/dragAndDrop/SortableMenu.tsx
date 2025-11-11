@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import {
-  DndContext,
   closestCenter,
+  DndContext,
+  DragEndEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
-  DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -16,12 +15,14 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useEffect, useState } from "react";
 
-import { SortableItem } from "./SortableItem";
-import { Song } from "@prisma/client";
-import { updateSong } from "@/lib/actions/song/updateSong";
-import { useSetAtom } from "jotai";
 import { selectedSongAtom } from "@/jotai/selectedSong";
+import { updateSong } from "@/lib/actions/song/updateSong";
+import { Song } from "@prisma/client";
+import { useSetAtom } from "jotai";
+import { SortableItem } from "./SortableItem";
+import SongForm from "../songForm";
 
 interface SortableMenuProps {
   songs: Song[];
@@ -30,6 +31,11 @@ interface SortableMenuProps {
 const SortableMenu = ({ songs }: SortableMenuProps) => {
   const [items, setItems] = useState<Song[]>(songs);
   const setSelectedSong = useSetAtom(selectedSongAtom);
+
+  useEffect(() => {
+    setSelectedSong(songs[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setSelectedSong]);
 
   useEffect(() => {
     setItems(songs);
@@ -46,6 +52,7 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
 
   return (
     <div>
+      <SongForm playlistId={songs[0].playlistId} />
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}

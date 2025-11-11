@@ -24,9 +24,14 @@ const SongForm = ({ playlistId }: { playlistId: string }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="Song Title" type="text" {...register("title")} />
-      <input placeholder="Song Artist" type="text" {...register("artist")} />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="grid grid-cols-2 justify-start"
+    >
+      <div>
+        <input placeholder="Title" type="text" {...register("title")} />
+        <input placeholder="Artist" type="text" {...register("artist")} />
+      </div>
       <button type="submit" className="cursor-pointer">
         Add Song
       </button>

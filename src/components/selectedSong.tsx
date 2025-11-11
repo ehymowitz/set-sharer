@@ -16,6 +16,9 @@ const SelectedSong = () => {
   return (
     <div className="flex gap-4">
       <div>
+        <h2 className="font-semibold text-xl">
+          {selectedSong?.title} - {selectedSong?.artist}
+        </h2>
         <KeySelect />
         <button className="cursor-pointer ml-4" onClick={() => setIsOpen(true)}>
           <FaEdit />
@@ -29,10 +32,6 @@ const SelectedSong = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           />
         )}
-        <div>
-          <p>{selectedSong?.title} </p>
-          <p>{selectedSong?.artist} </p>
-        </div>
         <SongNotes />
       </div>
       <EditModal isOpen={isOpen} onClose={() => setIsOpen(false)} />

@@ -38,7 +38,7 @@ const SongNotes = () => {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="border flex flex-col p-3 rounded-sm gap-2 w-[50vw]"
+        className="flex gap-2"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -51,14 +51,16 @@ const SongNotes = () => {
           Add Note
         </button>
       </form>
-      {selectedSong?.notes.map((note, i) => (
-        <div key={i} className="flex">
-          <p>{note}</p>
-          <button className="cursor-pointer" onClick={() => handleDelete(i)}>
-            <MdDelete />
-          </button>
-        </div>
-      ))}
+      <div className="flex gap-3">
+        {selectedSong?.notes.map((note, i) => (
+          <div key={i} className="flex">
+            <p>{note}</p>
+            <button className="cursor-pointer" onClick={() => handleDelete(i)}>
+              <MdDelete />
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
