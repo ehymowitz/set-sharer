@@ -3,6 +3,7 @@
 import SortableMenu from "@/components/dragAndDrop/SortableMenu";
 import LogoutButton from "@/components/logoutButton";
 import SelectedSong from "@/components/selectedSong";
+import SongNavigation from "@/components/SongNavigation";
 import { getPlaylistById } from "@/lib/actions/playlist/getPlaylist";
 import { notFound } from "next/navigation";
 
@@ -24,8 +25,13 @@ const Playlist = async ({
         <h1 className="text-2xl font-bold">{data.name}</h1>
         <LogoutButton />
       </div>
-      <div className="grid grid-cols-[3fr_1fr]">
+      <div className="grid grid-cols-[1fr_0.75fr_1fr]">
         <SelectedSong />
+        <div className="flex flex-col">
+          Timer Play Pause
+          <SongNavigation songs={data.songs} />
+          Lyrics
+        </div>
         <SortableMenu songs={data.songs || []} />
       </div>
     </div>

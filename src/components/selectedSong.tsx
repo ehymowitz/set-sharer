@@ -2,27 +2,29 @@
 
 import { selectedSongAtom } from "@/jotai/selectedSong";
 import { useAtomValue } from "jotai";
-import KeySelect from "./keySelect";
-import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
 import EditModal from "./EditModal";
+import KeySelect from "./keySelect";
 import SongNotes from "./songNotes";
 
 const SelectedSong = () => {
   const selectedSong = useAtomValue(selectedSongAtom);
   const [isOpen, setIsOpen] = useState(false);
-  if (!selectedSong) return null;
 
   return (
     <div className="flex gap-4">
       <div>
         <h2 className="font-semibold text-xl">
           {selectedSong?.title} - {selectedSong?.artist}
+          <button
+            className="cursor-pointer ml-4"
+            onClick={() => setIsOpen(true)}
+          >
+            <FaEdit />
+          </button>
         </h2>
         <KeySelect />
-        <button className="cursor-pointer ml-4" onClick={() => setIsOpen(true)}>
-          <FaEdit />
-        </button>
         {selectedSong?.youtubeId && (
           <iframe
             width="400"

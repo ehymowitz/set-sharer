@@ -15,6 +15,6 @@ export async function updateSong(data: Song) {
     return song;
   } catch (error) {
     console.error(error);
-    return null;
+    throw null;
   }
 }

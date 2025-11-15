@@ -20,9 +20,9 @@ import { useEffect, useState } from "react";
 import { selectedSongAtom } from "@/jotai/selectedSong";
 import { updateSong } from "@/lib/actions/song/updateSong";
 import { Song } from "@prisma/client";
-import { useSetAtom } from "jotai";
-import { SortableItem } from "./SortableItem";
+import { useAtom } from "jotai";
 import SongForm from "../songForm";
+import { SortableItem } from "./SortableItem";
 
 interface SortableMenuProps {
   songs: Song[];
@@ -30,7 +30,7 @@ interface SortableMenuProps {
 
 const SortableMenu = ({ songs }: SortableMenuProps) => {
   const [items, setItems] = useState<Song[]>(songs);
-  const setSelectedSong = useSetAtom(selectedSongAtom);
+  const [selectedSong, setSelectedSong] = useAtom(selectedSongAtom);
 
   useEffect(() => {
     setSelectedSong(songs[0]);
@@ -72,7 +72,7 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
     </div>
   );
 
-  function handleDragEnd(event: DragEndEvent) {
+  async function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 
     if (active.id !== over?.id) {
@@ -81,11 +81,18 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
       const newIndex = indexArray.indexOf(over?.id as string);
 
       const reorderedItems = arrayMove(items, oldIndex, newIndex);
+
       setItems(reorderedItems);
 
-      reorderedItems.forEach(async (item, i) => {
-        updateSong({ ...item, index: i });
-      });
+      const updatedSongs = await Promise.all(
+        reorderedItems.map(async (item, i) => {
+          const song = await updateSong({ ...item, index: i });
+          return song;
+        })
+      );
+      if (!selectedSong) return;
+
+      setSelectedSong(updatedSongs[selectedSong.index]);
     }
   }
 };
