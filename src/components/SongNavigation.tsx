@@ -16,7 +16,7 @@ const SongNavigation = ({ songs }: SongNavigationProps) => {
   const { index } = selectedSong;
 
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 justify-center">
       <button
         className="cursor-pointer disabled:opacity-50"
         disabled={index === 0}

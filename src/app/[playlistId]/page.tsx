@@ -5,6 +5,7 @@ import LogoutButton from "@/components/logoutButton";
 import SelectedSong from "@/components/selectedSong";
 import SongLyrics from "@/components/songLyrics";
 import SongNavigation from "@/components/SongNavigation";
+import Timer from "@/components/Timer";
 import { getPlaylistById } from "@/lib/actions/playlist/getPlaylist";
 import { notFound } from "next/navigation";
 
@@ -28,8 +29,8 @@ const Playlist = async ({
       </div>
       <div className="grid grid-cols-[1fr_0.75fr_1fr]">
         <SelectedSong />
-        <div className="flex flex-col">
-          Timer Play Pause
+        <div className="flex flex-col gap-2 items-start">
+          <Timer />
           <SongNavigation songs={data.songs} />
           <SongLyrics />
         </div>

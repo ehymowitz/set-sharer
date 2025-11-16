@@ -8,7 +8,9 @@ const SongLyrics = () => {
   const lyrics = song?.lyrics;
 
   return (
-    <p className="whitespace-break-spaces">{lyrics || "no lyrics added"}</p>
+    <p className="whitespace-break-spaces h-[70svh] overflow-scroll">
+      {lyrics || "no lyrics added"}
+    </p>
   );
 };
 
