@@ -72,6 +72,11 @@ export default function EditModal({ isOpen, onClose }: EditModalProps) {
           {...register("youtubeId")}
           className="border"
         />
+        <textarea
+          placeholder="Lyrics"
+          {...register("lyrics")}
+          className="border"
+        />
         <button type="submit" className="cursor-pointer">
           Edit Song
         </button>
