@@ -34,7 +34,7 @@ const KeySelect = () => {
   };
 
   return (
-    <>
+    <div>
       <select
         name="key"
         id="key"
@@ -61,7 +61,7 @@ const KeySelect = () => {
           </option>
         ))}
       </select>
-    </>
+    </div>
   );
 };
 

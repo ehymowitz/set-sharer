@@ -13,12 +13,12 @@ const SelectedSong = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex gap-4">
-      <div>
+    <>
+      <div className="flex flex-col md:my-0 my-2">
         <h2 className="font-semibold text-xl">
           {selectedSong?.title} - {selectedSong?.artist}
           <button
-            className="cursor-pointer ml-4"
+            className="cursor-pointer ml-4 md:inline hidden"
             onClick={() => setIsOpen(true)}
           >
             <FaEdit />
@@ -32,12 +32,13 @@ const SelectedSong = () => {
             src={`https://www.youtube.com/embed/${selectedSong.youtubeId}`}
             title={`${selectedSong.artist} ${selectedSong.title}`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            className="hidden md:block"
           />
         )}
         <SongNotes />
       </div>
       <EditModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-    </div>
+    </>
   );
 };
 

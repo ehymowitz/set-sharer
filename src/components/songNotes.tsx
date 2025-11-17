@@ -38,7 +38,7 @@ const SongNotes = () => {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex gap-2"
+        className="hidden md:flex gap-2"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -55,7 +55,10 @@ const SongNotes = () => {
         {selectedSong?.notes.map((note, i) => (
           <div key={i} className="flex">
             <p>{note}</p>
-            <button className="cursor-pointer" onClick={() => handleDelete(i)}>
+            <button
+              className="hidden md:block cursor-pointer"
+              onClick={() => handleDelete(i)}
+            >
               <MdDelete />
             </button>
           </div>

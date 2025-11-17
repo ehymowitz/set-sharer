@@ -27,7 +27,7 @@ const Playlist = async ({
         <h1 className="text-2xl font-bold">{data.name}</h1>
         <LogoutButton />
       </div>
-      <div className="grid grid-cols-[1fr_0.75fr_1fr]">
+      <div className="md:grid grid-cols-[1fr_0.75fr_1fr]">
         <SelectedSong />
         <div className="flex flex-col gap-2 items-start">
           <Timer />

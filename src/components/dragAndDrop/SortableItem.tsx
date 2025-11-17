@@ -5,7 +5,7 @@ import { deleteSong } from "@/lib/actions/song/deleteSong";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Song } from "@prisma/client";
-import { useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdDelete } from "react-icons/md";
 interface SortableItemProps {
@@ -18,7 +18,7 @@ export function SortableItem({ item, onSelectItem }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
-  const setSelectedSong = useSetAtom(selectedSongAtom);
+  const [selectedSong, setSelectedSong] = useAtom(selectedSongAtom);
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -34,7 +34,9 @@ export function SortableItem({ item, onSelectItem }: SortableItemProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className="border p-4 mb-2 rounded flex justify-between"
+      className={`border  p-4 mb-2 rounded flex justify-between ${
+        id === selectedSong?.id ? "border-white" : "border-gray-500"
+      }`}
       onClick={() => onSelectItem(item)}
     >
       <div

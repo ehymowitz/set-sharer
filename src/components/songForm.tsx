@@ -26,7 +26,7 @@ const SongForm = ({ playlistId }: { playlistId: string }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-2 justify-start"
+      className="hidden md:grid grid-cols-2 justify-start"
     >
       <div>
         <input placeholder="Title" type="text" {...register("title")} />
