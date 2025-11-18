@@ -26,9 +26,10 @@ import { SortableItem } from "./SortableItem";
 
 interface SortableMenuProps {
   songs: Song[];
+  playlistId: string;
 }
 
-const SortableMenu = ({ songs }: SortableMenuProps) => {
+const SortableMenu = ({ songs, playlistId }: SortableMenuProps) => {
   const [items, setItems] = useState<Song[]>(songs);
   const [selectedSong, setSelectedSong] = useAtom(selectedSongAtom);
 
@@ -52,7 +53,7 @@ const SortableMenu = ({ songs }: SortableMenuProps) => {
 
   return (
     <div>
-      <SongForm playlistId={songs[0].playlistId} />
+      <SongForm playlistId={playlistId} />
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}

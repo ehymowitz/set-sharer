@@ -34,7 +34,7 @@ const Playlist = async ({
           <SongNavigation songs={data.songs} />
           <SongLyrics />
         </div>
-        <SortableMenu songs={data.songs || []} />
+        <SortableMenu songs={data.songs || []} playlistId={playlistId} />
       </div>
     </div>
   );
