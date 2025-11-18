@@ -32,7 +32,6 @@ const SelectedSong = () => {
             src={`https://www.youtube.com/embed/${selectedSong.youtubeId}`}
             title={`${selectedSong.artist} ${selectedSong.title}`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            className="hidden md:block"
           />
         )}
         <SongNotes />

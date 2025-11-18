@@ -42,14 +42,14 @@ export function SortableItem({ item, onSelectItem }: SortableItemProps) {
       <div
         {...attributes}
         {...listeners}
-        className="cursor-move flex items-center"
+        className="cursor-move md:flex items-center hidden"
       >
         <GiHamburgerMenu />
       </div>
       <p>
         {title} by {artist}
       </p>
-      <button className="cursor-pointer" onClick={handleDelete}>
+      <button className="cursor-pointer md:flex hidden" onClick={handleDelete}>
         <MdDelete />
       </button>
     </div>
